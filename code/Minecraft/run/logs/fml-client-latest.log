@@ -625,3 +625,5 @@ Caused by: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING
 [23:14:32] [Server thread/INFO] [FML/]: [Server thread] Server side modded connection established
 [23:14:32] [Client thread/DEBUG] [FML/]: Overriding dimension: using 0
 [23:15:17] [Server thread/DEBUG] [FML/]: Gathering id map for writing to world save TEMP_10000_40257565-bd7d-482b-b56a-df2ebe85f8c5
+[23:16:02] [Server thread/DEBUG] [FML/]: Gathering id map for writing to world save TEMP_10000_40257565-bd7d-482b-b56a-df2ebe85f8c5
+[23:16:47] [Server thread/DEBUG] [FML/]: Gathering id map for writing to world save TEMP_10000_40257565-bd7d-482b-b56a-df2ebe85f8c5

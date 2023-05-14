@@ -1251,3 +1251,5 @@ OverclockingPlugin (MalmoMod-0.37.0.jar)
 [23:14:39] [Client thread/INFO]: [STDOUT]: CLIENT enter state: DORMANT
 [23:14:39] [Client thread/INFO]: [STDOUT]: JETTISONING 0 COMMANDS
 [23:14:39] [Server thread/INFO]: [STDOUT]: SERVER enter state: DORMANT
+[23:16:47] [Client Shutdown Thread/INFO]: Stopping server
+[23:16:47] [Client Shutdown Thread/INFO]: Saving players
