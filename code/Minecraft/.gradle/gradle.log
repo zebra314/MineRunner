@@ -15176,4 +15176,1245 @@ OverclockingPlugin (MalmoMod-0.37.0.jar)
 [23:02:22] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_READY
 [23:02:22] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_READY
 [23:02:22] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
-[23:02:22] [Server thread/INFO]: [STDOUT]: INCOMING MISS
+[23:02:22] [Server thread/INFO]: [STDOUT]: INCOMING MISSION: Received MissionInit directly through queue.
+[23:02:22] [Server thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:02:22] [Server thread/INFO]: Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:02:22] [Server thread/INFO]: Source: §alocalhost
+[23:02:22] [Server thread/INFO]: [STDOUT]: SERVER request state: BUILDING_WORLD
+[23:02:22] [Server thread/INFO]: [STDOUT]: SERVER enter state: BUILDING_WORLD
+[23:02:22] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:02:22] [Client thread/INFO]: [CHAT] Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:02:22] [Client thread/INFO]: [CHAT] Source: §alocalhost
+[23:02:22] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:02:22] [Server thread/INFO]: [STDOUT]: Experiment requires: 
+[23:02:22] [Server thread/INFO]: [STDOUT]: >>>> Cristina
+[23:02:22] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:02:22] [Client thread/INFO]: [STDOUT]: CLIENT request state: RUNNING
+[23:02:22] [Client thread/INFO]: [STDOUT]: CLIENT enter state: RUNNING
+[23:02:22] [Server thread/INFO]: [STDOUT]: SERVER request state: RUNNING
+[23:02:22] [Server thread/INFO]: [STDOUT]: SERVER enter state: RUNNING
+[23:02:22] [Client thread/INFO]: [CHAT] §l20...
+[23:02:23] [Client thread/INFO]: [CHAT] §l19...
+[23:02:24] [Client thread/INFO]: [CHAT] §l18...
+[23:02:25] [Client thread/INFO]: [CHAT] §l17...
+[23:02:26] [Client thread/INFO]: [STDOUT]: CLIENT request state: IDLING
+[23:02:26] [Client thread/INFO]: [STDOUT]: CLIENT enter state: IDLING
+[23:02:26] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_QUIT
+[23:02:26] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_QUIT
+[23:02:26] [Client thread/INFO]: [STDOUT]: CLIENT request state: MISSION_ENDED
+[23:02:26] [Client thread/INFO]: [STDOUT]: CLIENT enter state: MISSION_ENDED
+[23:02:26] [Client thread/INFO]: [STDOUT]: Sending mission ended message to localhost:10952.
+[23:02:26] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_MISSION_END
+[23:02:26] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_MISSION_END
+[23:02:26] [Server thread/INFO]: [STDOUT]: SERVER request state: CLEAN_UP
+[23:02:26] [Server thread/INFO]: [STDOUT]: SERVER enter state: CLEAN_UP
+[23:02:26] [Server thread/INFO]: [STDOUT]: SERVER request state: DORMANT
+[23:02:26] [Client thread/INFO]: [STDOUT]: CLIENT request state: DORMANT
+[23:02:26] [Client thread/INFO]: [STDOUT]: CLIENT enter state: DORMANT
+[23:02:26] [Client thread/INFO]: [STDOUT]: JETTISONING 0 COMMANDS
+[23:02:26] [Server thread/INFO]: [STDOUT]: SERVER enter state: DORMANT
+[23:02:26] [Server thread/INFO]: Cristina tried to swim in lava
+[23:02:26] [Client thread/INFO]: [CHAT] Cristina tried to swim in lava
+[23:02:27] [Thread-255/INFO]: [STDOUT]: Received from localhost:MALMO_REQUEST_CLIENT:0.37.0:20000:
+[23:02:27] [Thread-255/INFO]: [STDOUT]: ==== RES:  - 15051
+[23:02:27] [Thread-255/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:02:27] [Thread-257/INFO]: [STDOUT]: Received from localhost:<?xml version="1.0" encoding="utf-8"?><MissionInit xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="" PlatformVersion="0.37.0"><Mission>      <About>      <Summary>Cliff walking mission based on Sutton and Barto.</Summary></About><ServerSection>          <ServerInitialConditions>            <Time><StartTime>1</StartTime></Time></ServerInitialConditions><ServerHandlers>                            <FlatWorldGenerator generatorString="3;7,220*1,5*3,2;3;,biome_1"/><DrawingDecorator>                                                                                            <!-- coordinates for cuboid are inclusive --><DrawCuboid x1="-2" y1="46" z1="-2" x2="7" y2="50" z2="13" type="air"/><!-- limits of our arena --><DrawCuboid x1="-2" y1="45" z1="-2" x2="7" y2="45" z2="13" type="lava"/><!-- lava floor --><DrawCuboid x1="1" y1="45" z1="1" x2="3" y2="45" z2="17" type="sandstone"/><!-- floor of the arena --><DrawBlock x="4" y="45" z="1" type="cobblestone"/>
+[23:02:27] [Thread-257/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:02:27] [Client thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:02:27] [Client thread/INFO]: [STDOUT]: CLIENT request state: CREATING_HANDLERS
+[23:02:27] [Client thread/INFO]: [STDOUT]: CLIENT enter state: CREATING_HANDLERS
+[23:02:27] [Client thread/INFO]: [STDOUT]: CLIENT request state: EVALUATING_WORLD_REQUIREMENTS
+[23:02:27] [Client thread/INFO]: [STDOUT]: CLIENT enter state: EVALUATING_WORLD_REQUIREMENTS
+[23:02:27] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_READY
+[23:02:27] [Server thread/INFO]: [STDOUT]: INCOMING MISSION: Received MissionInit directly through queue.
+[23:02:27] [Server thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:02:27] [Server thread/INFO]: Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:02:27] [Server thread/INFO]: Source: §alocalhost
+[23:02:27] [Server thread/INFO]: [STDOUT]: SERVER request state: BUILDING_WORLD
+[23:02:27] [Server thread/INFO]: [STDOUT]: SERVER enter state: BUILDING_WORLD
+[23:02:27] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:02:27] [Client thread/INFO]: [CHAT] Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:02:27] [Client thread/INFO]: [CHAT] Source: §alocalhost
+[23:02:27] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_READY
+[23:02:27] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:02:27] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:02:27] [Server thread/INFO]: [STDOUT]: Experiment requires: 
+[23:02:27] [Server thread/INFO]: [STDOUT]: >>>> Cristina
+[23:02:27] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:02:27] [Client thread/INFO]: [STDOUT]: CLIENT request state: RUNNING
+[23:02:27] [Client thread/INFO]: [STDOUT]: CLIENT enter state: RUNNING
+[23:02:27] [Server thread/INFO]: [STDOUT]: SERVER request state: RUNNING
+[23:02:27] [Server thread/INFO]: [STDOUT]: SERVER enter state: RUNNING
+[23:02:27] [Client thread/INFO]: [CHAT] §l20...
+[23:02:28] [Client thread/INFO]: [CHAT] §l19...
+[23:02:29] [Client thread/INFO]: [CHAT] §l18...
+[23:02:30] [Client thread/INFO]: [CHAT] §l17...
+[23:02:31] [Client thread/INFO]: [CHAT] §l16...
+[23:02:32] [Client thread/INFO]: [STDOUT]: CLIENT request state: IDLING
+[23:02:32] [Client thread/INFO]: [STDOUT]: CLIENT enter state: IDLING
+[23:02:32] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_QUIT
+[23:02:32] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_QUIT
+[23:02:32] [Client thread/INFO]: [CHAT] §l15...
+[23:02:32] [Client thread/INFO]: [STDOUT]: CLIENT request state: MISSION_ENDED
+[23:02:32] [Client thread/INFO]: [STDOUT]: CLIENT enter state: MISSION_ENDED
+[23:02:32] [Client thread/INFO]: [STDOUT]: Sending mission ended message to localhost:10952.
+[23:02:32] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_MISSION_END
+[23:02:32] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_MISSION_END
+[23:02:32] [Server thread/INFO]: [STDOUT]: SERVER request state: CLEAN_UP
+[23:02:32] [Server thread/INFO]: [STDOUT]: SERVER enter state: CLEAN_UP
+[23:02:32] [Server thread/INFO]: [STDOUT]: SERVER request state: DORMANT
+[23:02:32] [Client thread/INFO]: [STDOUT]: CLIENT request state: DORMANT
+[23:02:32] [Client thread/INFO]: [STDOUT]: CLIENT enter state: DORMANT
+[23:02:32] [Client thread/INFO]: [STDOUT]: JETTISONING 0 COMMANDS
+[23:02:33] [Server thread/INFO]: [STDOUT]: SERVER enter state: DORMANT
+[23:02:33] [Server thread/INFO]: Cristina tried to swim in lava
+[23:02:33] [Client thread/INFO]: [CHAT] Cristina tried to swim in lava
+[23:02:33] [Thread-261/INFO]: [STDOUT]: Received from localhost:MALMO_REQUEST_CLIENT:0.37.0:20000:
+[23:02:33] [Thread-261/INFO]: [STDOUT]: ==== RES:  - 13702
+[23:02:33] [Thread-261/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:02:33] [Thread-263/INFO]: [STDOUT]: Received from localhost:<?xml version="1.0" encoding="utf-8"?><MissionInit xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="" PlatformVersion="0.37.0"><Mission>      <About>      <Summary>Cliff walking mission based on Sutton and Barto.</Summary></About><ServerSection>          <ServerInitialConditions>            <Time><StartTime>1</StartTime></Time></ServerInitialConditions><ServerHandlers>                            <FlatWorldGenerator generatorString="3;7,220*1,5*3,2;3;,biome_1"/><DrawingDecorator>                                                                                            <!-- coordinates for cuboid are inclusive --><DrawCuboid x1="-2" y1="46" z1="-2" x2="7" y2="50" z2="13" type="air"/><!-- limits of our arena --><DrawCuboid x1="-2" y1="45" z1="-2" x2="7" y2="45" z2="13" type="lava"/><!-- lava floor --><DrawCuboid x1="1" y1="45" z1="1" x2="3" y2="45" z2="17" type="sandstone"/><!-- floor of the arena --><DrawBlock x="4" y="45" z="1" type="cobblestone"/>
+[23:02:33] [Thread-263/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:02:33] [Client thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:02:33] [Client thread/INFO]: [STDOUT]: CLIENT request state: CREATING_HANDLERS
+[23:02:33] [Client thread/INFO]: [STDOUT]: CLIENT enter state: CREATING_HANDLERS
+[23:02:33] [Client thread/INFO]: [STDOUT]: CLIENT request state: EVALUATING_WORLD_REQUIREMENTS
+[23:02:33] [Client thread/INFO]: [STDOUT]: CLIENT enter state: EVALUATING_WORLD_REQUIREMENTS
+[23:02:33] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_READY
+[23:02:33] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_READY
+[23:02:33] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:02:33] [Server thread/INFO]: [STDOUT]: INCOMING MISSION: Received MissionInit directly through queue.
+[23:02:33] [Server thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:02:33] [Server thread/INFO]: Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:02:33] [Server thread/INFO]: Source: §alocalhost
+[23:02:33] [Server thread/INFO]: [STDOUT]: SERVER request state: BUILDING_WORLD
+[23:02:33] [Server thread/INFO]: [STDOUT]: SERVER enter state: BUILDING_WORLD
+[23:02:33] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:02:33] [Client thread/INFO]: [CHAT] Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:02:33] [Client thread/INFO]: [CHAT] Source: §alocalhost
+[23:02:33] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:02:33] [Server thread/INFO]: [STDOUT]: Experiment requires: 
+[23:02:33] [Server thread/INFO]: [STDOUT]: >>>> Cristina
+[23:02:33] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:02:34] [Client thread/INFO]: [STDOUT]: CLIENT request state: RUNNING
+[23:02:34] [Client thread/INFO]: [STDOUT]: CLIENT enter state: RUNNING
+[23:02:34] [Server thread/INFO]: [STDOUT]: SERVER request state: RUNNING
+[23:02:34] [Server thread/INFO]: [STDOUT]: SERVER enter state: RUNNING
+[23:02:34] [Client thread/INFO]: [CHAT] §l20...
+[23:02:35] [Client thread/INFO]: [CHAT] §l19...
+[23:02:36] [Client thread/INFO]: [CHAT] §l18...
+[23:02:37] [Client thread/INFO]: [CHAT] §l17...
+[23:02:37] [Client thread/INFO]: [STDOUT]: CLIENT request state: IDLING
+[23:02:37] [Client thread/INFO]: [STDOUT]: CLIENT enter state: IDLING
+[23:02:37] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_QUIT
+[23:02:37] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_QUIT
+[23:02:37] [Client thread/INFO]: [STDOUT]: CLIENT request state: MISSION_ENDED
+[23:02:37] [Client thread/INFO]: [STDOUT]: CLIENT enter state: MISSION_ENDED
+[23:02:37] [Client thread/INFO]: [STDOUT]: Sending mission ended message to localhost:10952.
+[23:02:37] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_MISSION_END
+[23:02:37] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_MISSION_END
+[23:02:37] [Server thread/INFO]: [STDOUT]: SERVER request state: CLEAN_UP
+[23:02:37] [Server thread/INFO]: [STDOUT]: SERVER enter state: CLEAN_UP
+[23:02:37] [Server thread/INFO]: [STDOUT]: SERVER request state: DORMANT
+[23:02:37] [Client thread/INFO]: [STDOUT]: CLIENT request state: DORMANT
+[23:02:37] [Client thread/INFO]: [STDOUT]: CLIENT enter state: DORMANT
+[23:02:37] [Client thread/INFO]: [STDOUT]: JETTISONING 0 COMMANDS
+[23:02:37] [Server thread/INFO]: [STDOUT]: SERVER enter state: DORMANT
+[23:02:38] [Server thread/INFO]: Cristina tried to swim in lava
+[23:02:38] [Client thread/INFO]: [CHAT] Cristina tried to swim in lava
+[23:02:38] [Thread-267/INFO]: [STDOUT]: Received from localhost:MALMO_REQUEST_CLIENT:0.37.0:20000:
+[23:02:38] [Thread-267/INFO]: [STDOUT]: ==== RES:  - 15159
+[23:02:38] [Thread-267/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:02:38] [Thread-269/INFO]: [STDOUT]: Received from localhost:<?xml version="1.0" encoding="utf-8"?><MissionInit xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="" PlatformVersion="0.37.0"><Mission>      <About>      <Summary>Cliff walking mission based on Sutton and Barto.</Summary></About><ServerSection>          <ServerInitialConditions>            <Time><StartTime>1</StartTime></Time></ServerInitialConditions><ServerHandlers>                            <FlatWorldGenerator generatorString="3;7,220*1,5*3,2;3;,biome_1"/><DrawingDecorator>                                                                                            <!-- coordinates for cuboid are inclusive --><DrawCuboid x1="-2" y1="46" z1="-2" x2="7" y2="50" z2="13" type="air"/><!-- limits of our arena --><DrawCuboid x1="-2" y1="45" z1="-2" x2="7" y2="45" z2="13" type="lava"/><!-- lava floor --><DrawCuboid x1="1" y1="45" z1="1" x2="3" y2="45" z2="17" type="sandstone"/><!-- floor of the arena --><DrawBlock x="4" y="45" z="1" type="cobblestone"/>
+[23:02:38] [Thread-269/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:02:38] [Client thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:02:38] [Client thread/INFO]: [STDOUT]: CLIENT request state: CREATING_HANDLERS
+[23:02:38] [Client thread/INFO]: [STDOUT]: CLIENT enter state: CREATING_HANDLERS
+[23:02:38] [Client thread/INFO]: [STDOUT]: CLIENT request state: EVALUATING_WORLD_REQUIREMENTS
+[23:02:38] [Client thread/INFO]: [STDOUT]: CLIENT enter state: EVALUATING_WORLD_REQUIREMENTS
+[23:02:38] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_READY
+[23:02:38] [Server thread/INFO]: [STDOUT]: INCOMING MISSION: Received MissionInit directly through queue.
+[23:02:38] [Server thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:02:38] [Server thread/INFO]: Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:02:38] [Server thread/INFO]: Source: §alocalhost
+[23:02:38] [Server thread/INFO]: [STDOUT]: SERVER request state: BUILDING_WORLD
+[23:02:38] [Server thread/INFO]: [STDOUT]: SERVER enter state: BUILDING_WORLD
+[23:02:38] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:02:38] [Client thread/INFO]: [CHAT] Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:02:38] [Client thread/INFO]: [CHAT] Source: §alocalhost
+[23:02:38] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_READY
+[23:02:38] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:02:38] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:02:38] [Server thread/INFO]: [STDOUT]: Experiment requires: 
+[23:02:38] [Server thread/INFO]: [STDOUT]: >>>> Cristina
+[23:02:38] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:02:39] [Client thread/INFO]: [STDOUT]: CLIENT request state: RUNNING
+[23:02:39] [Client thread/INFO]: [STDOUT]: CLIENT enter state: RUNNING
+[23:02:39] [Server thread/INFO]: [STDOUT]: SERVER request state: RUNNING
+[23:02:39] [Server thread/INFO]: [STDOUT]: SERVER enter state: RUNNING
+[23:02:39] [Client thread/INFO]: [CHAT] §l20...
+[23:02:40] [Client thread/INFO]: [CHAT] §l19...
+[23:02:40] [Client thread/INFO]: [STDOUT]: CLIENT request state: IDLING
+[23:02:40] [Client thread/INFO]: [STDOUT]: CLIENT enter state: IDLING
+[23:02:40] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_QUIT
+[23:02:40] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_QUIT
+[23:02:40] [Client thread/INFO]: [STDOUT]: CLIENT request state: MISSION_ENDED
+[23:02:40] [Client thread/INFO]: [STDOUT]: CLIENT enter state: MISSION_ENDED
+[23:02:40] [Client thread/INFO]: [STDOUT]: Sending mission ended message to localhost:10952.
+[23:02:40] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_MISSION_END
+[23:02:40] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_MISSION_END
+[23:02:40] [Server thread/INFO]: [STDOUT]: SERVER request state: CLEAN_UP
+[23:02:40] [Server thread/INFO]: [STDOUT]: SERVER enter state: CLEAN_UP
+[23:02:40] [Server thread/INFO]: [STDOUT]: SERVER request state: DORMANT
+[23:02:40] [Client thread/INFO]: [STDOUT]: CLIENT request state: DORMANT
+[23:02:40] [Client thread/INFO]: [STDOUT]: CLIENT enter state: DORMANT
+[23:02:40] [Client thread/INFO]: [STDOUT]: JETTISONING 0 COMMANDS
+[23:02:40] [Server thread/INFO]: [STDOUT]: SERVER enter state: DORMANT
+[23:02:40] [Server thread/INFO]: Cristina tried to swim in lava
+[23:02:40] [Client thread/INFO]: [CHAT] Cristina tried to swim in lava
+[23:02:41] [Thread-273/INFO]: [STDOUT]: Received from localhost:MALMO_REQUEST_CLIENT:0.37.0:20000:
+[23:02:41] [Thread-273/INFO]: [STDOUT]: ==== RES:  - 17234
+[23:02:41] [Thread-273/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:02:41] [Thread-275/INFO]: [STDOUT]: Received from localhost:<?xml version="1.0" encoding="utf-8"?><MissionInit xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="" PlatformVersion="0.37.0"><Mission>      <About>      <Summary>Cliff walking mission based on Sutton and Barto.</Summary></About><ServerSection>          <ServerInitialConditions>            <Time><StartTime>1</StartTime></Time></ServerInitialConditions><ServerHandlers>                            <FlatWorldGenerator generatorString="3;7,220*1,5*3,2;3;,biome_1"/><DrawingDecorator>                                                                                            <!-- coordinates for cuboid are inclusive --><DrawCuboid x1="-2" y1="46" z1="-2" x2="7" y2="50" z2="13" type="air"/><!-- limits of our arena --><DrawCuboid x1="-2" y1="45" z1="-2" x2="7" y2="45" z2="13" type="lava"/><!-- lava floor --><DrawCuboid x1="1" y1="45" z1="1" x2="3" y2="45" z2="17" type="sandstone"/><!-- floor of the arena --><DrawBlock x="4" y="45" z="1" type="cobblestone"/>
+[23:02:41] [Thread-275/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:02:41] [Client thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:02:41] [Client thread/INFO]: [STDOUT]: CLIENT request state: CREATING_HANDLERS
+[23:02:41] [Client thread/INFO]: [STDOUT]: CLIENT enter state: CREATING_HANDLERS
+[23:02:41] [Client thread/INFO]: [STDOUT]: CLIENT request state: EVALUATING_WORLD_REQUIREMENTS
+[23:02:41] [Client thread/INFO]: [STDOUT]: CLIENT enter state: EVALUATING_WORLD_REQUIREMENTS
+[23:02:41] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_READY
+[23:02:41] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_READY
+[23:02:41] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:02:41] [Server thread/INFO]: [STDOUT]: INCOMING MISSION: Received MissionInit directly through queue.
+[23:02:41] [Server thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:02:41] [Server thread/INFO]: Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:02:41] [Server thread/INFO]: Source: §alocalhost
+[23:02:41] [Server thread/INFO]: [STDOUT]: SERVER request state: BUILDING_WORLD
+[23:02:41] [Server thread/INFO]: [STDOUT]: SERVER enter state: BUILDING_WORLD
+[23:02:41] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:02:41] [Client thread/INFO]: [CHAT] Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:02:41] [Client thread/INFO]: [CHAT] Source: §alocalhost
+[23:02:41] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:02:41] [Server thread/INFO]: [STDOUT]: Experiment requires: 
+[23:02:41] [Server thread/INFO]: [STDOUT]: >>>> Cristina
+[23:02:41] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:02:41] [Client thread/INFO]: [STDOUT]: CLIENT request state: RUNNING
+[23:02:41] [Client thread/INFO]: [STDOUT]: CLIENT enter state: RUNNING
+[23:02:41] [Server thread/INFO]: [STDOUT]: SERVER request state: RUNNING
+[23:02:41] [Server thread/INFO]: [STDOUT]: SERVER enter state: RUNNING
+[23:02:41] [Client thread/INFO]: [CHAT] §l20...
+[23:02:42] [Client thread/INFO]: [CHAT] §l19...
+[23:02:43] [Client thread/INFO]: [CHAT] §l18...
+[23:02:44] [Client thread/INFO]: [CHAT] §l17...
+[23:02:45] [Client thread/INFO]: [CHAT] §l16...
+[23:02:46] [Client thread/INFO]: [CHAT] §l15...
+[23:02:47] [Client thread/INFO]: [CHAT] §l14...
+[23:02:48] [Client thread/INFO]: [CHAT] §l13...
+[23:02:49] [Client thread/INFO]: [CHAT] §l12...
+[23:02:50] [Client thread/INFO]: [CHAT] §l11...
+[23:02:51] [Client thread/INFO]: [STDOUT]: CLIENT request state: IDLING
+[23:02:51] [Client thread/INFO]: [STDOUT]: CLIENT enter state: IDLING
+[23:02:51] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_QUIT
+[23:02:51] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_QUIT
+[23:02:51] [Client thread/INFO]: [STDOUT]: CLIENT request state: MISSION_ENDED
+[23:02:51] [Client thread/INFO]: [STDOUT]: CLIENT enter state: MISSION_ENDED
+[23:02:51] [Client thread/INFO]: [STDOUT]: Sending mission ended message to localhost:10952.
+[23:02:51] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_MISSION_END
+[23:02:51] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_MISSION_END
+[23:02:51] [Server thread/INFO]: [STDOUT]: SERVER request state: CLEAN_UP
+[23:02:51] [Server thread/INFO]: [STDOUT]: SERVER enter state: CLEAN_UP
+[23:02:51] [Server thread/INFO]: [STDOUT]: SERVER request state: DORMANT
+[23:02:51] [Client thread/INFO]: [STDOUT]: CLIENT request state: DORMANT
+[23:02:51] [Client thread/INFO]: [STDOUT]: CLIENT enter state: DORMANT
+[23:02:51] [Client thread/INFO]: [STDOUT]: JETTISONING 0 COMMANDS
+[23:02:51] [Server thread/INFO]: [STDOUT]: SERVER enter state: DORMANT
+[23:02:51] [Server thread/INFO]: Cristina tried to swim in lava
+[23:02:51] [Client thread/INFO]: [CHAT] Cristina tried to swim in lava
+[23:02:51] [Thread-279/INFO]: [STDOUT]: Received from localhost:MALMO_REQUEST_CLIENT:0.37.0:20000:
+[23:02:51] [Thread-279/INFO]: [STDOUT]: ==== RES:  - 9419
+[23:02:51] [Thread-279/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:02:51] [Thread-281/INFO]: [STDOUT]: Received from localhost:<?xml version="1.0" encoding="utf-8"?><MissionInit xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="" PlatformVersion="0.37.0"><Mission>      <About>      <Summary>Cliff walking mission based on Sutton and Barto.</Summary></About><ServerSection>          <ServerInitialConditions>            <Time><StartTime>1</StartTime></Time></ServerInitialConditions><ServerHandlers>                            <FlatWorldGenerator generatorString="3;7,220*1,5*3,2;3;,biome_1"/><DrawingDecorator>                                                                                            <!-- coordinates for cuboid are inclusive --><DrawCuboid x1="-2" y1="46" z1="-2" x2="7" y2="50" z2="13" type="air"/><!-- limits of our arena --><DrawCuboid x1="-2" y1="45" z1="-2" x2="7" y2="45" z2="13" type="lava"/><!-- lava floor --><DrawCuboid x1="1" y1="45" z1="1" x2="3" y2="45" z2="17" type="sandstone"/><!-- floor of the arena --><DrawBlock x="4" y="45" z="1" type="cobblestone"/>
+[23:02:51] [Thread-281/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:02:51] [Client thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:02:51] [Client thread/INFO]: [STDOUT]: CLIENT request state: CREATING_HANDLERS
+[23:02:51] [Client thread/INFO]: [STDOUT]: CLIENT enter state: CREATING_HANDLERS
+[23:02:51] [Client thread/INFO]: [STDOUT]: CLIENT request state: EVALUATING_WORLD_REQUIREMENTS
+[23:02:51] [Client thread/INFO]: [STDOUT]: CLIENT enter state: EVALUATING_WORLD_REQUIREMENTS
+[23:02:51] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_READY
+[23:02:51] [Server thread/INFO]: [STDOUT]: INCOMING MISSION: Received MissionInit directly through queue.
+[23:02:51] [Server thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:02:51] [Server thread/INFO]: Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:02:51] [Server thread/INFO]: Source: §alocalhost
+[23:02:51] [Server thread/INFO]: [STDOUT]: SERVER request state: BUILDING_WORLD
+[23:02:51] [Server thread/INFO]: [STDOUT]: SERVER enter state: BUILDING_WORLD
+[23:02:51] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:02:51] [Client thread/INFO]: [CHAT] Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:02:51] [Client thread/INFO]: [CHAT] Source: §alocalhost
+[23:02:51] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_READY
+[23:02:51] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:02:51] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:02:51] [Server thread/INFO]: [STDOUT]: Experiment requires: 
+[23:02:51] [Server thread/INFO]: [STDOUT]: >>>> Cristina
+[23:02:52] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:02:52] [Client thread/INFO]: [STDOUT]: CLIENT request state: RUNNING
+[23:02:52] [Client thread/INFO]: [STDOUT]: CLIENT enter state: RUNNING
+[23:02:52] [Server thread/INFO]: [STDOUT]: SERVER request state: RUNNING
+[23:02:52] [Server thread/INFO]: [STDOUT]: SERVER enter state: RUNNING
+[23:02:52] [Client thread/INFO]: [CHAT] §l20...
+[23:02:52] [Client thread/INFO]: [STDOUT]: CLIENT request state: IDLING
+[23:02:52] [Client thread/INFO]: [STDOUT]: CLIENT enter state: IDLING
+[23:02:52] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_QUIT
+[23:02:52] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_QUIT
+[23:02:52] [Client thread/INFO]: [STDOUT]: CLIENT request state: MISSION_ENDED
+[23:02:52] [Client thread/INFO]: [STDOUT]: CLIENT enter state: MISSION_ENDED
+[23:02:52] [Client thread/INFO]: [STDOUT]: Sending mission ended message to localhost:10952.
+[23:02:52] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_MISSION_END
+[23:02:52] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_MISSION_END
+[23:02:52] [Server thread/INFO]: [STDOUT]: SERVER request state: CLEAN_UP
+[23:02:52] [Server thread/INFO]: [STDOUT]: SERVER enter state: CLEAN_UP
+[23:02:52] [Server thread/INFO]: [STDOUT]: SERVER request state: DORMANT
+[23:02:52] [Client thread/INFO]: [STDOUT]: CLIENT request state: DORMANT
+[23:02:52] [Client thread/INFO]: [STDOUT]: CLIENT enter state: DORMANT
+[23:02:52] [Client thread/INFO]: [STDOUT]: JETTISONING 0 COMMANDS
+[23:02:52] [Server thread/INFO]: [STDOUT]: SERVER enter state: DORMANT
+[23:02:52] [Server thread/INFO]: Cristina tried to swim in lava
+[23:02:52] [Client thread/INFO]: [CHAT] Cristina tried to swim in lava
+[23:02:53] [Thread-285/INFO]: [STDOUT]: Received from localhost:MALMO_REQUEST_CLIENT:0.37.0:20000:
+[23:02:53] [Thread-285/INFO]: [STDOUT]: ==== RES:  - 18470
+[23:02:53] [Thread-285/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:02:53] [Thread-287/INFO]: [STDOUT]: Received from localhost:<?xml version="1.0" encoding="utf-8"?><MissionInit xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="" PlatformVersion="0.37.0"><Mission>      <About>      <Summary>Cliff walking mission based on Sutton and Barto.</Summary></About><ServerSection>          <ServerInitialConditions>            <Time><StartTime>1</StartTime></Time></ServerInitialConditions><ServerHandlers>                            <FlatWorldGenerator generatorString="3;7,220*1,5*3,2;3;,biome_1"/><DrawingDecorator>                                                                                            <!-- coordinates for cuboid are inclusive --><DrawCuboid x1="-2" y1="46" z1="-2" x2="7" y2="50" z2="13" type="air"/><!-- limits of our arena --><DrawCuboid x1="-2" y1="45" z1="-2" x2="7" y2="45" z2="13" type="lava"/><!-- lava floor --><DrawCuboid x1="1" y1="45" z1="1" x2="3" y2="45" z2="17" type="sandstone"/><!-- floor of the arena --><DrawBlock x="4" y="45" z="1" type="cobblestone"/>
+[23:02:53] [Thread-287/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:02:53] [Client thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:02:53] [Client thread/INFO]: [STDOUT]: CLIENT request state: CREATING_HANDLERS
+[23:02:53] [Client thread/INFO]: [STDOUT]: CLIENT enter state: CREATING_HANDLERS
+[23:02:53] [Client thread/INFO]: [STDOUT]: CLIENT request state: EVALUATING_WORLD_REQUIREMENTS
+[23:02:53] [Client thread/INFO]: [STDOUT]: CLIENT enter state: EVALUATING_WORLD_REQUIREMENTS
+[23:02:53] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_READY
+[23:02:53] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_READY
+[23:02:53] [Server thread/INFO]: [STDOUT]: INCOMING MISSION: Received MissionInit directly through queue.
+[23:02:53] [Server thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:02:53] [Server thread/INFO]: Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:02:53] [Server thread/INFO]: Source: §alocalhost
+[23:02:53] [Server thread/INFO]: [STDOUT]: SERVER request state: BUILDING_WORLD
+[23:02:53] [Server thread/INFO]: [STDOUT]: SERVER enter state: BUILDING_WORLD
+[23:02:53] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:02:53] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:02:53] [Client thread/INFO]: [CHAT] Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:02:53] [Client thread/INFO]: [CHAT] Source: §alocalhost
+[23:02:53] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:02:53] [Server thread/INFO]: [STDOUT]: Experiment requires: 
+[23:02:53] [Server thread/INFO]: [STDOUT]: >>>> Cristina
+[23:02:53] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:02:53] [Client thread/INFO]: [STDOUT]: CLIENT request state: RUNNING
+[23:02:53] [Client thread/INFO]: [STDOUT]: CLIENT enter state: RUNNING
+[23:02:53] [Server thread/INFO]: [STDOUT]: SERVER request state: RUNNING
+[23:02:53] [Server thread/INFO]: [STDOUT]: SERVER enter state: RUNNING
+[23:02:53] [Client thread/INFO]: [CHAT] §l20...
+[23:02:54] [Client thread/INFO]: [STDOUT]: CLIENT request state: IDLING
+[23:02:54] [Client thread/INFO]: [STDOUT]: CLIENT enter state: IDLING
+[23:02:54] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_QUIT
+[23:02:54] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_QUIT
+[23:02:54] [Client thread/INFO]: [STDOUT]: CLIENT request state: MISSION_ENDED
+[23:02:54] [Client thread/INFO]: [STDOUT]: CLIENT enter state: MISSION_ENDED
+[23:02:54] [Client thread/INFO]: [STDOUT]: Sending mission ended message to localhost:10952.
+[23:02:54] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_MISSION_END
+[23:02:54] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_MISSION_END
+[23:02:54] [Server thread/INFO]: [STDOUT]: SERVER request state: CLEAN_UP
+[23:02:54] [Server thread/INFO]: [STDOUT]: SERVER enter state: CLEAN_UP
+[23:02:54] [Server thread/INFO]: [STDOUT]: SERVER request state: DORMANT
+[23:02:54] [Client thread/INFO]: [STDOUT]: CLIENT request state: DORMANT
+[23:02:54] [Client thread/INFO]: [STDOUT]: CLIENT enter state: DORMANT
+[23:02:54] [Client thread/INFO]: [STDOUT]: JETTISONING 0 COMMANDS
+[23:02:54] [Server thread/INFO]: [STDOUT]: SERVER enter state: DORMANT
+[23:02:54] [Server thread/INFO]: Cristina tried to swim in lava
+[23:02:54] [Client thread/INFO]: [CHAT] Cristina tried to swim in lava
+[23:02:54] [Thread-291/INFO]: [STDOUT]: Received from localhost:MALMO_REQUEST_CLIENT:0.37.0:20000:
+[23:02:54] [Thread-291/INFO]: [STDOUT]: ==== RES:  - 18574
+[23:02:54] [Thread-291/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:02:54] [Thread-293/INFO]: [STDOUT]: Received from localhost:<?xml version="1.0" encoding="utf-8"?><MissionInit xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="" PlatformVersion="0.37.0"><Mission>      <About>      <Summary>Cliff walking mission based on Sutton and Barto.</Summary></About><ServerSection>          <ServerInitialConditions>            <Time><StartTime>1</StartTime></Time></ServerInitialConditions><ServerHandlers>                            <FlatWorldGenerator generatorString="3;7,220*1,5*3,2;3;,biome_1"/><DrawingDecorator>                                                                                            <!-- coordinates for cuboid are inclusive --><DrawCuboid x1="-2" y1="46" z1="-2" x2="7" y2="50" z2="13" type="air"/><!-- limits of our arena --><DrawCuboid x1="-2" y1="45" z1="-2" x2="7" y2="45" z2="13" type="lava"/><!-- lava floor --><DrawCuboid x1="1" y1="45" z1="1" x2="3" y2="45" z2="17" type="sandstone"/><!-- floor of the arena --><DrawBlock x="4" y="45" z="1" type="cobblestone"/>
+[23:02:54] [Thread-293/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:02:54] [Client thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:02:54] [Client thread/INFO]: [STDOUT]: CLIENT request state: CREATING_HANDLERS
+[23:02:54] [Client thread/INFO]: [STDOUT]: CLIENT enter state: CREATING_HANDLERS
+[23:02:54] [Client thread/INFO]: [STDOUT]: CLIENT request state: EVALUATING_WORLD_REQUIREMENTS
+[23:02:54] [Client thread/INFO]: [STDOUT]: CLIENT enter state: EVALUATING_WORLD_REQUIREMENTS
+[23:02:54] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_READY
+[23:02:54] [Server thread/INFO]: [STDOUT]: INCOMING MISSION: Received MissionInit directly through queue.
+[23:02:54] [Server thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:02:54] [Server thread/INFO]: Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:02:54] [Server thread/INFO]: Source: §alocalhost
+[23:02:54] [Server thread/INFO]: [STDOUT]: SERVER request state: BUILDING_WORLD
+[23:02:54] [Server thread/INFO]: [STDOUT]: SERVER enter state: BUILDING_WORLD
+[23:02:54] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:02:54] [Client thread/INFO]: [CHAT] Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:02:54] [Client thread/INFO]: [CHAT] Source: §alocalhost
+[23:02:54] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_READY
+[23:02:54] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:02:54] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:02:54] [Server thread/INFO]: [STDOUT]: Experiment requires: 
+[23:02:54] [Server thread/INFO]: [STDOUT]: >>>> Cristina
+[23:02:55] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:02:55] [Client thread/INFO]: [STDOUT]: CLIENT request state: RUNNING
+[23:02:55] [Client thread/INFO]: [STDOUT]: CLIENT enter state: RUNNING
+[23:02:55] [Server thread/INFO]: [STDOUT]: SERVER request state: RUNNING
+[23:02:55] [Server thread/INFO]: [STDOUT]: SERVER enter state: RUNNING
+[23:02:55] [Client thread/INFO]: [CHAT] §l20...
+[23:02:56] [Client thread/INFO]: [CHAT] §l19...
+[23:02:57] [Client thread/INFO]: [CHAT] §l18...
+[23:02:58] [Client thread/INFO]: [CHAT] §l17...
+[23:02:59] [Client thread/INFO]: [CHAT] §l16...
+[23:03:00] [Client thread/INFO]: [STDOUT]: CLIENT request state: IDLING
+[23:03:00] [Client thread/INFO]: [STDOUT]: CLIENT enter state: IDLING
+[23:03:00] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:00] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:00] [Client thread/INFO]: [STDOUT]: CLIENT request state: MISSION_ENDED
+[23:03:00] [Client thread/INFO]: [STDOUT]: CLIENT enter state: MISSION_ENDED
+[23:03:00] [Client thread/INFO]: [STDOUT]: Sending mission ended message to localhost:10952.
+[23:03:00] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_MISSION_END
+[23:03:00] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_MISSION_END
+[23:03:00] [Server thread/INFO]: [STDOUT]: SERVER request state: CLEAN_UP
+[23:03:00] [Server thread/INFO]: [STDOUT]: SERVER enter state: CLEAN_UP
+[23:03:00] [Server thread/INFO]: [STDOUT]: SERVER request state: DORMANT
+[23:03:00] [Client thread/INFO]: [STDOUT]: CLIENT request state: DORMANT
+[23:03:00] [Server thread/INFO]: [STDOUT]: SERVER enter state: DORMANT
+[23:03:00] [Client thread/INFO]: [STDOUT]: CLIENT enter state: DORMANT
+[23:03:00] [Client thread/INFO]: [STDOUT]: JETTISONING 0 COMMANDS
+[23:03:00] [Server thread/INFO]: Cristina tried to swim in lava
+[23:03:00] [Client thread/INFO]: [CHAT] Cristina tried to swim in lava
+[23:03:00] [Thread-297/INFO]: [STDOUT]: Received from localhost:MALMO_REQUEST_CLIENT:0.37.0:20000:
+[23:03:00] [Thread-297/INFO]: [STDOUT]: ==== RES:  - 13893
+[23:03:00] [Thread-297/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:00] [Thread-299/INFO]: [STDOUT]: Received from localhost:<?xml version="1.0" encoding="utf-8"?><MissionInit xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="" PlatformVersion="0.37.0"><Mission>      <About>      <Summary>Cliff walking mission based on Sutton and Barto.</Summary></About><ServerSection>          <ServerInitialConditions>            <Time><StartTime>1</StartTime></Time></ServerInitialConditions><ServerHandlers>                            <FlatWorldGenerator generatorString="3;7,220*1,5*3,2;3;,biome_1"/><DrawingDecorator>                                                                                            <!-- coordinates for cuboid are inclusive --><DrawCuboid x1="-2" y1="46" z1="-2" x2="7" y2="50" z2="13" type="air"/><!-- limits of our arena --><DrawCuboid x1="-2" y1="45" z1="-2" x2="7" y2="45" z2="13" type="lava"/><!-- lava floor --><DrawCuboid x1="1" y1="45" z1="1" x2="3" y2="45" z2="17" type="sandstone"/><!-- floor of the arena --><DrawBlock x="4" y="45" z="1" type="cobblestone"/>
+[23:03:00] [Thread-299/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:00] [Client thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:00] [Client thread/INFO]: [STDOUT]: CLIENT request state: CREATING_HANDLERS
+[23:03:00] [Client thread/INFO]: [STDOUT]: CLIENT enter state: CREATING_HANDLERS
+[23:03:00] [Client thread/INFO]: [STDOUT]: CLIENT request state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:00] [Client thread/INFO]: [STDOUT]: CLIENT enter state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:00] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_READY
+[23:03:00] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_READY
+[23:03:00] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:00] [Server thread/INFO]: [STDOUT]: INCOMING MISSION: Received MissionInit directly through queue.
+[23:03:00] [Server thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:00] [Server thread/INFO]: Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:00] [Server thread/INFO]: Source: §alocalhost
+[23:03:00] [Server thread/INFO]: [STDOUT]: SERVER request state: BUILDING_WORLD
+[23:03:00] [Server thread/INFO]: [STDOUT]: SERVER enter state: BUILDING_WORLD
+[23:03:00] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:00] [Client thread/INFO]: [CHAT] Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:00] [Client thread/INFO]: [CHAT] Source: §alocalhost
+[23:03:00] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:00] [Server thread/INFO]: [STDOUT]: Experiment requires: 
+[23:03:00] [Server thread/INFO]: [STDOUT]: >>>> Cristina
+[23:03:01] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:01] [Client thread/INFO]: [STDOUT]: CLIENT request state: RUNNING
+[23:03:01] [Client thread/INFO]: [STDOUT]: CLIENT enter state: RUNNING
+[23:03:01] [Server thread/INFO]: [STDOUT]: SERVER request state: RUNNING
+[23:03:01] [Server thread/INFO]: [STDOUT]: SERVER enter state: RUNNING
+[23:03:01] [Client thread/INFO]: [CHAT] §l20...
+[23:03:01] [Client thread/INFO]: [STDOUT]: CLIENT request state: IDLING
+[23:03:01] [Client thread/INFO]: [STDOUT]: CLIENT enter state: IDLING
+[23:03:01] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:01] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:01] [Client thread/INFO]: [STDOUT]: CLIENT request state: MISSION_ENDED
+[23:03:01] [Client thread/INFO]: [STDOUT]: CLIENT enter state: MISSION_ENDED
+[23:03:01] [Client thread/INFO]: [STDOUT]: Sending mission ended message to localhost:10952.
+[23:03:01] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_MISSION_END
+[23:03:01] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_MISSION_END
+[23:03:01] [Server thread/INFO]: [STDOUT]: SERVER request state: CLEAN_UP
+[23:03:01] [Client thread/INFO]: [STDOUT]: CLIENT request state: DORMANT
+[23:03:01] [Server thread/INFO]: [STDOUT]: SERVER enter state: CLEAN_UP
+[23:03:01] [Server thread/INFO]: [STDOUT]: SERVER request state: DORMANT
+[23:03:01] [Client thread/INFO]: [STDOUT]: CLIENT enter state: DORMANT
+[23:03:01] [Client thread/INFO]: [STDOUT]: JETTISONING 0 COMMANDS
+[23:03:01] [Server thread/INFO]: [STDOUT]: SERVER enter state: DORMANT
+[23:03:01] [Server thread/INFO]: Cristina tried to swim in lava
+[23:03:01] [Client thread/INFO]: [CHAT] Cristina tried to swim in lava
+[23:03:02] [Thread-303/INFO]: [STDOUT]: Received from localhost:MALMO_REQUEST_CLIENT:0.37.0:20000:
+[23:03:02] [Thread-303/INFO]: [STDOUT]: ==== RES:  - 18570
+[23:03:02] [Thread-303/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:02] [Thread-305/INFO]: [STDOUT]: Received from localhost:<?xml version="1.0" encoding="utf-8"?><MissionInit xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="" PlatformVersion="0.37.0"><Mission>      <About>      <Summary>Cliff walking mission based on Sutton and Barto.</Summary></About><ServerSection>          <ServerInitialConditions>            <Time><StartTime>1</StartTime></Time></ServerInitialConditions><ServerHandlers>                            <FlatWorldGenerator generatorString="3;7,220*1,5*3,2;3;,biome_1"/><DrawingDecorator>                                                                                            <!-- coordinates for cuboid are inclusive --><DrawCuboid x1="-2" y1="46" z1="-2" x2="7" y2="50" z2="13" type="air"/><!-- limits of our arena --><DrawCuboid x1="-2" y1="45" z1="-2" x2="7" y2="45" z2="13" type="lava"/><!-- lava floor --><DrawCuboid x1="1" y1="45" z1="1" x2="3" y2="45" z2="17" type="sandstone"/><!-- floor of the arena --><DrawBlock x="4" y="45" z="1" type="cobblestone"/>
+[23:03:02] [Thread-305/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:02] [Client thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:02] [Client thread/INFO]: [STDOUT]: CLIENT request state: CREATING_HANDLERS
+[23:03:02] [Client thread/INFO]: [STDOUT]: CLIENT enter state: CREATING_HANDLERS
+[23:03:02] [Client thread/INFO]: [STDOUT]: CLIENT request state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:02] [Client thread/INFO]: [STDOUT]: CLIENT enter state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:02] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_READY
+[23:03:02] [Server thread/INFO]: [STDOUT]: INCOMING MISSION: Received MissionInit directly through queue.
+[23:03:02] [Server thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:02] [Server thread/INFO]: Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:02] [Server thread/INFO]: Source: §alocalhost
+[23:03:02] [Server thread/INFO]: [STDOUT]: SERVER request state: BUILDING_WORLD
+[23:03:02] [Server thread/INFO]: [STDOUT]: SERVER enter state: BUILDING_WORLD
+[23:03:02] [Client thread/INFO]: [CHAT] Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:02] [Client thread/INFO]: [CHAT] Source: §alocalhost
+[23:03:02] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:02] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_READY
+[23:03:02] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:02] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:02] [Server thread/INFO]: [STDOUT]: Experiment requires: 
+[23:03:02] [Server thread/INFO]: [STDOUT]: >>>> Cristina
+[23:03:02] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:02] [Client thread/INFO]: [STDOUT]: CLIENT request state: RUNNING
+[23:03:02] [Client thread/INFO]: [STDOUT]: CLIENT enter state: RUNNING
+[23:03:02] [Server thread/INFO]: [STDOUT]: SERVER request state: RUNNING
+[23:03:02] [Server thread/INFO]: [STDOUT]: SERVER enter state: RUNNING
+[23:03:02] [Client thread/INFO]: [CHAT] §l20...
+[23:03:03] [Client thread/INFO]: [CHAT] §l19...
+[23:03:04] [Client thread/INFO]: [CHAT] §l18...
+[23:03:05] [Client thread/INFO]: [CHAT] §l17...
+[23:03:06] [Client thread/INFO]: [STDOUT]: CLIENT request state: IDLING
+[23:03:06] [Client thread/INFO]: [STDOUT]: CLIENT enter state: IDLING
+[23:03:06] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:06] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:06] [Client thread/INFO]: [STDOUT]: CLIENT request state: MISSION_ENDED
+[23:03:06] [Client thread/INFO]: [STDOUT]: CLIENT enter state: MISSION_ENDED
+[23:03:06] [Client thread/INFO]: [STDOUT]: Sending mission ended message to localhost:10952.
+[23:03:06] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_MISSION_END
+[23:03:06] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_MISSION_END
+[23:03:06] [Server thread/INFO]: [STDOUT]: SERVER request state: CLEAN_UP
+[23:03:06] [Server thread/INFO]: [STDOUT]: SERVER enter state: CLEAN_UP
+[23:03:06] [Server thread/INFO]: [STDOUT]: SERVER request state: DORMANT
+[23:03:06] [Client thread/INFO]: [STDOUT]: CLIENT request state: DORMANT
+[23:03:06] [Client thread/INFO]: [STDOUT]: CLIENT enter state: DORMANT
+[23:03:06] [Client thread/INFO]: [STDOUT]: JETTISONING 0 COMMANDS
+[23:03:07] [Server thread/INFO]: [STDOUT]: SERVER enter state: DORMANT
+[23:03:07] [Server thread/INFO]: Cristina tried to swim in lava
+[23:03:07] [Client thread/INFO]: [CHAT] Cristina tried to swim in lava
+[23:03:07] [Thread-309/INFO]: [STDOUT]: Received from localhost:MALMO_REQUEST_CLIENT:0.37.0:20000:
+[23:03:07] [Thread-309/INFO]: [STDOUT]: ==== RES:  - 14713
+[23:03:07] [Thread-309/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:07] [Thread-311/INFO]: [STDOUT]: Received from localhost:<?xml version="1.0" encoding="utf-8"?><MissionInit xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="" PlatformVersion="0.37.0"><Mission>      <About>      <Summary>Cliff walking mission based on Sutton and Barto.</Summary></About><ServerSection>          <ServerInitialConditions>            <Time><StartTime>1</StartTime></Time></ServerInitialConditions><ServerHandlers>                            <FlatWorldGenerator generatorString="3;7,220*1,5*3,2;3;,biome_1"/><DrawingDecorator>                                                                                            <!-- coordinates for cuboid are inclusive --><DrawCuboid x1="-2" y1="46" z1="-2" x2="7" y2="50" z2="13" type="air"/><!-- limits of our arena --><DrawCuboid x1="-2" y1="45" z1="-2" x2="7" y2="45" z2="13" type="lava"/><!-- lava floor --><DrawCuboid x1="1" y1="45" z1="1" x2="3" y2="45" z2="17" type="sandstone"/><!-- floor of the arena --><DrawBlock x="4" y="45" z="1" type="cobblestone"/>
+[23:03:07] [Thread-311/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:07] [Client thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:07] [Client thread/INFO]: [STDOUT]: CLIENT request state: CREATING_HANDLERS
+[23:03:07] [Client thread/INFO]: [STDOUT]: CLIENT enter state: CREATING_HANDLERS
+[23:03:07] [Client thread/INFO]: [STDOUT]: CLIENT request state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:07] [Client thread/INFO]: [STDOUT]: CLIENT enter state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:07] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_READY
+[23:03:07] [Server thread/INFO]: [STDOUT]: INCOMING MISSION: Received MissionInit directly through queue.
+[23:03:07] [Server thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:07] [Server thread/INFO]: Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:07] [Server thread/INFO]: Source: §alocalhost
+[23:03:07] [Server thread/INFO]: [STDOUT]: SERVER request state: BUILDING_WORLD
+[23:03:07] [Server thread/INFO]: [STDOUT]: SERVER enter state: BUILDING_WORLD
+[23:03:07] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:07] [Client thread/INFO]: [CHAT] Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:07] [Client thread/INFO]: [CHAT] Source: §alocalhost
+[23:03:07] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_READY
+[23:03:07] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:07] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:07] [Server thread/INFO]: [STDOUT]: Experiment requires: 
+[23:03:07] [Server thread/INFO]: [STDOUT]: >>>> Cristina
+[23:03:07] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:08] [Client thread/INFO]: [STDOUT]: CLIENT request state: RUNNING
+[23:03:08] [Client thread/INFO]: [STDOUT]: CLIENT enter state: RUNNING
+[23:03:08] [Server thread/INFO]: [STDOUT]: SERVER request state: RUNNING
+[23:03:08] [Server thread/INFO]: [STDOUT]: SERVER enter state: RUNNING
+[23:03:08] [Client thread/INFO]: [CHAT] §l20...
+[23:03:08] [Client thread/INFO]: [STDOUT]: CLIENT request state: IDLING
+[23:03:08] [Client thread/INFO]: [STDOUT]: CLIENT enter state: IDLING
+[23:03:08] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:08] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:08] [Client thread/INFO]: [STDOUT]: CLIENT request state: MISSION_ENDED
+[23:03:08] [Client thread/INFO]: [STDOUT]: CLIENT enter state: MISSION_ENDED
+[23:03:08] [Client thread/INFO]: [STDOUT]: Sending mission ended message to localhost:10952.
+[23:03:08] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_MISSION_END
+[23:03:08] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_MISSION_END
+[23:03:08] [Server thread/INFO]: [STDOUT]: SERVER request state: CLEAN_UP
+[23:03:08] [Server thread/INFO]: [STDOUT]: SERVER enter state: CLEAN_UP
+[23:03:08] [Server thread/INFO]: [STDOUT]: SERVER request state: DORMANT
+[23:03:08] [Client thread/INFO]: [STDOUT]: CLIENT request state: DORMANT
+[23:03:08] [Client thread/INFO]: [STDOUT]: CLIENT enter state: DORMANT
+[23:03:08] [Client thread/INFO]: [STDOUT]: JETTISONING 0 COMMANDS
+[23:03:08] [Server thread/INFO]: [STDOUT]: SERVER enter state: DORMANT
+[23:03:08] [Server thread/INFO]: Cristina tried to swim in lava
+[23:03:08] [Client thread/INFO]: [CHAT] Cristina tried to swim in lava
+[23:03:09] [Thread-315/INFO]: [STDOUT]: Received from localhost:MALMO_REQUEST_CLIENT:0.37.0:20000:
+[23:03:09] [Thread-315/INFO]: [STDOUT]: ==== RES:  - 18459
+[23:03:09] [Thread-315/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:09] [Thread-317/INFO]: [STDOUT]: Received from localhost:<?xml version="1.0" encoding="utf-8"?><MissionInit xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="" PlatformVersion="0.37.0"><Mission>      <About>      <Summary>Cliff walking mission based on Sutton and Barto.</Summary></About><ServerSection>          <ServerInitialConditions>            <Time><StartTime>1</StartTime></Time></ServerInitialConditions><ServerHandlers>                            <FlatWorldGenerator generatorString="3;7,220*1,5*3,2;3;,biome_1"/><DrawingDecorator>                                                                                            <!-- coordinates for cuboid are inclusive --><DrawCuboid x1="-2" y1="46" z1="-2" x2="7" y2="50" z2="13" type="air"/><!-- limits of our arena --><DrawCuboid x1="-2" y1="45" z1="-2" x2="7" y2="45" z2="13" type="lava"/><!-- lava floor --><DrawCuboid x1="1" y1="45" z1="1" x2="3" y2="45" z2="17" type="sandstone"/><!-- floor of the arena --><DrawBlock x="4" y="45" z="1" type="cobblestone"/>
+[23:03:09] [Thread-317/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:09] [Client thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:09] [Client thread/INFO]: [STDOUT]: CLIENT request state: CREATING_HANDLERS
+[23:03:09] [Client thread/INFO]: [STDOUT]: CLIENT enter state: CREATING_HANDLERS
+[23:03:09] [Client thread/INFO]: [STDOUT]: CLIENT request state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:09] [Client thread/INFO]: [STDOUT]: CLIENT enter state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:09] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_READY
+[23:03:09] [Server thread/INFO]: [STDOUT]: INCOMING MISSION: Received MissionInit directly through queue.
+[23:03:09] [Server thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:09] [Server thread/INFO]: Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:09] [Server thread/INFO]: Source: §alocalhost
+[23:03:09] [Server thread/INFO]: [STDOUT]: SERVER request state: BUILDING_WORLD
+[23:03:09] [Server thread/INFO]: [STDOUT]: SERVER enter state: BUILDING_WORLD
+[23:03:09] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:09] [Client thread/INFO]: [CHAT] Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:09] [Client thread/INFO]: [CHAT] Source: §alocalhost
+[23:03:09] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_READY
+[23:03:09] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:09] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:09] [Server thread/INFO]: [STDOUT]: Experiment requires: 
+[23:03:09] [Server thread/INFO]: [STDOUT]: >>>> Cristina
+[23:03:09] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:09] [Client thread/INFO]: [STDOUT]: CLIENT request state: RUNNING
+[23:03:09] [Client thread/INFO]: [STDOUT]: CLIENT enter state: RUNNING
+[23:03:09] [Server thread/INFO]: [STDOUT]: SERVER request state: RUNNING
+[23:03:09] [Server thread/INFO]: [STDOUT]: SERVER enter state: RUNNING
+[23:03:09] [Client thread/INFO]: [CHAT] §l20...
+[23:03:10] [Client thread/INFO]: [CHAT] §l19...
+[23:03:11] [Client thread/INFO]: [CHAT] §l18...
+[23:03:11] [Client thread/INFO]: [STDOUT]: CLIENT request state: IDLING
+[23:03:11] [Client thread/INFO]: [STDOUT]: CLIENT enter state: IDLING
+[23:03:11] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:11] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:11] [Client thread/INFO]: [STDOUT]: CLIENT request state: MISSION_ENDED
+[23:03:12] [Client thread/INFO]: [STDOUT]: CLIENT enter state: MISSION_ENDED
+[23:03:12] [Client thread/INFO]: [STDOUT]: Sending mission ended message to localhost:10952.
+[23:03:12] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_MISSION_END
+[23:03:12] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_MISSION_END
+[23:03:12] [Server thread/INFO]: [STDOUT]: SERVER request state: CLEAN_UP
+[23:03:12] [Server thread/INFO]: [STDOUT]: SERVER enter state: CLEAN_UP
+[23:03:12] [Server thread/INFO]: [STDOUT]: SERVER request state: DORMANT
+[23:03:12] [Client thread/INFO]: [STDOUT]: CLIENT request state: DORMANT
+[23:03:12] [Client thread/INFO]: [STDOUT]: CLIENT enter state: DORMANT
+[23:03:12] [Client thread/INFO]: [STDOUT]: JETTISONING 0 COMMANDS
+[23:03:12] [Server thread/INFO]: [STDOUT]: SERVER enter state: DORMANT
+[23:03:12] [Server thread/INFO]: Cristina tried to swim in lava
+[23:03:12] [Client thread/INFO]: [CHAT] Cristina tried to swim in lava
+[23:03:12] [Thread-321/INFO]: [STDOUT]: Received from localhost:MALMO_REQUEST_CLIENT:0.37.0:20000:
+[23:03:12] [Thread-321/INFO]: [STDOUT]: ==== RES:  - 16387
+[23:03:12] [Thread-321/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:12] [Thread-323/INFO]: [STDOUT]: Received from localhost:<?xml version="1.0" encoding="utf-8"?><MissionInit xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="" PlatformVersion="0.37.0"><Mission>      <About>      <Summary>Cliff walking mission based on Sutton and Barto.</Summary></About><ServerSection>          <ServerInitialConditions>            <Time><StartTime>1</StartTime></Time></ServerInitialConditions><ServerHandlers>                            <FlatWorldGenerator generatorString="3;7,220*1,5*3,2;3;,biome_1"/><DrawingDecorator>                                                                                            <!-- coordinates for cuboid are inclusive --><DrawCuboid x1="-2" y1="46" z1="-2" x2="7" y2="50" z2="13" type="air"/><!-- limits of our arena --><DrawCuboid x1="-2" y1="45" z1="-2" x2="7" y2="45" z2="13" type="lava"/><!-- lava floor --><DrawCuboid x1="1" y1="45" z1="1" x2="3" y2="45" z2="17" type="sandstone"/><!-- floor of the arena --><DrawBlock x="4" y="45" z="1" type="cobblestone"/>
+[23:03:12] [Thread-323/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:12] [Client thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:12] [Client thread/INFO]: [STDOUT]: CLIENT request state: CREATING_HANDLERS
+[23:03:12] [Client thread/INFO]: [STDOUT]: CLIENT enter state: CREATING_HANDLERS
+[23:03:12] [Client thread/INFO]: [STDOUT]: CLIENT request state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:12] [Client thread/INFO]: [STDOUT]: CLIENT enter state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:12] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_READY
+[23:03:12] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_READY
+[23:03:12] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:12] [Server thread/INFO]: [STDOUT]: INCOMING MISSION: Received MissionInit directly through queue.
+[23:03:12] [Server thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:12] [Server thread/INFO]: Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:12] [Server thread/INFO]: Source: §alocalhost
+[23:03:12] [Server thread/INFO]: [STDOUT]: SERVER request state: BUILDING_WORLD
+[23:03:12] [Server thread/INFO]: [STDOUT]: SERVER enter state: BUILDING_WORLD
+[23:03:12] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:12] [Client thread/INFO]: [CHAT] Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:12] [Client thread/INFO]: [CHAT] Source: §alocalhost
+[23:03:12] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:12] [Server thread/INFO]: [STDOUT]: Experiment requires: 
+[23:03:12] [Server thread/INFO]: [STDOUT]: >>>> Cristina
+[23:03:13] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:13] [Client thread/INFO]: [STDOUT]: CLIENT request state: RUNNING
+[23:03:13] [Client thread/INFO]: [STDOUT]: CLIENT enter state: RUNNING
+[23:03:13] [Server thread/INFO]: [STDOUT]: SERVER request state: RUNNING
+[23:03:13] [Server thread/INFO]: [STDOUT]: SERVER enter state: RUNNING
+[23:03:13] [Client thread/INFO]: [CHAT] §l20...
+[23:03:14] [Client thread/INFO]: [CHAT] §l19...
+[23:03:15] [Client thread/INFO]: [CHAT] §l18...
+[23:03:16] [Client thread/INFO]: [CHAT] §l17...
+[23:03:17] [Client thread/INFO]: [CHAT] §l16...
+[23:03:18] [Client thread/INFO]: [CHAT] §l15...
+[23:03:18] [Client thread/INFO]: [STDOUT]: CLIENT request state: IDLING
+[23:03:18] [Client thread/INFO]: [STDOUT]: CLIENT enter state: IDLING
+[23:03:18] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:18] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:18] [Client thread/INFO]: [STDOUT]: CLIENT request state: MISSION_ENDED
+[23:03:18] [Client thread/INFO]: [STDOUT]: CLIENT enter state: MISSION_ENDED
+[23:03:18] [Client thread/INFO]: [STDOUT]: Sending mission ended message to localhost:10952.
+[23:03:18] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_MISSION_END
+[23:03:18] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_MISSION_END
+[23:03:18] [Server thread/INFO]: [STDOUT]: SERVER request state: CLEAN_UP
+[23:03:18] [Server thread/INFO]: [STDOUT]: SERVER enter state: CLEAN_UP
+[23:03:18] [Server thread/INFO]: [STDOUT]: SERVER request state: DORMANT
+[23:03:18] [Client thread/INFO]: [STDOUT]: CLIENT request state: DORMANT
+[23:03:18] [Client thread/INFO]: [STDOUT]: CLIENT enter state: DORMANT
+[23:03:18] [Client thread/INFO]: [STDOUT]: JETTISONING 0 COMMANDS
+[23:03:19] [Server thread/INFO]: [STDOUT]: SERVER enter state: DORMANT
+[23:03:19] [Server thread/INFO]: Cristina tried to swim in lava
+[23:03:19] [Client thread/INFO]: [CHAT] Cristina tried to swim in lava
+[23:03:19] [Thread-327/INFO]: [STDOUT]: Received from localhost:MALMO_REQUEST_CLIENT:0.37.0:20000:
+[23:03:19] [Thread-327/INFO]: [STDOUT]: ==== RES:  - 13157
+[23:03:19] [Thread-327/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:19] [Thread-329/INFO]: [STDOUT]: Received from localhost:<?xml version="1.0" encoding="utf-8"?><MissionInit xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="" PlatformVersion="0.37.0"><Mission>      <About>      <Summary>Cliff walking mission based on Sutton and Barto.</Summary></About><ServerSection>          <ServerInitialConditions>            <Time><StartTime>1</StartTime></Time></ServerInitialConditions><ServerHandlers>                            <FlatWorldGenerator generatorString="3;7,220*1,5*3,2;3;,biome_1"/><DrawingDecorator>                                                                                            <!-- coordinates for cuboid are inclusive --><DrawCuboid x1="-2" y1="46" z1="-2" x2="7" y2="50" z2="13" type="air"/><!-- limits of our arena --><DrawCuboid x1="-2" y1="45" z1="-2" x2="7" y2="45" z2="13" type="lava"/><!-- lava floor --><DrawCuboid x1="1" y1="45" z1="1" x2="3" y2="45" z2="17" type="sandstone"/><!-- floor of the arena --><DrawBlock x="4" y="45" z="1" type="cobblestone"/>
+[23:03:19] [Thread-329/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:19] [Client thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:19] [Client thread/INFO]: [STDOUT]: CLIENT request state: CREATING_HANDLERS
+[23:03:19] [Client thread/INFO]: [STDOUT]: CLIENT enter state: CREATING_HANDLERS
+[23:03:19] [Client thread/INFO]: [STDOUT]: CLIENT request state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:19] [Client thread/INFO]: [STDOUT]: CLIENT enter state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:19] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_READY
+[23:03:19] [Server thread/INFO]: [STDOUT]: INCOMING MISSION: Received MissionInit directly through queue.
+[23:03:19] [Server thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:19] [Server thread/INFO]: Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:19] [Server thread/INFO]: Source: §alocalhost
+[23:03:19] [Server thread/INFO]: [STDOUT]: SERVER request state: BUILDING_WORLD
+[23:03:19] [Server thread/INFO]: [STDOUT]: SERVER enter state: BUILDING_WORLD
+[23:03:19] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:19] [Client thread/INFO]: [CHAT] Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:19] [Client thread/INFO]: [CHAT] Source: §alocalhost
+[23:03:19] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_READY
+[23:03:19] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:19] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:19] [Server thread/INFO]: [STDOUT]: Experiment requires: 
+[23:03:19] [Server thread/INFO]: [STDOUT]: >>>> Cristina
+[23:03:19] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:20] [Client thread/INFO]: [STDOUT]: CLIENT request state: RUNNING
+[23:03:20] [Client thread/INFO]: [STDOUT]: CLIENT enter state: RUNNING
+[23:03:20] [Server thread/INFO]: [STDOUT]: SERVER request state: RUNNING
+[23:03:20] [Server thread/INFO]: [STDOUT]: SERVER enter state: RUNNING
+[23:03:20] [Client thread/INFO]: [CHAT] §l20...
+[23:03:20] [Client thread/INFO]: [STDOUT]: CLIENT request state: IDLING
+[23:03:20] [Client thread/INFO]: [STDOUT]: CLIENT enter state: IDLING
+[23:03:20] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:20] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:20] [Client thread/INFO]: [STDOUT]: CLIENT request state: MISSION_ENDED
+[23:03:20] [Client thread/INFO]: [STDOUT]: CLIENT enter state: MISSION_ENDED
+[23:03:20] [Client thread/INFO]: [STDOUT]: Sending mission ended message to localhost:10952.
+[23:03:20] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_MISSION_END
+[23:03:20] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_MISSION_END
+[23:03:20] [Server thread/INFO]: [STDOUT]: SERVER request state: CLEAN_UP
+[23:03:20] [Server thread/INFO]: [STDOUT]: SERVER enter state: CLEAN_UP
+[23:03:20] [Server thread/INFO]: [STDOUT]: SERVER request state: DORMANT
+[23:03:20] [Client thread/INFO]: [STDOUT]: CLIENT request state: DORMANT
+[23:03:20] [Server thread/INFO]: [STDOUT]: SERVER enter state: DORMANT
+[23:03:20] [Client thread/INFO]: [STDOUT]: CLIENT enter state: DORMANT
+[23:03:20] [Client thread/INFO]: [STDOUT]: JETTISONING 0 COMMANDS
+[23:03:20] [Server thread/INFO]: Cristina tried to swim in lava
+[23:03:20] [Client thread/INFO]: [CHAT] Cristina tried to swim in lava
+[23:03:21] [Thread-333/INFO]: [STDOUT]: Received from localhost:MALMO_REQUEST_CLIENT:0.37.0:20000:
+[23:03:21] [Thread-333/INFO]: [STDOUT]: ==== RES:  - 18467
+[23:03:21] [Thread-333/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:21] [Thread-335/INFO]: [STDOUT]: Received from localhost:<?xml version="1.0" encoding="utf-8"?><MissionInit xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="" PlatformVersion="0.37.0"><Mission>      <About>      <Summary>Cliff walking mission based on Sutton and Barto.</Summary></About><ServerSection>          <ServerInitialConditions>            <Time><StartTime>1</StartTime></Time></ServerInitialConditions><ServerHandlers>                            <FlatWorldGenerator generatorString="3;7,220*1,5*3,2;3;,biome_1"/><DrawingDecorator>                                                                                            <!-- coordinates for cuboid are inclusive --><DrawCuboid x1="-2" y1="46" z1="-2" x2="7" y2="50" z2="13" type="air"/><!-- limits of our arena --><DrawCuboid x1="-2" y1="45" z1="-2" x2="7" y2="45" z2="13" type="lava"/><!-- lava floor --><DrawCuboid x1="1" y1="45" z1="1" x2="3" y2="45" z2="17" type="sandstone"/><!-- floor of the arena --><DrawBlock x="4" y="45" z="1" type="cobblestone"/>
+[23:03:21] [Thread-335/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:21] [Client thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:21] [Client thread/INFO]: [STDOUT]: CLIENT request state: CREATING_HANDLERS
+[23:03:21] [Client thread/INFO]: [STDOUT]: CLIENT enter state: CREATING_HANDLERS
+[23:03:21] [Client thread/INFO]: [STDOUT]: CLIENT request state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:21] [Client thread/INFO]: [STDOUT]: CLIENT enter state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:21] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_READY
+[23:03:21] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_READY
+[23:03:21] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:21] [Server thread/INFO]: [STDOUT]: INCOMING MISSION: Received MissionInit directly through queue.
+[23:03:21] [Server thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:21] [Server thread/INFO]: Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:21] [Server thread/INFO]: Source: §alocalhost
+[23:03:21] [Server thread/INFO]: [STDOUT]: SERVER request state: BUILDING_WORLD
+[23:03:21] [Server thread/INFO]: [STDOUT]: SERVER enter state: BUILDING_WORLD
+[23:03:21] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:21] [Client thread/INFO]: [CHAT] Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:21] [Client thread/INFO]: [CHAT] Source: §alocalhost
+[23:03:21] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:21] [Server thread/INFO]: [STDOUT]: Experiment requires: 
+[23:03:21] [Server thread/INFO]: [STDOUT]: >>>> Cristina
+[23:03:21] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:21] [Client thread/INFO]: [STDOUT]: CLIENT request state: RUNNING
+[23:03:21] [Client thread/INFO]: [STDOUT]: CLIENT enter state: RUNNING
+[23:03:21] [Server thread/INFO]: [STDOUT]: SERVER request state: RUNNING
+[23:03:21] [Server thread/INFO]: [STDOUT]: SERVER enter state: RUNNING
+[23:03:21] [Client thread/INFO]: [CHAT] §l20...
+[23:03:22] [Client thread/INFO]: [STDOUT]: CLIENT request state: IDLING
+[23:03:22] [Client thread/INFO]: [STDOUT]: CLIENT enter state: IDLING
+[23:03:22] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:22] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:22] [Client thread/INFO]: [STDOUT]: CLIENT request state: MISSION_ENDED
+[23:03:22] [Client thread/INFO]: [STDOUT]: CLIENT enter state: MISSION_ENDED
+[23:03:22] [Client thread/INFO]: [STDOUT]: Sending mission ended message to localhost:10952.
+[23:03:22] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_MISSION_END
+[23:03:22] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_MISSION_END
+[23:03:22] [Server thread/INFO]: [STDOUT]: SERVER request state: CLEAN_UP
+[23:03:22] [Server thread/INFO]: [STDOUT]: SERVER enter state: CLEAN_UP
+[23:03:22] [Server thread/INFO]: [STDOUT]: SERVER request state: DORMANT
+[23:03:22] [Client thread/INFO]: [STDOUT]: CLIENT request state: DORMANT
+[23:03:22] [Client thread/INFO]: [STDOUT]: CLIENT enter state: DORMANT
+[23:03:22] [Client thread/INFO]: [STDOUT]: JETTISONING 0 COMMANDS
+[23:03:22] [Server thread/INFO]: [STDOUT]: SERVER enter state: DORMANT
+[23:03:22] [Server thread/INFO]: Cristina tried to swim in lava
+[23:03:22] [Client thread/INFO]: [CHAT] Cristina tried to swim in lava
+[23:03:22] [Thread-339/INFO]: [STDOUT]: Received from localhost:MALMO_REQUEST_CLIENT:0.37.0:20000:
+[23:03:22] [Thread-339/INFO]: [STDOUT]: ==== RES:  - 18365
+[23:03:22] [Thread-339/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:22] [Thread-341/INFO]: [STDOUT]: Received from localhost:<?xml version="1.0" encoding="utf-8"?><MissionInit xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="" PlatformVersion="0.37.0"><Mission>      <About>      <Summary>Cliff walking mission based on Sutton and Barto.</Summary></About><ServerSection>          <ServerInitialConditions>            <Time><StartTime>1</StartTime></Time></ServerInitialConditions><ServerHandlers>                            <FlatWorldGenerator generatorString="3;7,220*1,5*3,2;3;,biome_1"/><DrawingDecorator>                                                                                            <!-- coordinates for cuboid are inclusive --><DrawCuboid x1="-2" y1="46" z1="-2" x2="7" y2="50" z2="13" type="air"/><!-- limits of our arena --><DrawCuboid x1="-2" y1="45" z1="-2" x2="7" y2="45" z2="13" type="lava"/><!-- lava floor --><DrawCuboid x1="1" y1="45" z1="1" x2="3" y2="45" z2="17" type="sandstone"/><!-- floor of the arena --><DrawBlock x="4" y="45" z="1" type="cobblestone"/>
+[23:03:22] [Thread-341/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:22] [Client thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:22] [Client thread/INFO]: [STDOUT]: CLIENT request state: CREATING_HANDLERS
+[23:03:22] [Client thread/INFO]: [STDOUT]: CLIENT enter state: CREATING_HANDLERS
+[23:03:22] [Client thread/INFO]: [STDOUT]: CLIENT request state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:22] [Client thread/INFO]: [STDOUT]: CLIENT enter state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:22] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_READY
+[23:03:22] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_READY
+[23:03:22] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:22] [Server thread/INFO]: [STDOUT]: INCOMING MISSION: Received MissionInit directly through queue.
+[23:03:22] [Server thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:22] [Server thread/INFO]: Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:22] [Server thread/INFO]: Source: §alocalhost
+[23:03:22] [Server thread/INFO]: [STDOUT]: SERVER request state: BUILDING_WORLD
+[23:03:22] [Server thread/INFO]: [STDOUT]: SERVER enter state: BUILDING_WORLD
+[23:03:22] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:22] [Client thread/INFO]: [CHAT] Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:22] [Client thread/INFO]: [CHAT] Source: §alocalhost
+[23:03:22] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:22] [Server thread/INFO]: [STDOUT]: Experiment requires: 
+[23:03:22] [Server thread/INFO]: [STDOUT]: >>>> Cristina
+[23:03:23] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:23] [Client thread/INFO]: [STDOUT]: CLIENT request state: RUNNING
+[23:03:23] [Client thread/INFO]: [STDOUT]: CLIENT enter state: RUNNING
+[23:03:23] [Server thread/INFO]: [STDOUT]: SERVER request state: RUNNING
+[23:03:23] [Server thread/INFO]: [STDOUT]: SERVER enter state: RUNNING
+[23:03:23] [Client thread/INFO]: [CHAT] §l20...
+[23:03:24] [Client thread/INFO]: [CHAT] §l19...
+[23:03:24] [Client thread/INFO]: [STDOUT]: CLIENT request state: IDLING
+[23:03:24] [Client thread/INFO]: [STDOUT]: CLIENT enter state: IDLING
+[23:03:24] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:24] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:24] [Client thread/INFO]: [STDOUT]: CLIENT request state: MISSION_ENDED
+[23:03:24] [Client thread/INFO]: [STDOUT]: CLIENT enter state: MISSION_ENDED
+[23:03:24] [Client thread/INFO]: [STDOUT]: Sending mission ended message to localhost:10952.
+[23:03:24] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_MISSION_END
+[23:03:24] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_MISSION_END
+[23:03:24] [Server thread/INFO]: [STDOUT]: SERVER request state: CLEAN_UP
+[23:03:24] [Server thread/INFO]: [STDOUT]: SERVER enter state: CLEAN_UP
+[23:03:24] [Server thread/INFO]: [STDOUT]: SERVER request state: DORMANT
+[23:03:24] [Client thread/INFO]: [STDOUT]: CLIENT request state: DORMANT
+[23:03:24] [Client thread/INFO]: [STDOUT]: CLIENT enter state: DORMANT
+[23:03:24] [Client thread/INFO]: [STDOUT]: JETTISONING 0 COMMANDS
+[23:03:24] [Server thread/INFO]: [STDOUT]: SERVER enter state: DORMANT
+[23:03:25] [Server thread/INFO]: Cristina tried to swim in lava
+[23:03:25] [Client thread/INFO]: [CHAT] Cristina tried to swim in lava
+[23:03:25] [Thread-345/INFO]: [STDOUT]: Received from localhost:MALMO_REQUEST_CLIENT:0.37.0:20000:
+[23:03:25] [Thread-345/INFO]: [STDOUT]: ==== RES:  - 17227
+[23:03:25] [Thread-345/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:25] [Thread-347/INFO]: [STDOUT]: Received from localhost:<?xml version="1.0" encoding="utf-8"?><MissionInit xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="" PlatformVersion="0.37.0"><Mission>      <About>      <Summary>Cliff walking mission based on Sutton and Barto.</Summary></About><ServerSection>          <ServerInitialConditions>            <Time><StartTime>1</StartTime></Time></ServerInitialConditions><ServerHandlers>                            <FlatWorldGenerator generatorString="3;7,220*1,5*3,2;3;,biome_1"/><DrawingDecorator>                                                                                            <!-- coordinates for cuboid are inclusive --><DrawCuboid x1="-2" y1="46" z1="-2" x2="7" y2="50" z2="13" type="air"/><!-- limits of our arena --><DrawCuboid x1="-2" y1="45" z1="-2" x2="7" y2="45" z2="13" type="lava"/><!-- lava floor --><DrawCuboid x1="1" y1="45" z1="1" x2="3" y2="45" z2="17" type="sandstone"/><!-- floor of the arena --><DrawBlock x="4" y="45" z="1" type="cobblestone"/>
+[23:03:25] [Thread-347/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:25] [Client thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:25] [Client thread/INFO]: [STDOUT]: CLIENT request state: CREATING_HANDLERS
+[23:03:25] [Client thread/INFO]: [STDOUT]: CLIENT enter state: CREATING_HANDLERS
+[23:03:25] [Client thread/INFO]: [STDOUT]: CLIENT request state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:25] [Client thread/INFO]: [STDOUT]: CLIENT enter state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:25] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_READY
+[23:03:25] [Server thread/INFO]: [STDOUT]: INCOMING MISSION: Received MissionInit directly through queue.
+[23:03:25] [Server thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:25] [Server thread/INFO]: Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:25] [Server thread/INFO]: Source: §alocalhost
+[23:03:25] [Server thread/INFO]: [STDOUT]: SERVER request state: BUILDING_WORLD
+[23:03:25] [Server thread/INFO]: [STDOUT]: SERVER enter state: BUILDING_WORLD
+[23:03:25] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:25] [Client thread/INFO]: [CHAT] Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:25] [Client thread/INFO]: [CHAT] Source: §alocalhost
+[23:03:25] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_READY
+[23:03:25] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:25] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:25] [Server thread/INFO]: [STDOUT]: Experiment requires: 
+[23:03:25] [Server thread/INFO]: [STDOUT]: >>>> Cristina
+[23:03:25] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:26] [Client thread/INFO]: [STDOUT]: CLIENT request state: RUNNING
+[23:03:26] [Client thread/INFO]: [STDOUT]: CLIENT enter state: RUNNING
+[23:03:26] [Server thread/INFO]: [STDOUT]: SERVER request state: RUNNING
+[23:03:26] [Server thread/INFO]: [STDOUT]: SERVER enter state: RUNNING
+[23:03:26] [Client thread/INFO]: [CHAT] §l20...
+[23:03:27] [Client thread/INFO]: [CHAT] §l19...
+[23:03:28] [Client thread/INFO]: [CHAT] §l18...
+[23:03:29] [Client thread/INFO]: [CHAT] §l17...
+[23:03:30] [Client thread/INFO]: [CHAT] §l16...
+[23:03:30] [Client thread/INFO]: [STDOUT]: CLIENT request state: IDLING
+[23:03:30] [Client thread/INFO]: [STDOUT]: CLIENT enter state: IDLING
+[23:03:30] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:30] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:30] [Client thread/INFO]: [STDOUT]: CLIENT request state: MISSION_ENDED
+[23:03:30] [Client thread/INFO]: [STDOUT]: CLIENT enter state: MISSION_ENDED
+[23:03:30] [Client thread/INFO]: [STDOUT]: Sending mission ended message to localhost:10952.
+[23:03:30] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_MISSION_END
+[23:03:30] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_MISSION_END
+[23:03:30] [Server thread/INFO]: [STDOUT]: SERVER request state: CLEAN_UP
+[23:03:30] [Client thread/INFO]: [STDOUT]: CLIENT request state: DORMANT
+[23:03:30] [Server thread/INFO]: [STDOUT]: SERVER enter state: CLEAN_UP
+[23:03:30] [Server thread/INFO]: [STDOUT]: SERVER request state: DORMANT
+[23:03:30] [Client thread/INFO]: [STDOUT]: CLIENT enter state: DORMANT
+[23:03:30] [Client thread/INFO]: [STDOUT]: JETTISONING 0 COMMANDS
+[23:03:30] [Server thread/INFO]: [STDOUT]: SERVER enter state: DORMANT
+[23:03:30] [Server thread/INFO]: Cristina tried to swim in lava
+[23:03:30] [Client thread/INFO]: [CHAT] Cristina tried to swim in lava
+[23:03:31] [Thread-351/INFO]: [STDOUT]: Received from localhost:MALMO_REQUEST_CLIENT:0.37.0:20000:
+[23:03:31] [Thread-351/INFO]: [STDOUT]: ==== RES:  - 14011
+[23:03:31] [Thread-351/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:31] [Thread-353/INFO]: [STDOUT]: Received from localhost:<?xml version="1.0" encoding="utf-8"?><MissionInit xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="" PlatformVersion="0.37.0"><Mission>      <About>      <Summary>Cliff walking mission based on Sutton and Barto.</Summary></About><ServerSection>          <ServerInitialConditions>            <Time><StartTime>1</StartTime></Time></ServerInitialConditions><ServerHandlers>                            <FlatWorldGenerator generatorString="3;7,220*1,5*3,2;3;,biome_1"/><DrawingDecorator>                                                                                            <!-- coordinates for cuboid are inclusive --><DrawCuboid x1="-2" y1="46" z1="-2" x2="7" y2="50" z2="13" type="air"/><!-- limits of our arena --><DrawCuboid x1="-2" y1="45" z1="-2" x2="7" y2="45" z2="13" type="lava"/><!-- lava floor --><DrawCuboid x1="1" y1="45" z1="1" x2="3" y2="45" z2="17" type="sandstone"/><!-- floor of the arena --><DrawBlock x="4" y="45" z="1" type="cobblestone"/>
+[23:03:31] [Thread-353/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:31] [Client thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:31] [Client thread/INFO]: [STDOUT]: CLIENT request state: CREATING_HANDLERS
+[23:03:31] [Client thread/INFO]: [STDOUT]: CLIENT enter state: CREATING_HANDLERS
+[23:03:31] [Client thread/INFO]: [STDOUT]: CLIENT request state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:31] [Client thread/INFO]: [STDOUT]: CLIENT enter state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:31] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_READY
+[23:03:31] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_READY
+[23:03:31] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:31] [Server thread/INFO]: [STDOUT]: INCOMING MISSION: Received MissionInit directly through queue.
+[23:03:31] [Server thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:31] [Server thread/INFO]: Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:31] [Server thread/INFO]: Source: §alocalhost
+[23:03:31] [Server thread/INFO]: [STDOUT]: SERVER request state: BUILDING_WORLD
+[23:03:31] [Server thread/INFO]: [STDOUT]: SERVER enter state: BUILDING_WORLD
+[23:03:31] [Client thread/INFO]: [CHAT] Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:31] [Client thread/INFO]: [CHAT] Source: §alocalhost
+[23:03:31] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:31] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:31] [Server thread/INFO]: [STDOUT]: Experiment requires: 
+[23:03:31] [Server thread/INFO]: [STDOUT]: >>>> Cristina
+[23:03:31] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:32] [Client thread/INFO]: [STDOUT]: CLIENT request state: RUNNING
+[23:03:32] [Client thread/INFO]: [STDOUT]: CLIENT enter state: RUNNING
+[23:03:32] [Server thread/INFO]: [STDOUT]: SERVER request state: RUNNING
+[23:03:32] [Server thread/INFO]: [STDOUT]: SERVER enter state: RUNNING
+[23:03:32] [Client thread/INFO]: [CHAT] §l20...
+[23:03:33] [Client thread/INFO]: [CHAT] §l19...
+[23:03:34] [Client thread/INFO]: [CHAT] §l18...
+[23:03:35] [Client thread/INFO]: [CHAT] §l17...
+[23:03:36] [Client thread/INFO]: [CHAT] §l16...
+[23:03:37] [Client thread/INFO]: [CHAT] §l15...
+[23:03:38] [Client thread/INFO]: [CHAT] §l14...
+[23:03:39] [Client thread/INFO]: [CHAT] §l13...
+[23:03:40] [Client thread/INFO]: [CHAT] §l12...
+[23:03:41] [Client thread/INFO]: [CHAT] §l11...
+[23:03:41] [Client thread/INFO]: [STDOUT]: CLIENT request state: IDLING
+[23:03:41] [Client thread/INFO]: [STDOUT]: CLIENT enter state: IDLING
+[23:03:41] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:41] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:41] [Client thread/INFO]: [STDOUT]: CLIENT request state: MISSION_ENDED
+[23:03:41] [Client thread/INFO]: [STDOUT]: CLIENT enter state: MISSION_ENDED
+[23:03:41] [Client thread/INFO]: [STDOUT]: Sending mission ended message to localhost:10952.
+[23:03:41] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_MISSION_END
+[23:03:41] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_MISSION_END
+[23:03:41] [Server thread/INFO]: [STDOUT]: SERVER request state: CLEAN_UP
+[23:03:41] [Server thread/INFO]: [STDOUT]: SERVER enter state: CLEAN_UP
+[23:03:41] [Server thread/INFO]: [STDOUT]: SERVER request state: DORMANT
+[23:03:41] [Client thread/INFO]: [STDOUT]: CLIENT request state: DORMANT
+[23:03:41] [Client thread/INFO]: [STDOUT]: CLIENT enter state: DORMANT
+[23:03:41] [Client thread/INFO]: [STDOUT]: JETTISONING 0 COMMANDS
+[23:03:41] [Server thread/INFO]: [STDOUT]: SERVER enter state: DORMANT
+[23:03:42] [Thread-357/INFO]: [STDOUT]: Received from localhost:MALMO_REQUEST_CLIENT:0.37.0:20000:
+[23:03:42] [Thread-357/INFO]: [STDOUT]: ==== RES:  - 9430
+[23:03:42] [Thread-357/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:42] [Thread-359/INFO]: [STDOUT]: Received from localhost:<?xml version="1.0" encoding="utf-8"?><MissionInit xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="" PlatformVersion="0.37.0"><Mission>      <About>      <Summary>Cliff walking mission based on Sutton and Barto.</Summary></About><ServerSection>          <ServerInitialConditions>            <Time><StartTime>1</StartTime></Time></ServerInitialConditions><ServerHandlers>                            <FlatWorldGenerator generatorString="3;7,220*1,5*3,2;3;,biome_1"/><DrawingDecorator>                                                                                            <!-- coordinates for cuboid are inclusive --><DrawCuboid x1="-2" y1="46" z1="-2" x2="7" y2="50" z2="13" type="air"/><!-- limits of our arena --><DrawCuboid x1="-2" y1="45" z1="-2" x2="7" y2="45" z2="13" type="lava"/><!-- lava floor --><DrawCuboid x1="1" y1="45" z1="1" x2="3" y2="45" z2="17" type="sandstone"/><!-- floor of the arena --><DrawBlock x="4" y="45" z="1" type="cobblestone"/>
+[23:03:42] [Thread-359/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:42] [Client thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:42] [Client thread/INFO]: [STDOUT]: CLIENT request state: CREATING_HANDLERS
+[23:03:42] [Client thread/INFO]: [STDOUT]: CLIENT enter state: CREATING_HANDLERS
+[23:03:42] [Client thread/INFO]: [STDOUT]: CLIENT request state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:42] [Client thread/INFO]: [STDOUT]: CLIENT enter state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:42] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_READY
+[23:03:42] [Server thread/INFO]: [STDOUT]: INCOMING MISSION: Received MissionInit directly through queue.
+[23:03:42] [Server thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:42] [Server thread/INFO]: Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:42] [Server thread/INFO]: Source: §alocalhost
+[23:03:42] [Server thread/INFO]: [STDOUT]: SERVER request state: BUILDING_WORLD
+[23:03:42] [Server thread/INFO]: [STDOUT]: SERVER enter state: BUILDING_WORLD
+[23:03:42] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:42] [Client thread/INFO]: [CHAT] Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:42] [Client thread/INFO]: [CHAT] Source: §alocalhost
+[23:03:42] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_READY
+[23:03:42] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:42] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:42] [Server thread/INFO]: [STDOUT]: Experiment requires: 
+[23:03:42] [Server thread/INFO]: [STDOUT]: >>>> Cristina
+[23:03:42] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:42] [Client thread/INFO]: [STDOUT]: CLIENT request state: RUNNING
+[23:03:42] [Client thread/INFO]: [STDOUT]: CLIENT enter state: RUNNING
+[23:03:42] [Server thread/INFO]: [STDOUT]: SERVER request state: RUNNING
+[23:03:42] [Server thread/INFO]: [STDOUT]: SERVER enter state: RUNNING
+[23:03:42] [Client thread/INFO]: [CHAT] §l20...
+[23:03:43] [Client thread/INFO]: [CHAT] §l19...
+[23:03:44] [Client thread/INFO]: [CHAT] §l18...
+[23:03:45] [Client thread/INFO]: [CHAT] §l17...
+[23:03:46] [Client thread/INFO]: [STDOUT]: CLIENT request state: IDLING
+[23:03:46] [Client thread/INFO]: [STDOUT]: CLIENT enter state: IDLING
+[23:03:46] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:46] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:46] [Client thread/INFO]: [STDOUT]: CLIENT request state: MISSION_ENDED
+[23:03:46] [Client thread/INFO]: [STDOUT]: CLIENT enter state: MISSION_ENDED
+[23:03:46] [Client thread/INFO]: [STDOUT]: Sending mission ended message to localhost:10952.
+[23:03:46] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_MISSION_END
+[23:03:46] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_MISSION_END
+[23:03:46] [Server thread/INFO]: [STDOUT]: SERVER request state: CLEAN_UP
+[23:03:46] [Server thread/INFO]: [STDOUT]: SERVER enter state: CLEAN_UP
+[23:03:46] [Server thread/INFO]: [STDOUT]: SERVER request state: DORMANT
+[23:03:46] [Client thread/INFO]: [STDOUT]: CLIENT request state: DORMANT
+[23:03:46] [Client thread/INFO]: [STDOUT]: CLIENT enter state: DORMANT
+[23:03:46] [Client thread/INFO]: [STDOUT]: JETTISONING 0 COMMANDS
+[23:03:46] [Server thread/INFO]: [STDOUT]: SERVER enter state: DORMANT
+[23:03:46] [Server thread/INFO]: Cristina tried to swim in lava
+[23:03:46] [Client thread/INFO]: [CHAT] Cristina tried to swim in lava
+[23:03:46] [Thread-363/INFO]: [STDOUT]: Received from localhost:MALMO_REQUEST_CLIENT:0.37.0:20000:
+[23:03:46] [Thread-363/INFO]: [STDOUT]: ==== RES:  - 15153
+[23:03:46] [Thread-363/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:46] [Thread-365/INFO]: [STDOUT]: Received from localhost:<?xml version="1.0" encoding="utf-8"?><MissionInit xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="" PlatformVersion="0.37.0"><Mission>      <About>      <Summary>Cliff walking mission based on Sutton and Barto.</Summary></About><ServerSection>          <ServerInitialConditions>            <Time><StartTime>1</StartTime></Time></ServerInitialConditions><ServerHandlers>                            <FlatWorldGenerator generatorString="3;7,220*1,5*3,2;3;,biome_1"/><DrawingDecorator>                                                                                            <!-- coordinates for cuboid are inclusive --><DrawCuboid x1="-2" y1="46" z1="-2" x2="7" y2="50" z2="13" type="air"/><!-- limits of our arena --><DrawCuboid x1="-2" y1="45" z1="-2" x2="7" y2="45" z2="13" type="lava"/><!-- lava floor --><DrawCuboid x1="1" y1="45" z1="1" x2="3" y2="45" z2="17" type="sandstone"/><!-- floor of the arena --><DrawBlock x="4" y="45" z="1" type="cobblestone"/>
+[23:03:46] [Thread-365/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:46] [Client thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:46] [Client thread/INFO]: [STDOUT]: CLIENT request state: CREATING_HANDLERS
+[23:03:46] [Client thread/INFO]: [STDOUT]: CLIENT enter state: CREATING_HANDLERS
+[23:03:46] [Client thread/INFO]: [STDOUT]: CLIENT request state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:46] [Client thread/INFO]: [STDOUT]: CLIENT enter state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:46] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_READY
+[23:03:46] [Server thread/INFO]: [STDOUT]: INCOMING MISSION: Received MissionInit directly through queue.
+[23:03:46] [Server thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:46] [Server thread/INFO]: Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:46] [Server thread/INFO]: Source: §alocalhost
+[23:03:46] [Server thread/INFO]: [STDOUT]: SERVER request state: BUILDING_WORLD
+[23:03:46] [Server thread/INFO]: [STDOUT]: SERVER enter state: BUILDING_WORLD
+[23:03:46] [Client thread/INFO]: [CHAT] Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:46] [Client thread/INFO]: [CHAT] Source: §alocalhost
+[23:03:46] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_READY
+[23:03:46] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:46] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:47] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:47] [Server thread/INFO]: [STDOUT]: Experiment requires: 
+[23:03:47] [Server thread/INFO]: [STDOUT]: >>>> Cristina
+[23:03:47] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:47] [Client thread/INFO]: [STDOUT]: CLIENT request state: RUNNING
+[23:03:47] [Client thread/INFO]: [STDOUT]: CLIENT enter state: RUNNING
+[23:03:47] [Server thread/INFO]: [STDOUT]: SERVER request state: RUNNING
+[23:03:47] [Server thread/INFO]: [STDOUT]: SERVER enter state: RUNNING
+[23:03:47] [Client thread/INFO]: [CHAT] §l20...
+[23:03:48] [Client thread/INFO]: [CHAT] §l19...
+[23:03:49] [Client thread/INFO]: [CHAT] §l18...
+[23:03:50] [Client thread/INFO]: [STDOUT]: CLIENT request state: IDLING
+[23:03:50] [Client thread/INFO]: [STDOUT]: CLIENT enter state: IDLING
+[23:03:50] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:50] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:50] [Client thread/INFO]: [STDOUT]: CLIENT request state: MISSION_ENDED
+[23:03:50] [Client thread/INFO]: [STDOUT]: CLIENT enter state: MISSION_ENDED
+[23:03:50] [Client thread/INFO]: [STDOUT]: Sending mission ended message to localhost:10952.
+[23:03:50] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_MISSION_END
+[23:03:50] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_MISSION_END
+[23:03:50] [Server thread/INFO]: [STDOUT]: SERVER request state: CLEAN_UP
+[23:03:50] [Server thread/INFO]: [STDOUT]: SERVER enter state: CLEAN_UP
+[23:03:50] [Server thread/INFO]: [STDOUT]: SERVER request state: DORMANT
+[23:03:50] [Client thread/INFO]: [STDOUT]: CLIENT request state: DORMANT
+[23:03:50] [Client thread/INFO]: [STDOUT]: CLIENT enter state: DORMANT
+[23:03:50] [Client thread/INFO]: [STDOUT]: JETTISONING 0 COMMANDS
+[23:03:50] [Server thread/INFO]: [STDOUT]: SERVER enter state: DORMANT
+[23:03:50] [Server thread/INFO]: Cristina tried to swim in lava
+[23:03:50] [Client thread/INFO]: [CHAT] Cristina tried to swim in lava
+[23:03:51] [Thread-369/INFO]: [STDOUT]: Received from localhost:MALMO_REQUEST_CLIENT:0.37.0:20000:
+[23:03:51] [Thread-369/INFO]: [STDOUT]: ==== RES:  - 15770
+[23:03:51] [Thread-369/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:51] [Thread-371/INFO]: [STDOUT]: Received from localhost:<?xml version="1.0" encoding="utf-8"?><MissionInit xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="" PlatformVersion="0.37.0"><Mission>      <About>      <Summary>Cliff walking mission based on Sutton and Barto.</Summary></About><ServerSection>          <ServerInitialConditions>            <Time><StartTime>1</StartTime></Time></ServerInitialConditions><ServerHandlers>                            <FlatWorldGenerator generatorString="3;7,220*1,5*3,2;3;,biome_1"/><DrawingDecorator>                                                                                            <!-- coordinates for cuboid are inclusive --><DrawCuboid x1="-2" y1="46" z1="-2" x2="7" y2="50" z2="13" type="air"/><!-- limits of our arena --><DrawCuboid x1="-2" y1="45" z1="-2" x2="7" y2="45" z2="13" type="lava"/><!-- lava floor --><DrawCuboid x1="1" y1="45" z1="1" x2="3" y2="45" z2="17" type="sandstone"/><!-- floor of the arena --><DrawBlock x="4" y="45" z="1" type="cobblestone"/>
+[23:03:51] [Thread-371/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:51] [Client thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:51] [Client thread/INFO]: [STDOUT]: CLIENT request state: CREATING_HANDLERS
+[23:03:51] [Client thread/INFO]: [STDOUT]: CLIENT enter state: CREATING_HANDLERS
+[23:03:51] [Client thread/INFO]: [STDOUT]: CLIENT request state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:51] [Client thread/INFO]: [STDOUT]: CLIENT enter state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:51] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_READY
+[23:03:51] [Server thread/INFO]: [STDOUT]: INCOMING MISSION: Received MissionInit directly through queue.
+[23:03:51] [Server thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:51] [Server thread/INFO]: Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:51] [Server thread/INFO]: Source: §alocalhost
+[23:03:51] [Server thread/INFO]: [STDOUT]: SERVER request state: BUILDING_WORLD
+[23:03:51] [Server thread/INFO]: [STDOUT]: SERVER enter state: BUILDING_WORLD
+[23:03:51] [Client thread/INFO]: [CHAT] Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:51] [Client thread/INFO]: [CHAT] Source: §alocalhost
+[23:03:51] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_READY
+[23:03:51] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:51] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:51] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:51] [Server thread/INFO]: [STDOUT]: Experiment requires: 
+[23:03:51] [Server thread/INFO]: [STDOUT]: >>>> Cristina
+[23:03:51] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:51] [Client thread/INFO]: [STDOUT]: CLIENT request state: RUNNING
+[23:03:51] [Client thread/INFO]: [STDOUT]: CLIENT enter state: RUNNING
+[23:03:51] [Server thread/INFO]: [STDOUT]: SERVER request state: RUNNING
+[23:03:51] [Server thread/INFO]: [STDOUT]: SERVER enter state: RUNNING
+[23:03:51] [Client thread/INFO]: [CHAT] §l20...
+[23:03:52] [Client thread/INFO]: [CHAT] §l19...
+[23:03:53] [Client thread/INFO]: [CHAT] §l18...
+[23:03:54] [Client thread/INFO]: [CHAT] §l17...
+[23:03:55] [Client thread/INFO]: [STDOUT]: CLIENT request state: IDLING
+[23:03:55] [Client thread/INFO]: [STDOUT]: CLIENT enter state: IDLING
+[23:03:55] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:55] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_QUIT
+[23:03:55] [Client thread/INFO]: [STDOUT]: CLIENT request state: MISSION_ENDED
+[23:03:55] [Client thread/INFO]: [STDOUT]: CLIENT enter state: MISSION_ENDED
+[23:03:55] [Client thread/INFO]: [STDOUT]: Sending mission ended message to localhost:10952.
+[23:03:55] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_MISSION_END
+[23:03:55] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_MISSION_END
+[23:03:55] [Server thread/INFO]: [STDOUT]: SERVER request state: CLEAN_UP
+[23:03:55] [Server thread/INFO]: [STDOUT]: SERVER enter state: CLEAN_UP
+[23:03:55] [Server thread/INFO]: [STDOUT]: SERVER request state: DORMANT
+[23:03:55] [Client thread/INFO]: [STDOUT]: CLIENT request state: DORMANT
+[23:03:55] [Client thread/INFO]: [STDOUT]: CLIENT enter state: DORMANT
+[23:03:55] [Client thread/INFO]: [STDOUT]: JETTISONING 0 COMMANDS
+[23:03:55] [Server thread/INFO]: [STDOUT]: SERVER enter state: DORMANT
+[23:03:55] [Server thread/INFO]: Cristina tried to swim in lava
+[23:03:55] [Client thread/INFO]: [CHAT] Cristina tried to swim in lava
+[23:03:55] [Thread-375/INFO]: [STDOUT]: Received from localhost:MALMO_REQUEST_CLIENT:0.37.0:20000:
+[23:03:55] [Thread-375/INFO]: [STDOUT]: ==== RES:  - 15147
+[23:03:55] [Thread-375/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:55] [Thread-377/INFO]: [STDOUT]: Received from localhost:<?xml version="1.0" encoding="utf-8"?><MissionInit xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="" PlatformVersion="0.37.0"><Mission>      <About>      <Summary>Cliff walking mission based on Sutton and Barto.</Summary></About><ServerSection>          <ServerInitialConditions>            <Time><StartTime>1</StartTime></Time></ServerInitialConditions><ServerHandlers>                            <FlatWorldGenerator generatorString="3;7,220*1,5*3,2;3;,biome_1"/><DrawingDecorator>                                                                                            <!-- coordinates for cuboid are inclusive --><DrawCuboid x1="-2" y1="46" z1="-2" x2="7" y2="50" z2="13" type="air"/><!-- limits of our arena --><DrawCuboid x1="-2" y1="45" z1="-2" x2="7" y2="45" z2="13" type="lava"/><!-- lava floor --><DrawCuboid x1="1" y1="45" z1="1" x2="3" y2="45" z2="17" type="sandstone"/><!-- floor of the arena --><DrawBlock x="4" y="45" z="1" type="cobblestone"/>
+[23:03:55] [Thread-377/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:03:55] [Client thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:55] [Client thread/INFO]: [STDOUT]: CLIENT request state: CREATING_HANDLERS
+[23:03:55] [Client thread/INFO]: [STDOUT]: CLIENT enter state: CREATING_HANDLERS
+[23:03:55] [Client thread/INFO]: [STDOUT]: CLIENT request state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:56] [Client thread/INFO]: [STDOUT]: CLIENT enter state: EVALUATING_WORLD_REQUIREMENTS
+[23:03:56] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_READY
+[23:03:56] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_READY
+[23:03:56] [Server thread/INFO]: [STDOUT]: INCOMING MISSION: Received MissionInit directly through queue.
+[23:03:56] [Server thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:03:56] [Server thread/INFO]: Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:56] [Server thread/INFO]: Source: §alocalhost
+[23:03:56] [Server thread/INFO]: [STDOUT]: SERVER request state: BUILDING_WORLD
+[23:03:56] [Server thread/INFO]: [STDOUT]: SERVER enter state: BUILDING_WORLD
+[23:03:56] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:56] [Client thread/INFO]: [CHAT] Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:03:56] [Client thread/INFO]: [CHAT] Source: §alocalhost
+[23:03:56] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:56] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:03:56] [Server thread/INFO]: [STDOUT]: Experiment requires: 
+[23:03:56] [Server thread/INFO]: [STDOUT]: >>>> Cristina
+[23:03:56] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:03:56] [Client thread/INFO]: [STDOUT]: CLIENT request state: RUNNING
+[23:03:56] [Client thread/INFO]: [STDOUT]: CLIENT enter state: RUNNING
+[23:03:56] [Server thread/INFO]: [STDOUT]: SERVER request state: RUNNING
+[23:03:56] [Server thread/INFO]: [STDOUT]: SERVER enter state: RUNNING
+[23:03:56] [Client thread/INFO]: [CHAT] §l20...
+[23:03:57] [Client thread/INFO]: [CHAT] §l19...
+[23:03:58] [Client thread/INFO]: [CHAT] §l18...
+[23:03:59] [Client thread/INFO]: [CHAT] §l17...
+[23:04:00] [Client thread/INFO]: [STDOUT]: CLIENT request state: IDLING
+[23:04:00] [Client thread/INFO]: [STDOUT]: CLIENT enter state: IDLING
+[23:04:00] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_QUIT
+[23:04:00] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_QUIT
+[23:04:00] [Client thread/INFO]: [STDOUT]: CLIENT request state: MISSION_ENDED
+[23:04:00] [Client thread/INFO]: [STDOUT]: CLIENT enter state: MISSION_ENDED
+[23:04:00] [Client thread/INFO]: [STDOUT]: Sending mission ended message to localhost:10952.
+[23:04:00] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_MISSION_END
+[23:04:00] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_MISSION_END
+[23:04:00] [Server thread/INFO]: [STDOUT]: SERVER request state: CLEAN_UP
+[23:04:00] [Server thread/INFO]: [STDOUT]: SERVER enter state: CLEAN_UP
+[23:04:00] [Server thread/INFO]: [STDOUT]: SERVER request state: DORMANT
+[23:04:00] [Client thread/INFO]: [STDOUT]: CLIENT request state: DORMANT
+[23:04:00] [Server thread/INFO]: [STDOUT]: SERVER enter state: DORMANT
+[23:04:00] [Client thread/INFO]: [STDOUT]: CLIENT enter state: DORMANT
+[23:04:00] [Client thread/INFO]: [STDOUT]: JETTISONING 0 COMMANDS
+[23:04:01] [Thread-381/INFO]: [STDOUT]: Received from localhost:MALMO_REQUEST_CLIENT:0.37.0:20000:
+[23:04:01] [Thread-381/INFO]: [STDOUT]: ==== RES:  - 14743
+[23:04:01] [Thread-381/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:04:01] [Thread-383/INFO]: [STDOUT]: Received from localhost:<?xml version="1.0" encoding="utf-8"?><MissionInit xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="" PlatformVersion="0.37.0"><Mission>      <About>      <Summary>Cliff walking mission based on Sutton and Barto.</Summary></About><ServerSection>          <ServerInitialConditions>            <Time><StartTime>1</StartTime></Time></ServerInitialConditions><ServerHandlers>                            <FlatWorldGenerator generatorString="3;7,220*1,5*3,2;3;,biome_1"/><DrawingDecorator>                                                                                            <!-- coordinates for cuboid are inclusive --><DrawCuboid x1="-2" y1="46" z1="-2" x2="7" y2="50" z2="13" type="air"/><!-- limits of our arena --><DrawCuboid x1="-2" y1="45" z1="-2" x2="7" y2="45" z2="13" type="lava"/><!-- lava floor --><DrawCuboid x1="1" y1="45" z1="1" x2="3" y2="45" z2="17" type="sandstone"/><!-- floor of the arena --><DrawBlock x="4" y="45" z="1" type="cobblestone"/>
+[23:04:01] [Thread-383/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:04:01] [Client thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:04:01] [Client thread/INFO]: [STDOUT]: CLIENT request state: CREATING_HANDLERS
+[23:04:01] [Client thread/INFO]: [STDOUT]: CLIENT enter state: CREATING_HANDLERS
+[23:04:01] [Client thread/INFO]: [STDOUT]: CLIENT request state: EVALUATING_WORLD_REQUIREMENTS
+[23:04:01] [Client thread/INFO]: [STDOUT]: CLIENT enter state: EVALUATING_WORLD_REQUIREMENTS
+[23:04:01] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_READY
+[23:04:01] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_READY
+[23:04:01] [Server thread/INFO]: [STDOUT]: INCOMING MISSION: Received MissionInit directly through queue.
+[23:04:01] [Server thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:04:01] [Server thread/INFO]: Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:04:01] [Server thread/INFO]: Source: §alocalhost
+[23:04:01] [Server thread/INFO]: [STDOUT]: SERVER request state: BUILDING_WORLD
+[23:04:01] [Server thread/INFO]: [STDOUT]: SERVER enter state: BUILDING_WORLD
+[23:04:01] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:04:01] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:04:01] [Client thread/INFO]: [CHAT] Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:04:01] [Client thread/INFO]: [CHAT] Source: §alocalhost
+[23:04:01] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:04:01] [Server thread/INFO]: [STDOUT]: Experiment requires: 
+[23:04:01] [Server thread/INFO]: [STDOUT]: >>>> Cristina
+[23:04:01] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:04:01] [Client thread/INFO]: [STDOUT]: CLIENT request state: RUNNING
+[23:04:01] [Client thread/INFO]: [STDOUT]: CLIENT enter state: RUNNING
+[23:04:01] [Server thread/INFO]: [STDOUT]: SERVER request state: RUNNING
+[23:04:01] [Server thread/INFO]: [STDOUT]: SERVER enter state: RUNNING
+[23:04:01] [Client thread/INFO]: [CHAT] §l20...
+[23:04:01] [Client thread/INFO]: [STDOUT]: CLIENT request state: IDLING
+[23:04:01] [Client thread/INFO]: [STDOUT]: CLIENT enter state: IDLING
+[23:04:01] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_QUIT
+[23:04:01] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_QUIT
+[23:04:01] [Client thread/INFO]: [STDOUT]: CLIENT request state: MISSION_ENDED
+[23:04:02] [Client thread/INFO]: [STDOUT]: CLIENT enter state: MISSION_ENDED
+[23:04:02] [Client thread/INFO]: [STDOUT]: Sending mission ended message to localhost:10952.
+[23:04:02] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_MISSION_END
+[23:04:02] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_MISSION_END
+[23:04:02] [Server thread/INFO]: [STDOUT]: SERVER request state: CLEAN_UP
+[23:04:02] [Server thread/INFO]: [STDOUT]: SERVER enter state: CLEAN_UP
+[23:04:02] [Server thread/INFO]: [STDOUT]: SERVER request state: DORMANT
+[23:04:02] [Client thread/INFO]: [STDOUT]: CLIENT request state: DORMANT
+[23:04:02] [Client thread/INFO]: [STDOUT]: CLIENT enter state: DORMANT
+[23:04:02] [Client thread/INFO]: [STDOUT]: JETTISONING 0 COMMANDS
+[23:04:02] [Server thread/INFO]: [STDOUT]: SERVER enter state: DORMANT
+[23:04:02] [Server thread/INFO]: Cristina tried to swim in lava
+[23:04:02] [Client thread/INFO]: [CHAT] Cristina tried to swim in lava
+[23:04:02] [Thread-387/INFO]: [STDOUT]: Received from localhost:MALMO_REQUEST_CLIENT:0.37.0:20000:
+[23:04:02] [Thread-387/INFO]: [STDOUT]: ==== RES:  - 18579
+[23:04:02] [Thread-387/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:04:02] [Thread-389/INFO]: [STDOUT]: Received from localhost:<?xml version="1.0" encoding="utf-8"?><MissionInit xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="" PlatformVersion="0.37.0"><Mission>      <About>      <Summary>Cliff walking mission based on Sutton and Barto.</Summary></About><ServerSection>          <ServerInitialConditions>            <Time><StartTime>1</StartTime></Time></ServerInitialConditions><ServerHandlers>                            <FlatWorldGenerator generatorString="3;7,220*1,5*3,2;3;,biome_1"/><DrawingDecorator>                                                                                            <!-- coordinates for cuboid are inclusive --><DrawCuboid x1="-2" y1="46" z1="-2" x2="7" y2="50" z2="13" type="air"/><!-- limits of our arena --><DrawCuboid x1="-2" y1="45" z1="-2" x2="7" y2="45" z2="13" type="lava"/><!-- lava floor --><DrawCuboid x1="1" y1="45" z1="1" x2="3" y2="45" z2="17" type="sandstone"/><!-- floor of the arena --><DrawBlock x="4" y="45" z="1" type="cobblestone"/>
+[23:04:02] [Thread-389/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[23:04:02] [Client thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:04:02] [Client thread/INFO]: [STDOUT]: CLIENT request state: CREATING_HANDLERS
+[23:04:02] [Client thread/INFO]: [STDOUT]: CLIENT enter state: CREATING_HANDLERS
+[23:04:02] [Client thread/INFO]: [STDOUT]: CLIENT request state: EVALUATING_WORLD_REQUIREMENTS
+[23:04:02] [Client thread/INFO]: [STDOUT]: CLIENT enter state: EVALUATING_WORLD_REQUIREMENTS
+[23:04:02] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_READY
+[23:04:02] [Server thread/INFO]: [STDOUT]: INCOMING MISSION: Received MissionInit directly through queue.
+[23:04:02] [Server thread/INFO]: [STDOUT]: Mission received: Cliff walking mission based on Sutton and Barto.
+[23:04:02] [Server thread/INFO]: Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:04:02] [Server thread/INFO]: Source: §alocalhost
+[23:04:02] [Server thread/INFO]: [STDOUT]: SERVER request state: BUILDING_WORLD
+[23:04:02] [Server thread/INFO]: [STDOUT]: SERVER enter state: BUILDING_WORLD
+[23:04:02] [Client thread/INFO]: [CHAT] Received mission: §9Cliff walking mission based on Sutton and Barto.
+[23:04:02] [Client thread/INFO]: [CHAT] Source: §alocalhost
+[23:04:02] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:04:02] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_READY
+[23:04:02] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:04:02] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[23:04:02] [Server thread/INFO]: [STDOUT]: Experiment requires: 
+[23:04:02] [Server thread/INFO]: [STDOUT]: >>>> Cristina
+[23:04:03] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - Cristina
+[23:04:03] [Client thread/INFO]: [STDOUT]: CLIENT request state: RUNNING
+[23:04:03] [Client thread/INFO]: [STDOUT]: CLIENT enter state: RUNNING
+[23:04:03] [Server thread/INFO]: [STDOUT]: SERVER request state: RUNNING
+[23:04:03] [Server thread/INFO]: [STDOUT]: SERVER enter state: RUNNING
+[23:04:03] [Client thread/INFO]: [CHAT] §l20...
+[23:04:03] [Client thread/INFO]: [STDOUT]: SEVERE: <-obs(localhost:10596) Failed to send TCP bytes: java.util.concurrent.ExecutionException: java.io.IOException: Broken pipe
+[23:04:03] [Client thread/INFO]: [STDOUT]: SEVERE: <-obs(localhost:10596) Failed to send TCP bytes: java.util.concurrent.ExecutionException: java.nio.channels.ClosedChannelException
+[23:04:03] [Client thread/INFO]: [STDOUT]: SEVERE: <-rew(localhost:10222) Failed to send TCP bytes: java.util.concurrent.ExecutionException: java.io.IOException: Broken pipe
+[23:04:03] [Client thread/INFO]: [STDOUT]: SEVERE: <-obs(localhost:10596) Failed to send TCP bytes: java.util.concurrent.ExecutionException: java.nio.channels.ClosedChannelException
+[23:04:03] [Client thread/INFO]: [STDOUT]: SEVERE: <-obs(localhost:10596) Failed to send TCP bytes: java.util.concurrent.ExecutionException: java.nio.channels.ClosedChannelException
+[23:04:03] [Client thread/INFO]: [STDOUT]: ERROR: TCP messages are not getting through - quitting mission.
+[23:04:03] [Client thread/INFO]: [STDOUT]: CLIENT request state: IDLING
+[23:04:03] [Client thread/INFO]: [STDOUT]: CLIENT enter state: IDLING
+[23:04:03] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_QUIT
+[23:04:03] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_QUIT
+[23:04:03] [Client thread/INFO]: [STDOUT]: CLIENT request state: MISSION_ENDED
+[23:04:03] [Client thread/INFO]: [STDOUT]: CLIENT enter state: MISSION_ENDED
+[23:04:03] [Client thread/INFO]: [STDOUT]: Sending mission ended message to localhost:10952.
+[23:04:03] [Client thread/INFO]: [STDOUT]: SEVERE: <-mcp(localhost:10952) Failed to send TCP bytes: java.util.concurrent.ExecutionException: java.io.IOException: Broken pipe
+[23:04:03] [Client thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_MISSION_END
+[23:04:03] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_MISSION_END
+[23:04:03] [Server thread/INFO]: [STDOUT]: SERVER request state: CLEAN_UP
+[23:04:03] [Server thread/INFO]: [STDOUT]: SERVER enter state: CLEAN_UP
+[23:04:03] [Server thread/INFO]: [STDOUT]: SERVER request state: DORMANT
+[23:04:03] [Client thread/INFO]: [STDOUT]: CLIENT request state: DORMANT
+[23:04:03] [Client thread/INFO]: [STDOUT]: CLIENT enter state: DORMANT
+[23:04:03] [Client thread/INFO]: [STDOUT]: JETTISONING 0 COMMANDS
+[23:04:03] [Server thread/INFO]: [STDOUT]: SERVER enter state: DORMANT
+[23:04:07] [Client thread/INFO]: Stopping!
+[23:04:07] [Server thread/INFO]: Stopping server
+[23:04:07] [Server thread/INFO]: Saving players
+[23:04:07] [Server thread/INFO]: Saving worlds
+[23:04:07] [Server thread/INFO]: Saving chunks for level 'TEMP_10000_6f4c1124-603b-40a4-9126-ca7a1ef7d597'/Overworld
+[23:04:07] [Server thread/INFO]: Saving chunks for level 'TEMP_10000_6f4c1124-603b-40a4-9126-ca7a1ef7d597'/Nether
+[23:04:07] [Server thread/INFO]: Saving chunks for level 'TEMP_10000_6f4c1124-603b-40a4-9126-ca7a1ef7d597'/The End
+[23:04:07] [Server thread/INFO] [FML]: Unloading dimension 0
+[23:04:07] [Server thread/INFO] [FML]: Unloading dimension -1
+[23:04:07] [Server thread/INFO] [FML]: Unloading dimension 1
+[23:04:07] [Client thread/INFO]: SoundSystem shutting down...
+[23:04:07] [Server thread/INFO] [FML]: Applying holder lookups
+[23:04:07] [Server thread/INFO] [FML]: Holder lookups applied
+[23:04:07] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+
+BUILD SUCCESSFUL
+
+Total time: 5 mins 20.817 secs
