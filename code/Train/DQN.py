@@ -18,6 +18,11 @@ import random
 from collections import deque
 import os
 from tqdm import tqdm
+if sys.version_info[0] == 2:
+    # Workaround for https://github.com/PythonCharmers/python-future/issues/262
+    import Tkinter as tk
+else:
+    import tkinter as tk
 total_rewards = []
 
 class replay_buffer():
@@ -177,30 +182,52 @@ class Agent():
         # End your code
         torch.save(self.target_net.state_dict(), "./Tables/DQN.pt")
 
-    def choose_action(self, state):
+    def act(self, world_state, agent_host, current_r):
         """
-        - Implement the action-choosing function.
-        - Choose the best action with given state and epsilon
-        Parameters:
-            self: the agent itself.
-            state: the current state of the enviornment.
-            (Don't pass additional parameters to the function.)
-            (All you need have been initialized in the constructor.)
-        Returns:
-            action: the chosen action.
+        Take one action in response to the current world state
         """
-        with torch.no_grad():
-            # Begin your code
-            # TODO
-            if random.uniform(0,1) < self.epsilon:
-                a = random.randint(0, len(self.actions) - 1)
-                self.logger.info("Random action: %s" % self.actions[a])
-            else:
-                action = torch.argmax(self.evaluate_net.forward(torch.FloatTensor(state))).item()
-                self.logger.info("Taking q action: %s" % action)
-            # End your code
-        return action
-    
+        obs_text = world_state.observations[-1].text
+        obs = json.loads(obs_text)  # Most recent observation
+        self.logger.debug(obs)
+
+        if not u'XPos' in obs or not u'ZPos' in obs:
+            self.logger.error("Incomplete observation received: %s" % obs_text)
+            return 0
+
+        current_s = (int(obs[u'XPos']), int(obs[u'ZPos']))
+        self.logger.debug("State: %s (x = %.2f, z = %.2f)" % \
+                          (current_s, float(obs[u'XPos']), float(obs[u'ZPos'])))
+        
+        # Choose an action
+        # if random.random() < self.epsilon:
+
+        #　bug太多 先以隨機的方一樣有bug
+        # 修完之後再把下面else部份 uncomment (一樣有bug)
+        # Random action
+        self.logger.info("Random action")
+        action_index = random.randint(0, self.n_actions - 1)
+
+        # else:
+            # Choose the best action based on the evaluate net
+            # with torch.no_grad():
+                # input = self.evaluate_net.forward(torch.FloatTensor(current_s))
+                # action_index = torch.argmax(input).item()
+
+        # Take the chosen action
+        chosen_action = self.actions[action_index]
+        agent_host.sendCommand(chosen_action)
+
+        # Update the replay buffer
+        if self.count > 0:
+            self.buffer.insert(self.previous_observation, int(self.previous_action), 
+                                current_r, obs, int(False))
+
+        self.previous_observation = obs
+        self.previous_action = action_index
+        self.count += 1
+
+        return current_r
+
     def run(self, agent_host):
         """run the agent on the world"""
 
@@ -255,197 +282,97 @@ class Agent():
                     if not world_state.is_mission_running:
                         break
 
+        # Update the replay buffer and perform learning
+        if self.count > 0:
+            self.buffer.insert(self.previous_observation, 
+                               self.previous_action, 
+                               current_r, world_state, False)
+            self.learn()
+
         # process final reward
         self.logger.debug("Final reward: %d" % current_r)
         total_reward += current_r
-
-        # update Q values
-        if self.prev_s is not None and self.prev_a is not None:
-            self.updateQTableFromTerminatingState( current_r )
-            
-        self.drawQ()
     
         return total_reward
     
-    def act(self, world_state, agent_host, current_r ):
-        """take 1 action in response to the current world state"""
-        
-        obs_text = world_state.observations[-1].text
-        obs = json.loads(obs_text) # most recent observation
-        self.logger.debug(obs)
-        if not u'XPos' in obs or not u'ZPos' in obs:
-            self.logger.error("Incomplete observation received: %s" % obs_text)
-            return 0
-        current_s = "%d:%d" % (int(obs[u'XPos']), int(obs[u'ZPos']))
-        self.logger.debug("State: %s (x = %.2f, z = %.2f)" % (current_s, float(obs[u'XPos']), float(obs[u'ZPos'])))
-        if current_s not in self.q_table:
-            self.q_table[current_s] = ([0] * len(self.actions))
+if sys.version_info[0] == 2:
+    sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)  # flush print output immediately
+else:
+    import functools
+    print = functools.partial(print, flush=True)
 
-        # update Q values
-        if self.prev_s is not None and self.prev_a is not None:
-            self.updateQTable( current_r, current_s )
+agent = Agent()
+agent_host = MalmoPython.AgentHost()
+try:
+    agent_host.parse( sys.argv )
+except RuntimeError as e:
+    print('ERROR:',e)
+    print(agent_host.getUsage())
+    exit(1)
+if agent_host.receivedArgument("help"):
+    print(agent_host.getUsage())
+    exit(0)
 
-        self.drawQ( curr_x = int(obs[u'XPos']), curr_y = int(obs[u'ZPos']) )
+# -- set up the mission -- #
+mission_file = './tutorial_6.xml'
+with open(mission_file, 'r') as f:
+    print("Loading mission from %s" % mission_file)
+    mission_xml = f.read()
+    my_mission = MalmoPython.MissionSpec(mission_xml, True)
 
-        # select the next action
-        rnd = random.random()
-        if rnd < self.epsilon:
-            a = random.randint(0, len(self.actions) - 1)
-            self.logger.info("Random action: %s" % self.actions[a])
-        else:
-            m = max(self.q_table[current_s])
-            self.logger.debug("Current values: %s" % ",".join(str(x) for x in self.q_table[current_s]))
-            l = list()
-            for x in range(0, len(self.actions)):
-                if self.q_table[current_s][x] == m:
-                    l.append(x)
-            y = random.randint(0, len(l)-1)
-            a = l[y]
-            self.logger.info("Taking q action: %s" % self.actions[a])
+# add 20% holes for interest
+for x in range(1,4):
+    for z in range(1,13):
+        if random.random()<0.1:
+            my_mission.drawBlock( x,45,z,"lava")
 
-        # try to send the selected action, only update prev_s if this succeeds
+max_retries = 3
+
+if agent_host.receivedArgument("test"):
+    num_repeats = 1
+else:
+    num_repeats = 150
+
+cumulative_rewards = []
+for i in range(num_repeats):
+
+    print()
+    print('Repeat %d of %d' % ( i+1, num_repeats ))
+    
+    my_mission_record = MalmoPython.MissionRecordSpec()
+
+    for retry in range(max_retries):
         try:
-            agent_host.sendCommand(self.actions[a])
-            self.prev_s = current_s
-            self.prev_a = a
-
+            agent_host.startMission( my_mission, my_mission_record )
+            break
         except RuntimeError as e:
-            self.logger.error("Failed to send command: %s" % e)
+            if retry == max_retries - 1:
+                print("Error starting mission:",e)
+                exit(1)
+            else:
+                time.sleep(2.5)
 
-        return current_r
-
-def test(env):
-    """
-    Test the agent on the given environment.
-    
-    Paramenters:
-        env: the given environment.
-    
-    Returns:
-        None (Don't need to return anything)
-    """
-    rewards = []
-    testing_agent = Agent(env)
-    testing_agent.target_net.load_state_dict(torch.load("./Tables/DQN.pt"))
-    for _ in range(100):
-        state = env.reset()
-        count = 0
-        while True:
-            count += 1
-            Q = testing_agent.target_net.forward(
-                torch.FloatTensor(state)).squeeze(0).detach()
-            action = int(torch.argmax(Q).numpy())
-            next_state, _, done, _ = env.step(action)
-            if done:
-                rewards.append(count)
-                break
-            state = next_state
-    print(f"reward: {np.mean(rewards)}")
-    print(f"max Q:{testing_agent.check_max_Q()}")
-
-if __name__ == "__main__":
-    if sys.version_info[0] == 2:
-        sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)  # flush print output immediately
-    else:
-        import functools
-        print = functools.partial(print, flush=True)
-    
-    agent = Agent()
-    agent_host = MalmoPython.AgentHost()
-    try:
-        agent_host.parse( sys.argv )
-    except RuntimeError as e:
-        print('ERROR:',e)
-        print(agent_host.getUsage())
-        exit(1)
-    if agent_host.receivedArgument("help"):
-        print(agent_host.getUsage())
-        exit(0)
-
-    # -- set up the mission -- #
-    mission_file = './tutorial_6.xml'
-    with open(mission_file, 'r') as f:
-        print("Loading mission from %s" % mission_file)
-        mission_xml = f.read()
-        my_mission = MalmoPython.MissionSpec(mission_xml, True)
-    # add 20% holes for interest
-    for x in range(1,4):
-        for z in range(1,13):
-            if random.random()<0.1:
-                my_mission.drawBlock( x,45,z,"lava")
-
-    max_retries = 3
-
-    if agent_host.receivedArgument("test"):
-        num_repeats = 1
-    else:
-        num_repeats = 150
-
-    cumulative_rewards = []
-    for i in range(num_repeats):
-        print()
-        print('Repeat %d of %d' % ( i+1, num_repeats ))
-    
-        my_mission_record = MalmoPython.MissionRecordSpec()
-
-        for retry in range(max_retries):
-            try:
-                agent_host.startMission( my_mission, my_mission_record )
-                break
-            except RuntimeError as e:
-                if retry == max_retries - 1:
-                    print("Error starting mission:",e)
-                    exit(1)
-                else:
-                    time.sleep(2.5)
-    
-        print("Waiting for the mission to start", end=' ')
+    print("Waiting for the mission to start", end=' ')
+    world_state = agent_host.getWorldState()
+    while not world_state.has_mission_begun:
+        print(".", end="")
+        time.sleep(0.1)
         world_state = agent_host.getWorldState()
-        while not world_state.has_mission_begun:
-            print(".", end="")
-            time.sleep(0.1)
-            world_state = agent_host.getWorldState()
-            for error in world_state.errors:
-                print("Error:",error.text)
-        print()
-        
-        # -- run the agent in the world -- #
-        cumulative_reward = agent.run(agent_host)
-        print('Cumulative reward: %d' % cumulative_reward)
-        cumulative_rewards += [ cumulative_reward ]
+        for error in world_state.errors:
+            print("Error:",error.text)
+    print()
 
-        # -- clean up -- #
-        time.sleep(0.5) # (let the Mod reset)
-    print("Done.")
+    # -- run the agent in the world -- #
+    cumulative_reward = agent.run(agent_host)
+    print('Cumulative reward: %d' % cumulative_reward)
+    cumulative_rewards += [ cumulative_reward ]
 
-def train(env):
-    """
-    Train the agent on the given environment.
+    # -- clean up -- #
+    time.sleep(0.5) # (let the Mod reset)
+
+print("Done.")
+
+print()
+print("Cumulative rewards for all %d runs:" % num_repeats)
+print(cumulative_rewards)
     
-    Paramenters:
-        env: the given environment.
-    
-    Returns:
-        None (Don't need to return anything)
-    """
-    agent = Agent()
-    episode = 1000
-    rewards = []
-    for _ in tqdm(range(episode)):
-        state = env.reset()
-        count = 0
-        while True:
-            count += 1
-            agent.count += 1
-            # env.render()
-            action = agent.choose_action(state)
-            next_state, reward, done, _ = env.step(action)
-            agent.buffer.insert(state, int(action), reward,
-                                next_state, int(done))
-            if agent.count >= 1000:
-                agent.learn()
-            if done:
-                rewards.append(count)
-                break
-            state = next_state
-    total_rewards.append(rewards)
