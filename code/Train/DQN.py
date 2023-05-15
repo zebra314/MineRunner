@@ -201,7 +201,7 @@ class Agent():
         # Choose an action
         # if random.random() < self.epsilon:
 
-        #　bug太多 先以隨機的方一樣有bug
+        #　bug太多 先以隨機的方式來選擇action
         # 修完之後再把下面else部份 uncomment (一樣有bug)
         # Random action
         self.logger.info("Random action")
