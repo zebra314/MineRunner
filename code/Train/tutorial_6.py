@@ -57,7 +57,6 @@ class TabQAgent(object):
             self.logger.setLevel(logging.INFO)
         self.logger.handlers = []
         self.logger.addHandler(logging.StreamHandler(sys.stdout))
-<<<<<<< HEAD
         """
         jumpbackward is not allow
         actions:
@@ -70,10 +69,6 @@ class TabQAgent(object):
         self.n_actions = 4
         # self.actions = ["movenorth 1", "movesouth 1", "movewest 1", "moveeast 1", "jump 1", "turn 0.5", "turn -0.5"]
         self.actions = ["moveForward 1", "moveBackward 1", "jumpforward 1", "set Yaw 45"]
-=======
-
-        self.actions = ["movenorth 1", "movesouth 1", "movewest 1", "moveeast 1", "jumpnorth 1"]
->>>>>>> e5d4feae598bf9d1f0227a5f237796db2768b7be
         self.q_table = {}
         self.canvas = None
         self.root = None
