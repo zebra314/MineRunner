@@ -1,5 +1,5 @@
-Types.xsd
-MissionHandlers.xsd
-MissionEnded.xsd
-MissionInit.xsd
 Mission.xsd
+MissionEnded.xsd
+MissionHandlers.xsd
+MissionInit.xsd
+Types.xsd
