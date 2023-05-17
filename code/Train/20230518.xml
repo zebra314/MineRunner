@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<Mission xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<!-- Increase the size of map  -->
+<!-- Replace lava with glowstone and obsidian -->
+<!-- Some random part should be modified in .py file -->
+<!-- 
+Line 272( Below " # add 20% holes for interest ")
+
+for x in range(1,16):
+    for z in range(1,17):
+        if random.random()<0.1:
+            my_mission.drawBlock( x,45,z,"glowstone")
+        # Randomly add sandstone at y = 46
+        # Add when the x and z !=  dest
+        # <DrawBlock x="4"  y="45" z="7" type="lapis_block" />
+        # Work!
+        if random.random()<0.1: 
+            if(x != 4 and z != 7):
+                base_height = 45
+                my_mission.drawBlock( x,base_height+1,z,"sandstone")
+        #         my_mission.drawCuboid(x ,base_height ,z ,x ,base_height+2 ,z+1 ,"sandstone")
+                # if random.random()<0.8:
+                #     # <DrawCuboid x1="1"  y1="45" z1="1"  x2="3" y2="45" z2="17" type="sandstone" />
+                #     my_mission.drawCuboid(x ,base_height ,z ,x ,base_height+2 ,z+1 ,"sandstone")
+# Starting marker x y z = 4 45 1
+# my_mission.drawCuboid(3 ,46 ,1 ,1 ,50 ,1 ,"air")
+# my_mission.drawCuboid(3 ,45 ,2 ,1 ,46 ,2 ,"sandstone")
+# my_mission.drawCuboid(3 ,46 ,3 ,1 ,47 ,3 ,"sandstone")
+my_mission.drawCuboid(1 ,45 ,5 ,16 ,45 ,5 ,"glowstone")
+for i in range(1,17,2):
+    my_mission.drawBlock( i,45,5,"sandstone")
+my_mission.drawBlock( 8,45,1,"cobblestone")
+# <DrawSphere x, y, z, radius, type/>
+my_mission.drawSphere(14,45,9,1,"diamond_block")
+
+    Line 299 (" max_retries = 3 ")
+--> 
+
+
+
+  <About>
+    <Summary>Cliff walking mission based on Sutton and Barto.</Summary>
+  </About>
+
+  <ServerSection>
+    <ServerInitialConditions>
+        <Time><StartTime>1</StartTime></Time>
+    </ServerInitialConditions>
+    <ServerHandlers>
+      <FlatWorldGenerator generatorString="3;7,220*1,5*3,2;3;,biome_1"/>
+      <DrawingDecorator>
+        <!-- coordinates for cuboid are inclusive -->
+        <DrawCuboid x1="-2" y1="46" z1="-2" x2="18" y2="50" z2="22" type="air" />            <!-- limits of our arena -->
+        <DrawCuboid x1="-2" y1="45" z1="-2" x2="18" y2="45" z2="22" type="obsidian" />           <!-- obsidian floor -->
+        <DrawCuboid x1="1"  y1="45" z1="1"  x2="16" y2="45" z2="17" type="sandstone" />      <!-- floor of the arena -->
+        <DrawBlock x="8"  y="45" z="1" type="cobblestone" />    <!-- the starting marker -->
+        <DrawBlock x="16"  y="45" z="13" type="lapis_block" />     <!-- the destination marker -->
+      </DrawingDecorator>
+      <ServerQuitFromTimeUp timeLimitMs="20000"/>
+      <ServerQuitWhenAnyAgentFinishes/>
+    </ServerHandlers>
+  </ServerSection>
+
+  <AgentSection mode="Survival">
+    <Name>Cristina</Name>
+    <AgentStart>
+      <Placement x="8.5" y="46.0" z="1.5" pitch="30" yaw="0"/>
+    </AgentStart>
+    <AgentHandlers>
+      <DiscreteMovementCommands/>
+      <ObservationFromFullStats/>
+      <RewardForTouchingBlockType>
+        <Block reward="-100.0" type="lava" behaviour="onceOnly"/>
+        <Block reward="-100.0" type="glowstone" behaviour="onceOnly"/>
+        <Block reward="-100.0" type="obsidian" behaviour="onceOnly"/>
+        <Block reward="300.0" type="lapis_block" behaviour="onceOnly"/>
+        <Block reward="50.0" type="diamond_block" behaviour="onceOnly"/>
+      </RewardForTouchingBlockType>
+      <RewardForSendingCommand reward="-1" />
+      <AgentQuitFromTouchingBlockType>
+          <Block type="lava" />
+          <Block type="glowstone" />
+          <Block type="obsidian" />
+          <Block type="lapis_block" />
+      </AgentQuitFromTouchingBlockType>
+    </AgentHandlers>
+  </AgentSection>
+
+</Mission>
