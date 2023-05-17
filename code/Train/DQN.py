@@ -67,6 +67,9 @@ class replay_buffer():
         batch = random.sample(self.memory, batch_size)
         observations, actions, rewards, next_observations, done = zip(*batch)
         return observations, actions, rewards, next_observations, done
+    
+    def __len__(self):
+        return len(self.memory)
 
 class Net(nn.Module):
     '''
@@ -108,7 +111,8 @@ class Agent():
             capacity: the size of the replay buffer/memory
         """
         self.epsilon = 0.2 # chance of taking a random action instead of the best
-        self.actions = ["movenorth 1", "movesouth 1", "movewest 1", "moveeast 1", "jump 1"]
+        # self.actions = ["movenorth 1", "movesouth 1", "movewest 1", "moveeast 1"]
+        self.actions = ["move 1", "move -1", "turn 1", "turn -1", "jump 1"]
         self.n_actions = len(self.actions)  # the number of actions
         self.count = 0
 
@@ -163,24 +167,25 @@ class Agent():
         # TODO
         observations, actions, rewards, next_observations, done = self.buffer.sample(self.batch_size)
         
+        # Forward the data to the evaluate net and the target net.
         observations = torch.FloatTensor(np.array(observations))
         actions = torch.LongTensor(actions)
         rewards = torch.FloatTensor(rewards)
         next_observations = torch.FloatTensor(np.array(next_observations))
         done = torch.BoolTensor(done)
-        
+
+        # Compute the loss
         evaluate = self.evaluate_net(observations).gather(1, actions.reshape(self.batch_size, 1))
         nextMax = self.target_net(next_observations).detach()
         target = rewards.reshape(self.batch_size, 1) + self.gamma * nextMax.max(1)[0].view(self.batch_size, 1)\
                                                                   * (~done).reshape(self.batch_size, 1)
-        
+        # Zero-out the gradients
         MSE = nn.MSELoss()
         loss = MSE(evaluate, target)
         self.optimizer.zero_grad()
         loss.backward()
         self.optimizer.step()
         # End your code
-        torch.save(self.target_net.state_dict(), "./Tables/DQN.pt")
 
     def act(self, world_state, agent_host, current_r):
         """
@@ -188,43 +193,44 @@ class Agent():
         """
         obs_text = world_state.observations[-1].text
         obs = json.loads(obs_text)  # Most recent observation
-        self.logger.debug(obs)
 
         if not u'XPos' in obs or not u'ZPos' in obs:
             self.logger.error("Incomplete observation received: %s" % obs_text)
             return 0
 
-        current_s = (int(obs[u'XPos']), int(obs[u'ZPos']))
-        self.logger.debug("State: %s (x = %.2f, z = %.2f)" % \
-                          (current_s, float(obs[u'XPos']), float(obs[u'ZPos'])))
+        current_s = (int(obs[u'XPos']), int(obs[u'YPos']), int(obs[u'ZPos']), int(obs[u'Yaw']))
         
+        if obs[u'IsAlive'] == False or int(obs[u'Life']) == 0:
+            done = True
+        else:
+            done = False
+
         # Choose an action
-        # if random.random() < self.epsilon:
-
-        #　bug太多 先以隨機的方式來選擇action
-        # 修完之後再把下面else部份 uncomment (一樣有bug)
-        # Random action
-        self.logger.info("Random action")
-        action_index = random.randint(0, self.n_actions - 1)
-
-        # else:
+        if random.uniform(0,1) < self.epsilon:
+            self.logger.info("Explore")
+            action_index = random.randint(0, self.n_actions - 1)
+        else:
             # Choose the best action based on the evaluate net
-            # with torch.no_grad():
-                # input = self.evaluate_net.forward(torch.FloatTensor(current_s))
-                # action_index = torch.argmax(input).item()
+            self.logger.info("Exploit")
+            with torch.no_grad():
+                action_index = torch.argmax(self.evaluate_net.forward(torch.FloatTensor(current_s))).item()
+            
+        chosen_action = self.actions[action_index]
 
         # Take the chosen action
-        chosen_action = self.actions[action_index]
         agent_host.sendCommand(chosen_action)
 
         # Update the replay buffer
         if self.count > 0:
             self.buffer.insert(self.previous_observation, int(self.previous_action), 
-                                current_r, obs, int(False))
-
-        self.previous_observation = obs
-        self.previous_action = action_index
+                                current_r, current_s, int(done))
         self.count += 1
+        if agent.count >= 1000:
+            agent.learn()
+
+        self.previous_observation = current_s
+        self.previous_action = action_index
+        
 
         return current_r
 
@@ -243,7 +249,6 @@ class Agent():
         while world_state.is_mission_running:
 
             current_r = 0
-            
             if is_first_action:
                 # wait until have received a valid observation
                 while True:
@@ -281,13 +286,6 @@ class Agent():
                         break
                     if not world_state.is_mission_running:
                         break
-
-        # Update the replay buffer and perform learning
-        if self.count > 0:
-            self.buffer.insert(self.previous_observation, 
-                               self.previous_action, 
-                               current_r, world_state, False)
-            self.learn()
 
         # process final reward
         self.logger.debug("Final reward: %d" % current_r)
@@ -331,7 +329,7 @@ max_retries = 3
 if agent_host.receivedArgument("test"):
     num_repeats = 1
 else:
-    num_repeats = 150
+    num_repeats = 10000
 
 cumulative_rewards = []
 for i in range(num_repeats):
