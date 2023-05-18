@@ -76,7 +76,7 @@ class Net(nn.Module):
     The structure of the Neural Network calculating Q values of each state.
     '''
 
-    def __init__(self,  num_actions, hidden_layer_size=50):
+    def __init__(self,  num_actions, hidden_layer_size=100):
         super(Net, self).__init__()
         self.input_state = 4  # the dimension of state space
         self.num_actions = num_actions  # the dimension of action space
@@ -110,16 +110,21 @@ class Agent():
             batch_size: the number of samples which will be propagated through the neural network
             capacity: the size of the replay buffer/memory
         """
-        self.epsilon = 0.2 # chance of taking a random action instead of the best
+        
         # self.actions = ["movenorth 1", "movesouth 1", "movewest 1", "moveeast 1"]
-        self.actions = ["move 1", "move -1", "turn 1", "turn -1", "jump 1"]
+        self.actions = ["move 1","move 1","move 1", "move -1", "turn 1", "turn -1", "jump 1"]
         self.n_actions = len(self.actions)  # the number of actions
         self.count = 0
 
-        self.learning_rate = 0.0002
-        self.gamma = 0.97
+        # self.epsilon = 0.2 # chance of taking a random action instead of the best
+        self.epsilon = 1.0  # 初始 epsilon 值
+        self.epsilon_decay_rate = 0.999 # epsilon 的衰減率
+        self.epsilon_min = 0.01  # epsilon 的最小值
+
+        self.learning_rate = 0.001
+        self.gamma = 0.9
         self.batch_size = 32
-        self.capacity = 10000
+        self.capacity = 50000
 
         self.buffer = replay_buffer(self.capacity)
         self.evaluate_net = Net(self.n_actions)  # the evaluate network
@@ -186,6 +191,7 @@ class Agent():
         loss.backward()
         self.optimizer.step()
         # End your code
+        torch.save(self.target_net.state_dict(), "DQN.pt")
 
     def act(self, world_state, agent_host, current_r):
         """
@@ -225,8 +231,12 @@ class Agent():
             self.buffer.insert(self.previous_observation, int(self.previous_action), 
                                 current_r, current_s, int(done))
         self.count += 1
-        if agent.count >= 1000:
+        if agent.count >= 50:
             agent.learn()
+            
+        # 更新 epsilon
+        self.epsilon *= self.epsilon_decay_rate
+        self.epsilon = max(self.epsilon, self.epsilon_min)
 
         self.previous_observation = current_s
         self.previous_action = action_index
@@ -329,7 +339,7 @@ max_retries = 3
 if agent_host.receivedArgument("test"):
     num_repeats = 1
 else:
-    num_repeats = 10000
+    num_repeats = 20
 
 cumulative_rewards = []
 for i in range(num_repeats):
@@ -354,7 +364,7 @@ for i in range(num_repeats):
     world_state = agent_host.getWorldState()
     while not world_state.has_mission_begun:
         print(".", end="")
-        time.sleep(0.1)
+        # time.sleep(0.1)
         world_state = agent_host.getWorldState()
         for error in world_state.errors:
             print("Error:",error.text)
@@ -373,4 +383,7 @@ print("Done.")
 print()
 print("Cumulative rewards for all %d runs:" % num_repeats)
 print(cumulative_rewards)
+
+os.makedirs("../Rewards", exist_ok=True)
+np.save("../Rewards/DQN_rewards.npy", np.array(cumulative_rewards))
     
