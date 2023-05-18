@@ -112,14 +112,14 @@ class Agent():
         """
         
         # self.actions = ["movenorth 1", "movesouth 1", "movewest 1", "moveeast 1"]
-        self.actions = ["move 1","move 1","move 1", "move -1", "turn 1", "turn -1", "jump 1"]
+        self.actions = ["move 1","move 0.5","move 0.5", "move -1", "turn 0.5", "turn -0.5", "jump 1"]
         self.n_actions = len(self.actions)  # the number of actions
         self.count = 0
 
         # self.epsilon = 0.2 # chance of taking a random action instead of the best
         self.epsilon = 1.0  # 初始 epsilon 值
-        self.epsilon_decay_rate = 0.999 # epsilon 的衰減率
-        self.epsilon_min = 0.01  # epsilon 的最小值
+        self.epsilon_decay_rate = 0.9999 # epsilon 的衰減率
+        self.epsilon_min = 0.15  # epsilon 的最小值
 
         self.learning_rate = 0.001
         self.gamma = 0.9
@@ -328,18 +328,18 @@ with open(mission_file, 'r') as f:
     mission_xml = f.read()
     my_mission = MalmoPython.MissionSpec(mission_xml, True)
 
-# add 20% holes for interest
-for x in range(1,4):
-    for z in range(1,13):
-        if random.random()<0.1:
-            my_mission.drawBlock( x,45,z,"lava")
+# # add 20% holes for interest
+# for x in range(1,4):
+#     for z in range(1,13):
+#         if random.random()<0.1:
+#             my_mission.drawBlock( x,45,z,"lava")
 
 max_retries = 3
 
 if agent_host.receivedArgument("test"):
     num_repeats = 1
 else:
-    num_repeats = 20
+    num_repeats = 1000
 
 cumulative_rewards = []
 for i in range(num_repeats):
@@ -364,7 +364,7 @@ for i in range(num_repeats):
     world_state = agent_host.getWorldState()
     while not world_state.has_mission_begun:
         print(".", end="")
-        # time.sleep(0.1)
+        time.sleep(0.1)
         world_state = agent_host.getWorldState()
         for error in world_state.errors:
             print("Error:",error.text)
