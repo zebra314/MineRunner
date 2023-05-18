@@ -36,8 +36,13 @@
       <RewardForTouchingBlockType>
         <Block reward="-100.0" type="lava" behaviour="onceOnly"/>
         <Block reward="100.0" type="lapis_block" behaviour="onceOnly"/>
+        <Block reward="40.0" type="sandstone" behaviour="onceOnly"/>
+        <Block reward="40.0" type="sand" behaviour="onceOnly"/>
       </RewardForTouchingBlockType>
-      <RewardForSendingCommand reward="-1" />
+
+      <RewardForSendingCommand reward="-0.5" />
+      <RewardForTime reward="0.5" />
+
       <AgentQuitFromTouchingBlockType>
           <Block type="lapis_block" />
       </AgentQuitFromTouchingBlockType>
