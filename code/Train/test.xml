@@ -13,11 +13,11 @@
       <FlatWorldGenerator generatorString="3;7,220*1,5*3,2;3;,biome_1"/>
       <DrawingDecorator>
         <!-- coordinates for cuboid are inclusive -->
-        <DrawCuboid x1="-2" y1="46" z1="-2" x2="7" y2="50" z2="13" type="air" />            <!-- limits of our arena -->
-        <DrawCuboid x1="-2" y1="45" z1="-2" x2="7" y2="45" z2="13" type="lava" />           <!-- lava floor -->
-        <DrawCuboid x1="1"  y1="45" z1="1"  x2="3" y2="45" z2="17" type="sandstone" />      <!-- floor of the arena -->
-        <DrawBlock x="4"  y="45" z="1" type="cobblestone" />    <!-- the starting marker -->
-        <DrawBlock x="4"  y="45" z="7" type="lapis_block" />     <!-- the destination marker -->
+        <DrawCuboid x1="-2" y1="46" z1="-2" x2="18" y2="50" z2="22" type="air" />            <!-- limits of our arena -->
+        <DrawCuboid x1="-2" y1="45" z1="-2" x2="18" y2="45" z2="22" type="obsidian" />           <!-- lava floor -->
+        <DrawCuboid x1="1"  y1="45" z1="1"  x2="16" y2="45" z2="17" type="sandstone" />      <!-- floor of the arena -->
+        <DrawBlock x="8"  y="45" z="1" type="cobblestone" />    <!-- the starting marker -->
+        <DrawBlock x="16"  y="45" z="13" type="lapis_block" />     <!-- the destination marker -->
       </DrawingDecorator>
       <ServerQuitFromTimeUp timeLimitMs="20000"/>
       <ServerQuitWhenAnyAgentFinishes/>
@@ -27,7 +27,7 @@
   <AgentSection mode="Survival">
     <Name>Cristina</Name>
     <AgentStart>
-      <Placement x="4.5" y="46.0" z="1.5" pitch="30" yaw="0"/>
+      <Placement x="8.5" y="46.0" z="1.5" pitch="30" yaw="0"/>
     </AgentStart>
     <AgentHandlers>
       <ContinuousMovementCommands/>
@@ -35,11 +35,13 @@
       <RewardForTouchingBlockType>
         <Block reward="-100.0" type="lava" behaviour="onceOnly"/>
         <Block reward="-100.0" type="obsidian" behaviour="onceOnly"/>
-        <Block reward="100.0" type="lapis_block" behaviour="onceOnly"/>
+        <Block reward="300.0" type="lapis_block" behaviour="onceOnly"/>
+        <Block reward="50.0" type="diamond_block" behaviour="onceOnly"/>
       </RewardForTouchingBlockType>
       <RewardForSendingCommand reward="-1" />
       <AgentQuitFromTouchingBlockType>
-          <!-- <Block type="lava" /> -->
+          <Block type="lava" />
+          <Block type="obsidian" />
           <Block type="lapis_block" />
       </AgentQuitFromTouchingBlockType>
     </AgentHandlers>
