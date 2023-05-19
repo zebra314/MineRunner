@@ -14,7 +14,7 @@
       <DrawingDecorator>
         <!-- coordinates for cuboid are inclusive -->
         <DrawCuboid x1="-2" y1="46" z1="-2" x2="7" y2="50" z2="13" type="air" />            <!-- limits of our arena -->
-        <DrawCuboid x1="-2" y1="45" z1="-2" x2="7" y2="45" z2="13" type="lava" />           <!-- lava floor -->
+        <DrawCuboid x1="-2" y1="40" z1="-2" x2="7" y2="45" z2="13" type="lava" />           <!-- lava floor -->
         <DrawCuboid x1="1"  y1="45" z1="1"  x2="3" y2="45" z2="17" type="sandstone" />      <!-- floor of the arena -->
         <DrawBlock x="4"  y="45" z="1" type="cobblestone" />    <!-- the starting marker -->
         <DrawBlock x="4"  y="45" z="7" type="lapis_block" />     <!-- the destination marker -->
@@ -33,13 +33,14 @@
       <ContinuousMovementCommands/>
       <ObservationFromFullStats/>
       <RewardForTouchingBlockType>
-        <Block reward="-100.0" type="lava" behaviour="onceOnly"/>
+        <Block reward="-100.0" type="lava" behaviour="oncePerTimeSpan"/>
         <Block reward="-100.0" type="obsidian" behaviour="onceOnly"/>
-        <Block reward="100.0" type="lapis_block" behaviour="onceOnly"/>
+        <Block reward="200.0" type="lapis_block" behaviour="oncePerTimeSpan"/>
+        <Block reward="70.0" type="sandstone" behaviour="oncePerTimeSpan"/>
+        <Block reward="40.0" type="sand" behaviour="oncePerTimeSpan"/>
       </RewardForTouchingBlockType>
-      <RewardForSendingCommand reward="-1" />
+      <RewardForSendingCommand reward="-0.1" />
       <AgentQuitFromTouchingBlockType>
-          <!-- <Block type="lava" /> -->
           <Block type="lapis_block" />
       </AgentQuitFromTouchingBlockType>
     </AgentHandlers>

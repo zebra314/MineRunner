@@ -404,6 +404,13 @@ for x in range(1,4):
     for z in range(1,13):
         if random.random()<0.1:
             my_mission.drawBlock( x,45,z,"lava")
+        # Randomly add sandstone at y = 46
+        #Add when the x¡Bz != destnitation
+        # <DrawBlock x="4"  y="45" z="7" type="lapis_block" />
+        if random.randiom()<0.1: 
+            if(x != 4 and z != 7):
+                my_mission.drawBlock( x,45,z,"sandstone")
+            
 
 max_retries = 3
 
