@@ -25,7 +25,7 @@
   </ServerSection>
 
   <AgentSection mode="Survival">
-    <Name>Cristina</Name>
+    <Name>Steve</Name>
     <AgentStart>
       <Placement x="4.5" y="46.0" z="1.5" pitch="30" yaw="0"/>
     </AgentStart>
@@ -34,12 +34,12 @@
       <DiscreteMovementCommands/>
       <ObservationFromFullStats/>
       <RewardForTouchingBlockType>
-        <Block reward="-100.0" type="lava" behaviour="oncePerTimeSpan"/>
-        <Block reward="200.0" type="lapis_block" behaviour="oncePerTimeSpan"/>
-        <Block reward="70.0" type="sandstone" behaviour="oncePerTimeSpan"/>
-        <Block reward="40.0" type="sand" behaviour="oncePerTimeSpan"/>
+        <Block reward="-200.0" type="lava" behaviour="onceOnly"/>
+        <Block reward="800.0" type="lapis_block" behaviour="onceOnly"/>
+        <Block reward="5.0" type="sandstone" behaviour="oncePerBlock"/>
+        <Block reward="5.0" type="sand" behaviour="oncePerBlock"/>
       </RewardForTouchingBlockType>
-      <RewardForSendingCommand reward="-0.1" />
+      <RewardForSendingCommand reward="-1" />
       <AgentQuitFromTouchingBlockType>
           <Block type="lapis_block" />
       </AgentQuitFromTouchingBlockType>
