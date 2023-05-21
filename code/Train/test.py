@@ -18,30 +18,17 @@ from __future__ import print_function
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 # ------------------------------------------------------------------------------------------------
 
-# Tutorial sample #6: Discrete movement, rewards, and learning
+# Tutorial sample #2: Run simple mission using raw XML
 
-# The "Cliff Walking" example using Q-learning.
-# From pages 148-150 of:
-# Richard S. Sutton and Andrews G. Barto
-# Reinforcement Learning, An Introduction
-# MIT Press, 1998
-
-from future import standard_library
-standard_library.install_aliases()
 from builtins import range
-from builtins import object
 import MalmoPython
-import json
-import logging
 import os
-import random
 import sys
 import time
 import numpy as np
 
 if sys.version_info[0] == 2:
-    # Workaround for https://github.com/PythonCharmers/python-future/issues/262
-    import Tkinter as tk
+    sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)  # flush print output immediately
 else:
     import tkinter as tk
 
@@ -407,64 +394,53 @@ if agent_host.receivedArgument("help"):
     exit(0)
 
 
-# -- set up the mission -- #
-mission_file = './tutorial_6.xml'
-with open(mission_file, 'r') as f:
-    print("Loading mission from %s" % mission_file)
-    mission_xml = f.read()
-    my_mission = MalmoPython.MissionSpec(mission_xml, True)
-# add 20% holes for interest
-for x in range(1,4):
-    for z in range(1,13):
-        if random.random()<0.1:
-            my_mission.drawBlock( x,45,z,"glowstone")
+my_mission = MalmoPython.MissionSpec(missionXML, True)
+my_mission_record = MalmoPython.MissionRecordSpec()
 
+# Attempt to start a mission:
 max_retries = 3
+for retry in range(max_retries):
+    try:
+        agent_host.startMission( my_mission, my_mission_record )
+        break
+    except RuntimeError as e:
+        if retry == max_retries - 1:
+            print("Error starting mission:",e)
+            exit(1)
+        else:
+            time.sleep(2)
 
-if agent_host.receivedArgument("test"):
-    num_repeats = 1
-else:
-    num_repeats = 150
-
-cumulative_rewards = []
-for i in range(num_repeats):
-
-    print()
-    print('Repeat %d of %d' % ( i+1, num_repeats ))
-    
-    my_mission_record = MalmoPython.MissionRecordSpec()
-
-    for retry in range(max_retries):
-        try:
-            agent_host.startMission( my_mission, my_mission_record )
-            break
-        except RuntimeError as e:
-            if retry == max_retries - 1:
-                print("Error starting mission:",e)
-                exit(1)
-            else:
-                time.sleep(2.5)
-
-    print("Waiting for the mission to start", end=' ')
+# Loop until mission starts:
+print("Waiting for the mission to start ", end=' ')
+world_state = agent_host.getWorldState()
+while not world_state.has_mission_begun:
+    print(".", end="")
+    time.sleep(0.1)
     world_state = agent_host.getWorldState()
-    while not world_state.has_mission_begun:
-        print(".", end="")
-        time.sleep(0.1)
-        world_state = agent_host.getWorldState()
-        for error in world_state.errors:
-            print("Error:",error.text)
-    print()
-
-    # -- run the agent in the world -- #
-    cumulative_reward = agent.run(agent_host)
-    print('Cumulative reward: %d' % cumulative_reward)
-    cumulative_rewards += [ cumulative_reward ]
-
-    # -- clean up -- #
-    time.sleep(0.5) # (let the Mod reset)
-
-print("Done.")
+    for error in world_state.errors:
+        print("Error:",error.text)
 
 print()
-print("Cumulative rewards for all %d runs:" % num_repeats)
-print(cumulative_rewards)
+print("Mission running ", end=' ')
+
+# Loop until mission ends:
+while world_state.is_mission_running:
+    
+    # agent_host.sendCommand("move 1")
+    # print(".", end="")
+    world_state = agent_host.getWorldState()
+    # print(world_state)
+    # TurnDegree(agent_host, -1)
+    # jumpForward(agent_host)
+    agent_host.sendCommand("turn 45")
+    # agent_host.sendCommand('turn 0')
+    # agent_host.sendCommand("move 1")
+    print('Success Turn!')
+    time.sleep(2)
+    agent_host.sendCommand('turn 0')
+    for error in world_state.errors:
+        print("Error:",error.text)
+
+print()
+print("Mission ended")
+# Mission has ended.
