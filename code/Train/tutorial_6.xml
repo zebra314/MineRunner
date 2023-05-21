@@ -36,8 +36,8 @@
         <Block reward="-100.0" type="lava" behaviour="oncePerTimeSpan"/>
         <Block reward="-100.0" type="obsidian" behaviour="onceOnly"/>
         <Block reward="200.0" type="lapis_block" behaviour="oncePerTimeSpan"/>
-        <Block reward="70.0" type="sandstone" behaviour="oncePerTimeSpan"/>
-        <Block reward="40.0" type="sand" behaviour="oncePerTimeSpan"/>
+        <Block reward="0" type="sandstone" behaviour="oncePerTimeSpan"/>
+        <Block reward="0" type="sand" behaviour="oncePerTimeSpan"/>
       </RewardForTouchingBlockType>
       <RewardForSendingCommand reward="-0.1" />
       <AgentQuitFromTouchingBlockType>

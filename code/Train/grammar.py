@@ -4,7 +4,4 @@ my_dict = {
     'age': 30,
 }
 
-print(type(my_dict))
-print(my_dict['age'])
-
-print(my_dict)
+print(int(3.7))

@@ -37,6 +37,7 @@ import os
 import random
 import sys
 import time
+import numpy as np
 
 if sys.version_info[0] == 2:
     # Workaround for https://github.com/PythonCharmers/python-future/issues/262
@@ -72,6 +73,7 @@ class TabQAgent(object):
         self.q_table = {}
         self.canvas = None
         self.root = None
+        # End your code
     def moveStraight(self, agent_host, factor, world_state):
         flag = False
         move_speed = factor * 0.5
@@ -262,7 +264,8 @@ class TabQAgent(object):
             #     agent_host.sendCommand("jump 1")
             #     time.sleep(1)
             else:
-                self.moveStraight(agent_host, 1, world_state)
+                # self.moveStraight(agent_host, 1, world_state)
+                agent_host.sendCommand('move 1')
                 time.sleep(1)
                 # agent_host.sendCommand("turn 45")
             # elif a == 4:
@@ -402,6 +405,7 @@ except RuntimeError as e:
 if agent_host.receivedArgument("help"):
     print(agent_host.getUsage())
     exit(0)
+
 
 # -- set up the mission -- #
 mission_file = './tutorial_6.xml'
