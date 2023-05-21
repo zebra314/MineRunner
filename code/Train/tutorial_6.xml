@@ -34,10 +34,18 @@
       <DiscreteMovementCommands/>
       <ObservationFromFullStats/>
       <RewardForTouchingBlockType>
+<<<<<<< HEAD
+        <Block reward="-100.0" type="lava" behaviour="oncePerTimeSpan"/>
+        <Block reward="-100.0" type="obsidian" behaviour="onceOnly"/>
+        <Block reward="200.0" type="lapis_block" behaviour="oncePerTimeSpan"/>
+        <Block reward="0" type="sandstone" behaviour="oncePerTimeSpan"/>
+        <Block reward="0" type="sand" behaviour="oncePerTimeSpan"/>
+=======
         <Block reward="-200.0" type="lava" behaviour="onceOnly"/>
         <Block reward="800.0" type="lapis_block" behaviour="onceOnly"/>
         <Block reward="5.0" type="sandstone" behaviour="oncePerBlock"/>
         <Block reward="5.0" type="sand" behaviour="oncePerBlock"/>
+>>>>>>> 50825f57065ceeb80c21950c45e085dc8c16fc88
       </RewardForTouchingBlockType>
       <RewardForSendingCommand reward="-1" />
       <AgentQuitFromTouchingBlockType>

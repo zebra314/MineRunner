@@ -112,7 +112,8 @@ class Agent():
         """
         
         # self.actions = ["movenorth 1", "movesouth 1", "movewest 1", "moveeast 1"]
-        self.actions = ["move 1","move 0.5","move 0.5", "move -1", "turn 0.5", "turn -0.5", "jump 1"]
+        # self.actions = ["move 1","move 0.5","move 0.5", "move -1", "turn 0.5", "turn -0.5", "jump 1"]
+        self.actions = ["moveForward 1", "set Yaw 45"]
         self.n_actions = len(self.actions)  # the number of actions
         self.count = 0
 
@@ -143,7 +144,147 @@ class Agent():
 
         self.canvas = None
         self.root = None
-
+        self.yaw_bins = self.init_bins(0, 360, 8)
+    def init_bins(self, lower_bound, upper_bound, num_bins):
+        # Begin your code
+        """
+        Explain code:
+        linspace can part [lower_bound, upper_bound] into {num} evenly spaced points
+        To slice interval into {num_bins} subinterval, we need {num_bins+1} points
+        return np array that excluding the first and last element
+        """
+        return np.linspace(lower_bound, upper_bound, num = num_bins+1)[1:-1]
+        # End your code
+    def discretize_value(self, value, bins):
+        # Begin your code
+        """
+        Explain code:
+        np.digitize let 2 neighbor points in bins is considered as a interval
+        ex: bins has 4 points, so it has 3 interval
+        return value is interval index which given value is located at including lower_bound and upper_bound in init_bins
+        if in the first interval, return value is 0, and so on
+        """
+        return np.digitize(value, bins)
+        # End your code
+    def addTermOfXZ(self, yaw_interval):
+        x_add_term = 0
+        z_add_term = 0
+        if yaw_interval == 0:
+            x_add_term = 0
+            z_add_term = 1
+        elif yaw_interval == 1:
+            x_add_term = -0.70711
+            z_add_term = 0.70711
+        elif yaw_interval == 2:
+            x_add_term = -1
+            z_add_term = 0
+        elif yaw_interval == 3:
+            x_add_term = -0.70711
+            z_add_term = -0.70711
+        elif yaw_interval == 4:
+            x_add_term = 0
+            z_add_term = -1
+        elif yaw_interval == 5:
+            x_add_term = 0.70711
+            z_add_term = -0.70711
+        elif yaw_interval == 6:
+            x_add_term = 1
+            z_add_term = 0
+        elif yaw_interval == 7:
+            x_add_term = 0.70711
+            z_add_term = 0.70711
+        return x_add_term, z_add_term
+    def moveStraight(self, agent_host, factor, world_state):
+        flag = False
+        move_speed = factor * 0.5
+        # agent_host.sendCommand('move {}'.format(move_speed))
+        done = False
+        while not done and flag is False:
+            latest_ws = agent_host.peekWorldState()
+            print(f'Move straight, Latest world state is: {latest_ws}')
+            # If there are some new observations
+            if latest_ws.number_of_observations_since_last_state > 0:
+                obs_text = latest_ws.observations[-1].text
+                obs = json.loads(obs_text)
+                print(f'Peek World State is:{obs}')
+                current_ZPos = float(obs[u'ZPos'])
+                current_XPos = float(obs[u'XPos'])
+                current_yaw = float(obs[u'Yaw'])
+                current_yaw_interval = self.discretize_value(current_yaw, self.yaw_bins)
+                x_add_term, z_add_term = self.addTermOfXZ(current_yaw_interval)
+                print(f'Current yaw is: {current_yaw_interval}, x term is{x_add_term}, z term is {z_add_term}')
+                target_ZPos = current_ZPos + z_add_term
+                target_XPos = current_XPos + x_add_term
+                # use manhattan distance to calculate distance between current and target
+                # manhattan distance: x + z 
+                # 1 gaussian distance ~ 1.414 manhattan distance
+                # target_manhattan = current_ZPos + current_XPos + 1.414
+                print(f'Init Current XPos is {current_XPos}, ZPos is {current_ZPos}, target XPos is {target_XPos}, target ZPos is {target_ZPos}')
+                while not done and abs(current_XPos - target_XPos) + abs(current_ZPos - target_ZPos) > 0.5:
+                    time.sleep(0.1)
+                    agent_host.sendCommand('move {}'.format(move_speed))
+                    latest_ws = agent_host.peekWorldState()
+                    # If there are some new observations
+                    if latest_ws.number_of_observations_since_last_state > 0:
+                        obs_text = latest_ws.observations[-1].text
+                        obs = json.loads(obs_text)
+                        # print(f'Peek World State is:{obs}')
+                        current_ZPos = float(obs[u'ZPos'])
+                        current_XPos = float(obs[u'XPos'])
+                        if latest_ws.is_mission_running == False or obs[u'IsAlive'] == False or int(obs[u'Life']) == 0:
+                            done = True
+                        else:
+                            done = False
+                        agent_host.sendCommand('move {}'.format(move_speed))
+                        print(obs)
+                        print(f'Current XPos is {current_XPos}, ZPos is {current_ZPos}, target XPos is {target_XPos}, target ZPos is {target_ZPos}')
+                flag = True
+                agent_host.sendCommand('move 0')
+        print(f'move straight {factor} success!')
+    # forward is look at Z position
+    def turnDegree(self, agent_host, factor, world_state):
+        # obs_text = world_state.observations[-1].text
+        # obs = json.loads(obs_text)
+        # print(f'Argument World State is:{obs}')
+        flag = False
+        turn_speed = factor * 0.5
+        agent_host.sendCommand('turn {}'.format(turn_speed))
+        isAlive = True
+        last_timeAlive = None
+        while isAlive and isAlive and flag is False:
+            latest_ws = agent_host.peekWorldState()
+            print(f'TurnDegree, Latest world state is: {latest_ws}')
+            # If there are some new observations
+            if latest_ws.number_of_observations_since_last_state > 0:
+                obs_text = latest_ws.observations[-1].text
+                obs = json.loads(obs_text)
+                print(f'Peek World State is:{obs}')
+                current_yaw = int(obs[u'Yaw'])
+                # factor = 1: turn west, factor = -1: turn east
+                init_target_yaw = factor * 45 + current_yaw
+                if factor == 1:
+                    target_yaw = (init_target_yaw) % 360
+                else:
+                    target_yaw = init_target_yaw + 360 if init_target_yaw < -360 else init_target_yaw
+                print(f'Init Current yaw is {current_yaw}, target yaw is {target_yaw}')
+                while isAlive and abs(current_yaw - target_yaw) > 5:
+                    time.sleep(0.1)
+                    agent_host.sendCommand('turn {}'.format(turn_speed))
+                    latest_ws = agent_host.peekWorldState()
+                    # If there are some new observations
+                    if latest_ws.number_of_observations_since_last_state > 0:
+                        obs_text = latest_ws.observations[-1].text
+                        obs = json.loads(obs_text)
+                        current_yaw = int(obs[u'Yaw'])
+                        timeAlive = obs[u'TimeAlive']
+                        if timeAlive == last_timeAlive:
+                            isAlive = False
+                        last_timeAlive = timeAlive
+                        agent_host.sendCommand('turn {}'.format(turn_speed))
+                        print(obs)
+                        print(f'Current yaw is {current_yaw}, target yaw is {target_yaw}, isAlive is: {isAlive}')
+                flag = True
+                agent_host.sendCommand('turn 0')
     def learn(self):
         '''
         - Implement the learning function.
@@ -178,7 +319,7 @@ class Agent():
         rewards = torch.FloatTensor(rewards)
         next_observations = torch.FloatTensor(np.array(next_observations))
         done = torch.BoolTensor(done)
-
+        # print(f'Observation is: {observations}')
         # Compute the loss
         evaluate = self.evaluate_net(observations).gather(1, actions.reshape(self.batch_size, 1))
         nextMax = self.target_net(next_observations).detach()
@@ -203,10 +344,14 @@ class Agent():
         if not u'XPos' in obs or not u'ZPos' in obs:
             self.logger.error("Incomplete observation received: %s" % obs_text)
             return 0
-
-        current_s = (int(obs[u'XPos']), int(obs[u'YPos']), int(obs[u'ZPos']), int(obs[u'Yaw']))
-        
-        if obs[u'IsAlive'] == False or int(obs[u'Life']) == 0:
+        current_yaw = (float(obs[u'Yaw']) + 360) % 360
+        current_XPos = int(obs[u'XPos'])
+        current_YPos = int(obs[u'YPos'])
+        current_ZPos = int(obs[u'ZPos'])
+        print(f'Current yaw is: {current_yaw}')
+        current_s = (current_XPos, current_YPos, current_ZPos, self.discretize_value(current_yaw, self.yaw_bins))
+        print(f'Current state is: {current_s}')
+        if world_state.is_mission_running or obs[u'IsAlive'] == False or int(obs[u'Life']) == 0:
             done = True
         else:
             done = False
@@ -221,17 +366,67 @@ class Agent():
             with torch.no_grad():
                 action_index = torch.argmax(self.evaluate_net.forward(torch.FloatTensor(current_s))).item()
             
-        chosen_action = self.actions[action_index]
-
+        # chosen_action = self.actions[action_index]
+        self.logger.info("Taking q action: %s" % self.actions[action_index])
         # Take the chosen action
-        agent_host.sendCommand(chosen_action)
+        try:
+          # if world_state.is_mission_running:
+          #   print('Mission is still running')
+          # else:
+          #   print('Mission is not running')
+          # # agent_host.sendCommand('move 0')
+          # agent_host.sendCommand('move 1')
+          # if world_state.is_mission_running:
+          #   print('Mission is still running')
+          # else:
+          #   print('Mission is not running')
+            # move forward
+            if action_index == 0:
+                # agent_host.sendCommand("strafe 1")
+                self.turnDegree(agent_host, 1, world_state)
+                
+                # agent_host.sendCommand('move 1')
+                time.sleep(1)
+                # world_state = agent_host.getWorldState()
+                # obs_text = world_state.observations[-1].text
+                # obs = json.loads(obs_text)
+                # print(f'After move forward, World State is:{obs}')
+            # move backward
+            # elif a == 1:
+            #     # agent_host.sendCommand("strafe -1")
+            #     # self.moveStraight(agent_host, -1, world_state)
+            #     agent_host.sendCommand('move -1')
+            #     time.sleep(1)
+            # elif a == 1:
+            #     agent_host.sendCommand("move 1")
+            #     agent_host.sendCommand("jump 1")
+            #     time.sleep(1)
+            else:
+                self.moveStraight(agent_host, 1, world_state)
+                # agent_host.sendCommand('move 1')
+                time.sleep(1)
+                # agent_host.sendCommand("turn 45")
+            # elif a == 4:
+            #     self.turnDegree(agent_host, -1, world_state)
+            #     agent_host.sendCommand("turn -45")
+            
+            # agent_host.sendCommand(self.actions[a])
+            self.prev_s = current_s
+            self.prev_a = 0
 
+        except RuntimeError as e:
+              self.logger.error("Failed to send command: %s" % e)
+        
+        # time.sleep(1)
         # Update the replay buffer
         if self.count > 0:
             self.buffer.insert(self.previous_observation, int(self.previous_action), 
                                 current_r, current_s, int(done))
+
         self.count += 1
+        # print(f'Current buffer size is: {len(self.buffer)}')
         if agent.count >= 50:
+            # print(f'current buffer is: {self.buffer.memory}')
             agent.learn()
             
         # 更新 epsilon
@@ -343,8 +538,7 @@ else:
 
 cumulative_rewards = []
 for i in range(num_repeats):
-
-    print()
+    print(f'yaw_bins is:{agent.yaw_bins}')
     print('Repeat %d of %d' % ( i+1, num_repeats ))
     
     my_mission_record = MalmoPython.MissionRecordSpec()
