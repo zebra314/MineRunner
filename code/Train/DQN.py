@@ -76,7 +76,7 @@ class Net(nn.Module):
     The structure of the Neural Network calculating Q values of each state.
     '''
 
-    def __init__(self,  num_actions, hidden_layer_size=100):
+    def __init__(self,  num_actions, hidden_layer_size=80):
         super(Net, self).__init__()
         self.input_state = 4  # the dimension of state space
         self.num_actions = num_actions  # the dimension of action space
@@ -462,6 +462,9 @@ print()
 print("Cumulative rewards for all %d runs:" % num_repeats)
 print(cumulative_rewards)
 
-os.makedirs("../Rewards", exist_ok=True)
-np.save("../Rewards/DQN_rewards.npy", np.array(cumulative_rewards))
+os.makedirs("../../asset/Rewards", exist_ok=True)
+np.save("../../asset/Rewards/DQN_rewards.npy", np.array(cumulative_rewards))
+
+os.makedirs("../../asset/Tables", exist_ok=True)
+torch.save(agent.target_net.state_dict(), "../../asset/Tables/DQN.pt")
     
