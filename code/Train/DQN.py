@@ -76,7 +76,7 @@ class Net(nn.Module):
     The structure of the Neural Network calculating Q values of each state.
     '''
 
-    def __init__(self,  num_actions, hidden_layer_size=100):
+    def __init__(self,  num_actions, hidden_layer_size=80):
         super(Net, self).__init__()
         self.input_state = 4  # the dimension of state space
         self.num_actions = num_actions  # the dimension of action space
@@ -125,7 +125,7 @@ class Agent():
 
         self.learning_rate = 0.001
         self.gamma = 0.9
-        self.batch_size = 32
+        self.batch_size = 5
         self.capacity = 50000
 
         self.buffer = replay_buffer(self.capacity)
@@ -168,7 +168,7 @@ class Agent():
         Returns:
             None (Don't need to return anything)
         '''
-        if self.count % 100 == 0:
+        if self.count % 10 == 0:
             self.target_net.load_state_dict(self.evaluate_net.state_dict())
 
         # Begin your code
@@ -199,10 +199,16 @@ class Agent():
     def stopAction(self, agent_host, action_index):
         if action_index == None:
             return
+        # jumpforward 1
+        # elif action_index == 3:
+        #     agent_host.sendCommand('move 0')
+        #     agent_host.sendCommand('jump 0')
+        #     return
         action = self.actions[action_index]
         action_substring = action.split(" ")
         stop_action = action_substring[0] + " 0"
         agent_host.sendCommand(stop_action)
+        return
     def act(self, world_state, agent_host, prev_r, is_first_action):
         
         """
@@ -236,7 +242,7 @@ class Agent():
 
         self.count += 1
         # print(f'Current buffer size is: {len(self.buffer)}')
-        if agent.count >= 50:
+        if agent.count >= 10:
             # print(f'current buffer is: {self.buffer.memory}')
             agent.learn()
         # ----next action-----
@@ -255,32 +261,32 @@ class Agent():
         print(f'Current world state is:{current_state}, done is: {done}')
         # Take the chosen action
         try:
-            agent_host.sendCommand(chosen_action)
-            # move forward
+            agent_host.sendCommand(self.actions[action_index])
+            # # move 1
             # if action_index == 0:
-            #     # agent_host.sendCommand("strafe 1")
-            #     self.moveStraight(agent_host, 1, current_state)
-            #     # agent_host.sendCommand('move 1')
-            #     time.sleep(0.5)
-            #     # world_state = agent_host.getWorldState()
-            #     # obs_text = world_state.observations[-1].text
-            #     # obs = json.loads(obs_text)
-            #     # print(f'After move forward, World State is:{obs}')
-            # # move backward
-            # # elif a == 1:
-            # #     # agent_host.sendCommand("strafe -1")
-            # #     # self.moveStraight(agent_host, -1, world_state)
-            # #     agent_host.sendCommand('move -1')
-            # #     time.sleep(1)
-            # # elif a == 1:
-            # #     agent_host.sendCommand("move 1")
-            # #     agent_host.sendCommand("jump 1")
-            # #     time.sleep(1)
-            # else:
-            #     self.turnDegree(agent_host, 1, current_state)
-            #     # agent_host.sendCommand('move 1')
-            #     time.sleep(0.5)
-            #     # agent_host.sendCommand("turn 45")
+            #     agent_host.sendCommand(self.actions[action_index])
+            # # turn 0.5
+            # elif action_index == 1:
+            #     agent_host.sendCommand(self.actions[action_index])
+            # # turn -0.5
+            # elif action_index == 2:
+            #     agent_host.sendCommand(self.actions[action_index])
+            # # jump forward
+            # elif action_index == 3:
+            #     agent_host.sendCommand('move 0.5')
+            #     agent_host.sendCommand('jump 1')
+                
+            # move backward
+            # elif a == 1:
+            #     # agent_host.sendCommand("strafe -1")
+            #     # self.moveStraight(agent_host, -1, world_state)
+            #     agent_host.sendCommand('move -1')
+            #     time.sleep(1)
+            # elif a == 1:
+            #     agent_host.sendCommand("move 1")
+            #     agent_host.sendCommand("jump 1")
+            #     time.sleep(1)
+                # agent_host.sendCommand("turn 45")
             # print('Successful getting action')
             
             # agent_host.sendCommand(self.actions[a])
@@ -456,6 +462,9 @@ print()
 print("Cumulative rewards for all %d runs:" % num_repeats)
 print(cumulative_rewards)
 
-os.makedirs("../Rewards", exist_ok=True)
-np.save("../Rewards/DQN_rewards.npy", np.array(cumulative_rewards))
+os.makedirs("../../asset/Rewards", exist_ok=True)
+np.save("../../asset/Rewards/DQN_rewards.npy", np.array(cumulative_rewards))
+
+os.makedirs("../../asset/Tables", exist_ok=True)
+torch.save(agent.target_net.state_dict(), "../../asset/Tables/DQN.pt")
     
