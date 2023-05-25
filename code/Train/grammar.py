@@ -5,3 +5,4 @@ my_dict = {
 }
 
 print(int(3.7))
+print(abs(-2.8))
