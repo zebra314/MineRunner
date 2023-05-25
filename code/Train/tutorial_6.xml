@@ -16,6 +16,7 @@
         <DrawCuboid x1="-2" y1="46" z1="-2" x2="7" y2="50" z2="13" type="air" />            <!-- limits of our arena -->
         <DrawCuboid x1="-2" y1="40" z1="-2" x2="7" y2="45" z2="13" type="lava" />           <!-- lava floor -->
         <DrawCuboid x1="1"  y1="45" z1="1"  x2="3" y2="45" z2="17" type="sandstone" />      <!-- floor of the arena -->
+        <DrawCuboid x1="4"  y1="45" z1="1"  x2="4" y2="45" z2="17" type="sandstone" /> 
         <DrawBlock x="4"  y="45" z="1" type="cobblestone" />    <!-- the starting marker -->
         <DrawBlock x="4"  y="45" z="7" type="lapis_block" />     <!-- the destination marker -->
       </DrawingDecorator>
@@ -36,8 +37,13 @@
       <RewardForTouchingBlockType>
         <Block reward="-200.0" type="lava" behaviour="onceOnly"/>
         <Block reward="800.0" type="lapis_block" behaviour="onceOnly"/>
+<<<<<<< HEAD
+        <Block reward="0" type="sandstone" behaviour="oncePerBlock"/>
+        <Block reward ="0" type="sand" behaviour="oncePerBlock"/>
+=======
         <Block reward="5.0" type="sandstone" behaviour="oncePerBlock"/>
         <Block reward="5.0" type="sand" behaviour="oncePerBlock"/>
+>>>>>>> 994dd5442576a788fe4bf16147b6a944b6a894c4
       </RewardForTouchingBlockType>
       <RewardForSendingCommand reward="-1" />
       <AgentQuitFromTouchingBlockType>
