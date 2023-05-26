@@ -9,7 +9,7 @@ import logging
 import random
 import sys
 import time
-
+import math
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -119,12 +119,14 @@ class Agent():
         self.count = 0
 
         # self.epsilon = 0.2 # chance of taking a random action instead of the best
-        self.epsilon = 1.0  # 初始 epsilon 值
-        self.epsilon_decay_rate = 0.9999 # epsilon 的衰減率
-        self.epsilon_min = 0.15  # epsilon 的最小值
-
+        # self.epsilon = 0.95  # 初始 epsilon 值
+        # self.epsilon_decay_rate = 0.8 # epsilon 的衰減率
+        # self.epsilon_min = 0.15  # epsilon 的最小值
+        self.EPS_START = 0.9
+        self.EPS_END = 0.05
+        self.EPS_DECAY = 1000
         self.learning_rate = 0.001
-        self.gamma = 0.9
+        self.gamma = 0.99
         self.batch_size = 5
         self.capacity = 50000
 
@@ -145,6 +147,7 @@ class Agent():
 
         self.canvas = None
         self.root = None
+        self.action_state = []
         # self.yaw_bins = self.init_bins(0, 360, 8)
     
     def learn(self):
@@ -168,7 +171,7 @@ class Agent():
         Returns:
             None (Don't need to return anything)
         '''
-        if self.count % 10 == 0:
+        if self.count % 100 == 0:
             self.target_net.load_state_dict(self.evaluate_net.state_dict())
 
         # Begin your code
@@ -230,7 +233,7 @@ class Agent():
         current_state = (round(current_XPos, 1), round(current_YPos, 1), round(current_ZPos, 1), round(current_yaw, 1))
         # stop prev action after observation of current state
         self.stopAction(agent_host, self.prev_a)
-        print(f'Origin world state is: {obs}')
+        # print(f'Origin world state is: {obs}')
         if not(world_state.is_mission_running) or bool(obs[u'IsAlive']) == False or int(obs[u'Life']) == 0:
             done = True
         else:
@@ -242,12 +245,15 @@ class Agent():
 
         self.count += 1
         # print(f'Current buffer size is: {len(self.buffer)}')
-        if agent.count >= 10:
+        if agent.count >= 50:
             # print(f'current buffer is: {self.buffer.memory}')
             agent.learn()
         # ----next action-----
         # Choose an action
-        if random.uniform(0,1) < self.epsilon:
+        eps_threshold = self.EPS_END + (self.EPS_START - self.EPS_END) * \
+            math.exp(-1. * self.count / self.EPS_DECAY)
+            
+        if random.uniform(0,1) < eps_threshold:
             self.logger.info("Explore")
             action_index = random.randint(0, self.n_actions - 1)
         else:
@@ -257,39 +263,13 @@ class Agent():
                 action_index = torch.argmax(self.evaluate_net.forward(torch.FloatTensor(current_state))).item()
             
         chosen_action = self.actions[action_index]
+        action_state_list = [chosen_action, current_state]
+        self.action_state.append(tuple(action_state_list))
         self.logger.info("Taking q action: %s" % chosen_action)
         print(f'Current world state is:{current_state}, done is: {done}')
         # Take the chosen action
         try:
             agent_host.sendCommand(self.actions[action_index])
-            # # move 1
-            # if action_index == 0:
-            #     agent_host.sendCommand(self.actions[action_index])
-            # # turn 0.5
-            # elif action_index == 1:
-            #     agent_host.sendCommand(self.actions[action_index])
-            # # turn -0.5
-            # elif action_index == 2:
-            #     agent_host.sendCommand(self.actions[action_index])
-            # # jump forward
-            # elif action_index == 3:
-            #     agent_host.sendCommand('move 0.5')
-            #     agent_host.sendCommand('jump 1')
-                
-            # move backward
-            # elif a == 1:
-            #     # agent_host.sendCommand("strafe -1")
-            #     # self.moveStraight(agent_host, -1, world_state)
-            #     agent_host.sendCommand('move -1')
-            #     time.sleep(1)
-            # elif a == 1:
-            #     agent_host.sendCommand("move 1")
-            #     agent_host.sendCommand("jump 1")
-            #     time.sleep(1)
-                # agent_host.sendCommand("turn 45")
-            # print('Successful getting action')
-            
-            # agent_host.sendCommand(self.actions[a])
             self.prev_s = current_state
             self.prev_a = action_index
         except RuntimeError as e:
@@ -311,8 +291,8 @@ class Agent():
         # self.stopAction(chosen_action, agent_host)
             
         # 更新 epsilon
-        self.epsilon *= self.epsilon_decay_rate
-        self.epsilon = max(self.epsilon, self.epsilon_min)
+        # self.epsilon *= self.epsilon_decay_rate
+        # self.epsilon = max(self.epsilon, self.epsilon_min)
 
         # self.previous_observation = current_state
         # self.previous_action = action_index
@@ -361,6 +341,7 @@ class Agent():
                         self.logger.error("Error: %s" % error.text)
                     for reward in world_state.rewards:
                         current_r += reward.getValue()
+                        print(f'current reward is:{current_r}')
                 # allow time to stabilise after action
                 while True:
                     time.sleep(0.1)
@@ -369,10 +350,11 @@ class Agent():
                         self.logger.error("Error: %s" % error.text)
                     for reward in world_state.rewards:
                         current_r += reward.getValue()
+                        print(f'current reward is:{current_r}')
                     if world_state.is_mission_running and len(world_state.observations)>0 and not world_state.observations[-1].text=="{}":
                         self.act(world_state, agent_host, current_r, is_first_action)
                         total_reward += current_r
-                        print(f'Mission running is: {world_state.is_mission_running}')
+                        print(f'Total reward is: {total_reward}')
                         break
                     if not world_state.is_mission_running:
                         break
@@ -455,7 +437,7 @@ for i in range(num_repeats):
 
     # -- clean up -- #
     time.sleep(0.5) # (let the Mod reset)
-
+print(f'Action to state corresponding list:{agent.action_state}')
 print("Done.")
 
 print()

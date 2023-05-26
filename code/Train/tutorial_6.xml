@@ -36,7 +36,7 @@
       <ObservationFromFullStats/>
       <RewardForTouchingBlockType>
         <Block reward="-200.0" type="lava" behaviour="onceOnly"/>
-        <Block reward="800.0" type="lapis_block" behaviour="onceOnly"/>
+        <Block reward="100.0" type="lapis_block" behaviour="onceOnly"/>
         <Block reward="0" type="sandstone" behaviour="oncePerBlock"/>
         <Block reward ="0" type="sand" behaviour="oncePerBlock"/>
       </RewardForTouchingBlockType>
