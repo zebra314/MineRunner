@@ -198,7 +198,7 @@ class Agent():
         loss.backward()
         self.optimizer.step()
         # End your code
-        torch.save(self.target_net.state_dict(), "DQN.pt")
+        torch.save(self.target_net.state_dict(), "../../asset/nn/DQN.pt")
     def stopAction(self, agent_host, action_index):
         if action_index == None:
             return
