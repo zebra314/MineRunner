@@ -195,7 +195,7 @@ class Agent():
         loss.backward()
         self.optimizer.step()
         # End your code
-        torch.save(self.target_net.state_dict(), "DQN.pt")
+        torch.save(self.target_net.state_dict(), "../../asset/nn/DQN.pt")
     def stopAction(self, agent_host, action_index):
         if action_index == None:
             return
@@ -230,7 +230,7 @@ class Agent():
         current_state = (round(current_XPos, 1), round(current_YPos, 1), round(current_ZPos, 1), round(current_yaw, 1))
         # stop prev action after observation of current state
         self.stopAction(agent_host, self.prev_a)
-        print(f'Origin world state is: {obs}')
+        # print(f'Origin world state is: {obs}')
         if not(world_state.is_mission_running) or bool(obs[u'IsAlive']) == False or int(obs[u'Life']) == 0:
             done = True
         else:
@@ -257,8 +257,8 @@ class Agent():
                 action_index = torch.argmax(self.evaluate_net.forward(torch.FloatTensor(current_state))).item()
             
         chosen_action = self.actions[action_index]
-        self.logger.info("Taking q action: %s" % chosen_action)
-        print(f'Current world state is:{current_state}, done is: {done}')
+        # self.logger.info("Taking q action: %s" % chosen_action)
+        # print(f'Current world state is:{current_state}, done is: {done}')
         # Take the chosen action
         try:
             agent_host.sendCommand(self.actions[action_index])
@@ -372,7 +372,7 @@ class Agent():
                     if world_state.is_mission_running and len(world_state.observations)>0 and not world_state.observations[-1].text=="{}":
                         self.act(world_state, agent_host, current_r, is_first_action)
                         total_reward += current_r
-                        print(f'Mission running is: {world_state.is_mission_running}')
+                        # print(f'Mission running is: {world_state.is_mission_running}')
                         break
                     if not world_state.is_mission_running:
                         break
