@@ -19,10 +19,11 @@ MODE = 1
 rows = 16
 cols = 17
 matrix = []
-FLOOR = 0
-LAVA = -1
-HILL = 1
-WALL = 2
+# first is height, second is reward of this block, 0: natural, positive: good, negative: bad
+FLOOR = (0, 0)
+LAVA = (0, -1)
+HILL = (1, 0)
+WALL = (2, 0)
 
 lava = np.empty((0, 2), dtype=int)
 hill = np.empty((0, 2), dtype=int)
@@ -63,9 +64,9 @@ for i in range(16):
 for i in hole_on_the_wall:
     matrix[i][7]=HILL
 
-for i in range(rows):
-    print(matrix[i])
-
+# for i in range(rows):
+#     print(matrix[i])
+print(matrix)
 with open('matrix_data.txt', 'w') as file:
     # 遍历矩阵的每一行
     for row in matrix:
