@@ -29,25 +29,35 @@ for i in range(rows):
 for i in range(rows):
     for j in range(cols):
         if random.random() < 0.1:
-            matrix[i][j] = 2
+            matrix[i][j] = -1
 
 for i in range(rows):
     for j in range(cols):
         if random.random() < 0.1:
-            matrix[i][j] = 3
+            matrix[i][j] = 2
 
 for i in range(0, rows, 3):
-    matrix[i][4] = 2
-    # print(f"Change 4, {i} into Lava")
+    matrix[i][4] = -1
 
 for i in range(rows):
     print(matrix[i])
+
+with open('matrix_data.txt', 'w') as file:
+    # 遍历矩阵的每一行
+    for row in matrix:
+        # 将每行的元素转换为字符串，并用空格分隔
+        row_str = ' '.join(map(str, row))
+        # 写入txt文件
+        file.write(row_str + '\n')
+
+# 关闭txt文件
+file.close()
 
 # print("Lava:")
 print("Copy below to <DrawingDecorator> in .xml")
 for i in range(rows):
     for j in range(cols):
-        if matrix[i][j] == 2:
+        if matrix[i][j] == -1:
             x = i + 1
             z = j + 1
             print(f"        <DrawBlock x=\"{x}\" y=\"45\" z=\"{z}\" type=\"glowstone\" />")
@@ -56,7 +66,7 @@ for i in range(rows):
 # print("Hill:")
 for i in range(rows):
     for j in range(cols):
-        if matrix[i][j] == 3:
+        if matrix[i][j] == 2:
             x = i + 1
             z = j + 1
             print(f"        <DrawBlock x=\"{x}\" y=\"46\" z=\"{z}\" type=\"sandstone\" />")
@@ -67,15 +77,16 @@ current_map_file = 'current_map_file.txt'
 with open(current_map_file, 'w') as file:
     for row in matrix:
         file.write(' '.join(map(str, row)) + '\n')
-
+file.close()
 # Store the lava
 lava_file = 'lava.txt'
 with open(lava_file, 'w') as file:
     for coordinate in lava:
         file.write(f"       <DrawBlock x=\"{coordinate[0]}\" y=\"45\" z=\"{coordinate[1]}\" type=\"glowstone\" />\n")
-
+file.close()
 # Store the hill
 hill_file = 'hill.txt'
 with open(hill_file, 'w') as file:
     for coordinate in hill:
         file.write(f"       <DrawBlock x=\"{coordinate[0]}\" y=\"46\" z=\"{coordinate[1]}\" type=\"sandstone\" />\n")
+file.close()

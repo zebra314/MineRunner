@@ -233,7 +233,6 @@ class Agent():
         current_state = (round(current_XPos, 1), round(current_YPos, 1), round(current_ZPos, 1), round(current_yaw, 1))
         # stop prev action after observation of current state
         self.stopAction(agent_host, self.prev_a)
-        # print(f'Origin world state is: {obs}')
         if not(world_state.is_mission_running) or bool(obs[u'IsAlive']) == False or int(obs[u'Life']) == 0:
             done = True
         else:
@@ -270,10 +269,10 @@ class Agent():
         # Take the chosen action
         try:
             agent_host.sendCommand(self.actions[action_index])
-            self.prev_s = current_state
-            self.prev_a = action_index
         except RuntimeError as e:
               self.logger.error("Failed to send command: %s" % e)
+        self.prev_s = current_state
+        self.prev_a = action_index
         # print update state information
         # If there are some new observations
         # while True and not done:
@@ -325,6 +324,8 @@ class Agent():
                     for reward in world_state.rewards:
                         current_r += reward.getValue()
                     if world_state.is_mission_running and len(world_state.observations)>0 and not world_state.observations[-1].text=="{}":
+                        # # stop prev action after choose a new action
+                        # self.stopAction(agent_host, self.prev_a)
                         self.act(world_state, agent_host, current_r, is_first_action)
                         total_reward += current_r
                         # print(f'Mission running is: {world_state.is_mission_running}')
@@ -352,6 +353,8 @@ class Agent():
                         current_r += reward.getValue()
                         print(f'current reward is:{current_r}')
                     if world_state.is_mission_running and len(world_state.observations)>0 and not world_state.observations[-1].text=="{}":
+                        # # stop prev action after observation of current state
+                        # self.stopAction(agent_host, self.prev_a)
                         self.act(world_state, agent_host, current_r, is_first_action)
                         total_reward += current_r
                         print(f'Total reward is: {total_reward}')
