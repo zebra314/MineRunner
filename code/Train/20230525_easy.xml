@@ -16,15 +16,18 @@
         <DrawCuboid x1="-2" y1="46" z1="-2" x2="18" y2="50" z2="22" type="air" />            <!-- limits of our arena -->
         <DrawCuboid x1="-2" y1="45" z1="-2" x2="18" y2="45" z2="22" type="obsidian" />           <!-- lava floor -->
         <DrawCuboid x1="1"  y1="45" z1="1"  x2="16" y2="45" z2="17" type="sandstone" />      <!-- floor of the arena -->
-        <DrawBlock x="8"  y="45" z="0" type="cobblestone" />    <!-- the starting marker -->
-        <DrawBlock x="8"  y="45" z="18" type="lapis_block" />     <!-- the destination marker -->
+        <DrawBlock x="8"  y="45" z="1" type="cobblestone" />    <!-- the starting marker -->
+        <!-- <DrawBlock x="10"  y="45" z="18" type="lapis_block" />      -->
+        <DrawCuboid x1="6"  y1="45" z1="16"  x2="7" y2="45" z2="17" type="lapis_block" /> <!-- the destination marker -->
         <!-- copy start -->
+        <!-- z1 = 8 is a wall -->
+        <DrawCuboid x1="1"  y1="45" z1="8"  x2="16" y2="45" z2="10" type="gold_block" />
         <DrawBlock x="2" y="45" z="17" type="glowstone" />
         <DrawBlock x="3" y="45" z="1" type="glowstone" />
         <DrawBlock x="4" y="45" z="1" type="glowstone" />
         <DrawBlock x="5" y="45" z="9" type="glowstone" />
         <DrawBlock x="5" y="45" z="15" type="glowstone" />
-        <DrawBlock x="7" y="45" z="17" type="glowstone" />
+        <!-- <DrawBlock x="7" y="45" z="17" type="glowstone" /> -->
         <DrawBlock x="8" y="45" z="5" type="glowstone" />
         <DrawBlock x="8" y="45" z="6" type="glowstone" />
         <DrawBlock x="8" y="45" z="14" type="glowstone" />
@@ -78,7 +81,7 @@
         <DrawBlock x="10" y="50" z="20" type="air" />
         <DrawBlock x="12" y="50" z="20" type="air" />
       </DrawingDecorator>
-      <ServerQuitFromTimeUp timeLimitMs="20000"/>
+      <ServerQuitFromTimeUp timeLimitMs="30000"/>
       <ServerQuitWhenAnyAgentFinishes/>
     </ServerHandlers>
   </ServerSection>
@@ -86,17 +89,17 @@
   <AgentSection mode="Survival">
     <Name>Cristina</Name>
     <AgentStart>
-      <Placement x="8.5" y="46.0" z="0.5" pitch="30" yaw="0"/>
+      <Placement x="8.5" y="46.0" z="1.5" pitch="30" yaw="0"/>
     </AgentStart>
     <AgentHandlers>
-      <DiscreteMovementCommands/>
+      <ContinuousMovementCommands/>
       <ObservationFromFullStats/>
       <RewardForTouchingBlockType>
         <Block reward="-100.0" type="lava" behaviour="onceOnly"/>
         <Block reward="-1000.0" type="glowstone" behaviour="onceOnly"/>
         <Block reward="-1000.0" type="obsidian" behaviour="onceOnly"/>
         <Block reward="300.0" type="lapis_block" behaviour="onceOnly"/>
-        <Block reward="50.0" type="diamond_block" behaviour="onceOnly"/>
+        <Block reward="50.0" type="gold_block" behaviour="onceOnly"/>
       </RewardForTouchingBlockType>
       <RewardForSendingCommand reward="-1" />
       <AgentQuitFromTouchingBlockType>

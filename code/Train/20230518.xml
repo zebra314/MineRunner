@@ -67,7 +67,7 @@ my_mission.drawSphere(14,45,9,1,"diamond_block")
       <Placement x="8.5" y="46.0" z="1.5" pitch="30" yaw="0"/>
     </AgentStart>
     <AgentHandlers>
-      <DiscreteMovementCommands/>
+      <ContinuousMovementCommands/>
       <ObservationFromFullStats/>
       <RewardForTouchingBlockType>
         <Block reward="-100.0" type="lava" behaviour="onceOnly"/>
