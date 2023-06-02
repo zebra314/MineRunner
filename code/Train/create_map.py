@@ -33,6 +33,7 @@ MODE = int(MODE)
 rows = 16
 cols = 17
 matrix = []
+<<<<<<< HEAD
 FLOOR = 0
 LAVA = -1
 HILL = 1
@@ -40,6 +41,13 @@ WALL = 2
 hole_on_the_wall = {}
 current_map_file = ""
 EDGE = "(20,-9999)"
+=======
+# first is height, second is reward of this block, 0: natural, positive: good, negative: bad
+FLOOR = (0, 0)
+LAVA = (0, -1)
+HILL = (1, 0)
+WALL = (2, 0)
+>>>>>>> c05641f71b9c1935843acd197ae5480f9c7c7c9c
 
 lava = np.empty((0, 2), dtype=int)
 hill = np.empty((0, 2), dtype=int)
@@ -152,6 +160,22 @@ elif CREATE == 1:
             matrix.append(temp)
 
 
+<<<<<<< HEAD
+=======
+# for i in range(rows):
+#     print(matrix[i])
+print(matrix)
+with open('matrix_data.txt', 'w') as file:
+    # 遍历矩阵的每一行
+    for row in matrix:
+        # 将每行的元素转换为字符串，并用空格分隔
+        row_str = ' '.join(map(str, row))
+        # 写入txt文件
+        file.write(row_str + '\n')
+
+# 关闭txt文件
+file.close()
+>>>>>>> c05641f71b9c1935843acd197ae5480f9c7c7c9c
 
 print("Copy below to <DrawingDecorator> in .xml")
 for i in range(rows):
