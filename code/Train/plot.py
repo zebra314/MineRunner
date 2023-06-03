@@ -41,12 +41,4 @@ if __name__ == "__main__":
 
         
     os.makedirs("../../asset/Plots", exist_ok=True)
-
-    if args.taxi:
-        taxi()
-    elif args.cartpole:
-        cartpole()
-    elif args.DQN:
-        DQN()
-    elif args.compare:
-        compare()
+    DQN()

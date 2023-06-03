@@ -18,7 +18,6 @@ import random
 from collections import deque
 import os
 from tqdm import tqdm
-import re
 if sys.version_info[0] == 2:
     # Workaround for https://github.com/PythonCharmers/python-future/issues/262
     import Tkinter as tk
@@ -77,11 +76,11 @@ class Net(nn.Module):
     The structure of the Neural Network calculating Q values of each state.
     '''
 
-    def __init__(self,  num_actions, hidden_layer_size=80):
+    def __init__(self, num_actions, hidden_layer_size=80):
         super(Net, self).__init__()
-        self.input_state = 4  # the dimension of state space
+        self.input_state = (9, 2)  # the dimension of state space
         self.num_actions = num_actions  # the dimension of action space
-        self.fc1 = nn.Linear(self.input_state, 32)  # input layer
+        self.fc1 = nn.Linear(self.input_state[0] * self.input_state[1], 32)  # input layer
         self.fc2 = nn.Linear(32, hidden_layer_size)  # hidden layer
         self.fc3 = nn.Linear(hidden_layer_size, num_actions)  # output layer
 
@@ -95,35 +94,29 @@ class Net(nn.Module):
         Return:
             q_values: a batch size of q_values
         '''
-        x = F.relu(self.fc1(states))
+        x = F.relu(self.fc1(states.view(-1, self.input_state[0] * self.input_state[1])))
         x = F.relu(self.fc2(x))
         q_values = self.fc3(x)
         return q_values
-    
+
 class Agent():
-    def __init__(self):
+    def __init__(self, current_map_matrix):
         """
         The agent learning how to control the action of the cart pole.
         Hyperparameters:
             epsilon: Determines the explore/expliot rate of the agent
-            learning_rate: Determines the step size while moving toward a minimum of a loss function
+            learning_rate: Deermines the step size while moving toward a minimum of a loss function
             GAMMA: the discount factor (tradeoff between immediate rewards and future rewards)
             batch_size: the number of samples which will be propagated through the neural network
             capacity: the size of the replay buffer/memory
         """
         
-        # self.actions = ["movenorth 1", "movesouth 1", "movewest 1", "moveeast 1"]
-        # self.actions = ["move 1","move 0.5","move 0.5", "move -1", "turn 0.5", "turn -0.5", "jump 1"]
-        self.actions = ["move 1", "turn 0.5", "turn -0.5", "jump 1"]
-        # self.actions = ["moveForward 1", "set Yaw 45"]
+        self.actions = ["move 1","move 0.5","move 0.5", "move -1", "turn 0.5", "turn -0.5", "jump 1"]
+        # self.actions = ["move 1", "turn 0.5", "turn -0.5", "jump 1"]
         self.n_actions = len(self.actions)  # the number of actions
         self.count = 0
 
-        # self.epsilon = 0.2 # chance of taking a random action instead of the best
-        # self.epsilon = 0.95  # 初始 epsilon 值
-        # self.epsilon_decay_rate = 0.8 # epsilon 的衰減率
-        # self.epsilon_min = 0.15  # epsilon 的最小值
-        self.EPS_START = 0.9
+        self.EPS_START = 0.99
         self.EPS_END = 0.05
         self.EPS_DECAY = 1000
         self.learning_rate = 0.001
@@ -150,7 +143,30 @@ class Agent():
         self.root = None
         self.action_state = []
         # self.yaw_bins = self.init_bins(0, 360, 8)
-    
+
+        # self.map_info[X-1][Z-1] = (高度, 好的程度)
+        self.map_info = current_map_matrix
+        self.yaw_bins = self.init_bins(0, 360, 8)
+
+    def init_bins(self, lower_bound, upper_bound, num_bins):
+        """
+        Explain code:
+        linspace can part [lower_bound, upper_bound] into {num} evenly spaced points
+        To slice interval into {num_bins} subinterval, we need {num_bins+1} points
+        return np array that excluding the first and last element
+        """
+        return np.linspace(lower_bound, upper_bound, num = num_bins+1)[1:-1]
+
+    def discretize_value(self, value, bins):
+        """
+        Explain code:
+        np.digitize let 2 neighbor points in bins is considered as a interval
+        ex: bins has 4 points, so it has 3 interval
+        return value is interval index which given value is located at including lower_bound and upper_bound in init_bins
+        if in the first interval, return value is 0, and so on
+        """
+        return np.digitize(value, bins)
+
     def learn(self):
         '''
         - Implement the learning function.
@@ -200,17 +216,14 @@ class Agent():
         self.optimizer.step()
         # End your code
         torch.save(self.target_net.state_dict(), "../../asset/nn/DQN.pt")
+
     def stopAction(self, agent_host, action_index):
         if action_index == None:
             return
-        # jumpforward 1
-        # elif action_index == 3:
-        #     agent_host.sendCommand('move 0')
-        #     agent_host.sendCommand('jump 0')
-        #     return
         action = self.actions[action_index]
         action_substring = action.split(" ")
         stop_action = action_substring[0] + " 0"
+        print(f'Stop action is: {stop_action}')
         agent_host.sendCommand(stop_action)
         return
     def act(self, world_state, agent_host, prev_r, is_first_action):
@@ -218,20 +231,33 @@ class Agent():
         """
         Take one action in response to the current world state
         """
+        print(f'Acting')
         obs_text = world_state.observations[-1].text
         obs = json.loads(obs_text)  # Most recent observation
 
         if not u'XPos' in obs or not u'ZPos' in obs:
             self.logger.error("Incomplete observation received: %s" % obs_text)
             return 0
+        
         current_yaw = (float(obs[u'Yaw']) + 360) % 360
         current_XPos = float(obs[u'XPos'])
         current_ZPos = float(obs[u'ZPos'])
         current_YPos = int(obs[u'YPos'])
-        # yaw_discretize = self.discretize_value(current_yaw, self.yaw_bins)
-        # XPos_discrete = self.coordinate_discretize(current_XPos)
-        # ZPos_discrete = self.coordinate_discretize(current_ZPos)
-        current_state = (round(current_XPos, 1), round(current_YPos, 1), round(current_ZPos, 1), round(current_yaw, 1))
+
+        # 0 <= yaw_discretize <=7
+        yaw_discretize = self.discretize_value(current_yaw, self.yaw_bins)
+        surround_coordinate_offset = [(0,1), (1,1), (1,0), (1,-1), (0,-1), (-1,-1),(-1,0), (-1,1)]
+        
+        current_state = list()
+        face = yaw_discretize
+        current_state.append(self.map_info[int(current_XPos)-1][int(current_ZPos)-1])
+        for i in range(8):
+            x_faced = int(current_XPos) + surround_coordinate_offset[face%8][0]
+            z_faced = int(current_ZPos) + surround_coordinate_offset[face%8][1]
+            current_state.append(self.map_info[x_faced-1][z_faced-1])
+            face = face + 1     
+        current_state = tuple(current_state)
+
         # stop prev action after observation of current state
         self.stopAction(agent_host, self.prev_a)
         if not(world_state.is_mission_running) or bool(obs[u'IsAlive']) == False or int(obs[u'Life']) == 0:
@@ -265,42 +291,20 @@ class Agent():
         chosen_action = self.actions[action_index]
         action_state_list = [chosen_action, current_state]
         self.action_state.append(tuple(action_state_list))
-        self.logger.info("Taking q action: %s" % chosen_action)
-        print(f'Current world state is:{current_state}, done is: {done}')
+        # self.logger.info("Taking q action: %s" % chosen_action)
+        # print(f'Current world state is:{current_state}, done is: {done}')
+
         # Take the chosen action
         try:
             agent_host.sendCommand(self.actions[action_index])
+            print(f'Current command is: {self.actions[action_index]}')
         except RuntimeError as e:
               self.logger.error("Failed to send command: %s" % e)
         self.prev_s = current_state
         self.prev_a = action_index
-        # print update state information
-        # If there are some new observations
-        # while True and not done:
-        #     latest_ws = agent_host.peekWorldState()
-        #     if latest_ws.number_of_observations_since_last_state > 0:
-        #         obs_text = latest_ws.observations[-1].text
-        #         obs = json.loads(obs_text)
-        #         next_yaw = (float(obs[u'Yaw']) + 360) % 360
-        #         next_XPos = float(obs[u'XPos'])
-        #         next_ZPos = float(obs[u'ZPos'])
-        #         next_YPos = int(obs[u'YPos'])
-        #         next_state = (round(next_XPos, 1), round(next_YPos, 1), round(next_ZPos, 1), round(next_yaw, 1))
-        #         print(f'Next state is: {next_state}')
-        #         break
-        # self.stopAction(chosen_action, agent_host)
-            
-        # 更新 epsilon
-        # self.epsilon *= self.epsilon_decay_rate
-        # self.epsilon = max(self.epsilon, self.epsilon_min)
-
-        # self.previous_observation = current_state
-        # self.previous_action = action_index
-        
-
         return
         
-    def run(self, agent_host, env_data):
+    def run(self, agent_host):
         """run the agent on the world"""
 
         total_reward = 0
@@ -313,7 +317,7 @@ class Agent():
         # main loop:
         world_state = agent_host.getWorldState()
         while world_state.is_mission_running:
-
+            
             current_r = 0
             if is_first_action:
                 # wait until have received a valid observation
@@ -343,7 +347,7 @@ class Agent():
                         self.logger.error("Error: %s" % error.text)
                     for reward in world_state.rewards:
                         current_r += reward.getValue()
-                        print(f'current reward is:{current_r}')
+                        # print(f'current reward is:{current_r}')
                 # allow time to stabilise after action
                 while True:
                     time.sleep(0.1)
@@ -352,13 +356,14 @@ class Agent():
                         self.logger.error("Error: %s" % error.text)
                     for reward in world_state.rewards:
                         current_r += reward.getValue()
-                        print(f'current reward is:{current_r}')
-                    if world_state.is_mission_running and len(world_state.observations)>0 and not world_state.observations[-1].text=="{}":
+                        # print(f'current reward is:{current_r}')
+                    if world_state.is_mission_running and len(world_state.observations)> 0 and not world_state.observations[-1].text=="{}":
                         # # stop prev action after observation of current state
                         # self.stopAction(agent_host, self.prev_a)
+                        print('break!!!')
                         self.act(world_state, agent_host, current_r, is_first_action)
                         total_reward += current_r
-                        print(f'Total reward is: {total_reward}')
+                        # print(f'Total reward is: {total_reward}')
                         break
                     if not world_state.is_mission_running:
                         break
@@ -368,14 +373,40 @@ class Agent():
         total_reward += current_r
     
         return total_reward
-    
+##################################
+"""
+Main code
+"""
+##################################
+# Code to read map data
+def readMap(matrix, current_map_file):
+    with open(current_map_file, 'r') as file:
+        lines = file.readlines()
+        for line in lines:
+            row = line.strip().split(' ')
+            tuple_row = [eval(item) for item in row]
+            temp = []
+            for data in tuple_row:
+                temp.append(data)
+            matrix.append(temp)
+    print(matrix) 
+
 if sys.version_info[0] == 2:
     sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)  # flush print output immediately
 else:
     import functools
     print = functools.partial(print, flush=True)
 
-agent = Agent()
+# Code to read map data
+matrix = []
+current_map_file = './current_map_file_easy.txt'
+readMap(matrix, current_map_file)
+# # add 20% holes for interest
+# for x in range(1,4):
+#     for z in range(1,13):
+#         if random.random()<0.1:
+#             my_mission.drawBlock( x,45,z,"lava")
+agent = Agent(matrix)
 agent_host = MalmoPython.AgentHost()
 try:
     agent_host.parse( sys.argv )
@@ -388,25 +419,12 @@ if agent_host.receivedArgument("help"):
     exit(0)
 
 # -- set up the mission -- #
-mission_file = './test.xml'
+mission_file = './20230623_map_file_normal.xml'
 with open(mission_file, 'r') as f:
     print("Loading mission from %s" % mission_file)
     mission_xml = f.read()
     my_mission = MalmoPython.MissionSpec(mission_xml, True)
     
-env_data = [
-    [[(1, 0), (0, -1), (0, 0), (0, 0), (0, -1), (1, 0), (0, 0), (2, 0), (0, -1), (0, 0), (0, -1), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0)], [(1, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, -1), (0, 0), (1, 0), (0, 0), (1, 0), (0, 0), (1, 0), (0, 0), (1, 0), (0, 0), (1, 0), (0, 0)], [(0, 0), (1, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (2, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0)], [(0, 0), (1, 0), (0, 0), (0, 0), (0, -1), (0, 0), (0, 0), (2, 0), (0, 0), (0, 0), (0, 0), (0, -1), (0, 0), (0, 0), (0, 0), (0, 0), (0, -1)], [(0, 0), (0, -1), (0, -1), (0, 0), (1, 0), (0, 0), (0, -1), (2, 0), (1, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0)], [(0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, -1), (1, 0), (2, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (1, 0)], [(0, 0), (0, 0), (0, 0), (0, 0), (0, -1), (0, 0), (0, 0), (2, 0), (0, -1), (0, 0), (1, 0), (0, -1), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0)], [(0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (1, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (1, 0), (0, 0), (0, 0), (0, -1)], [(0, 0), (0, 0), (0, 0), (0, 0), (0, -1), (0, 0), (0, 0), (2, 0), (0, 0), (0, 0), (0, -1), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0)], [(0, 0), (0, 0), (0, 0), (0, 0), (0, -1), (0, 0), (0, 0), (2, 0), (0, -1), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0)], [(0, 0), (0, 0), (1, 0), (0, 0), (0, -1), (0, 0), (0, 0), (2, 0), (0, 0), (1, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0)], [(0, 0), (1, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (2, 0), (0, 0), (0, 0), (0, 0), (0, -1), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0)], [(0, 0), (0, 0), (0, 0), (0, 0), (0, -1), (0, 0), (0, 0), (2, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0)], [(0, 0), (0, 0), (0, 0), (0, -1), (0, 0), (0, 0), (0, 0), (1, 0), (1, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (1, 0), (0, 0)], [(0, 0), (0, -1), (0, 0), (1, 0), (0, 0), (0, 0), (0, 0), (2, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (1, 0), (0, 0), (0, 0)], [(0, 0), (1, 0), (0, 0), (0, 0), (0, -1), (1, 0), (0, -1), (2, 0), (0, 0), (0, 0), (1, 0), (0, 0), (0, 0), (0, 0), (1, 0), (0, 0), (0, 0)]]
-    ]  # 创建一个空列表
-
-# 打印列表中的数据
-for row in env_data:
-    print(row)
-
-# # add 20% holes for interest
-# for x in range(1,4):
-#     for z in range(1,13):
-#         if random.random()<0.1:
-#             my_mission.drawBlock( x,45,z,"lava")
 
 max_retries = 3
 
@@ -417,7 +435,7 @@ else:
 
 cumulative_rewards = []
 for i in range(num_repeats):
-    print('Repeat %d of %d' % ( i+1, num_repeats ))
+    print('Repeat %d of %d' % ( i+1, num_repeats))
     
     my_mission_record = MalmoPython.MissionRecordSpec()
 
@@ -443,7 +461,7 @@ for i in range(num_repeats):
     print()
 
     # -- run the agent in the world -- #
-    cumulative_reward = agent.run(agent_host, env_data)
+    cumulative_reward = agent.run(agent_host)
     print('Cumulative reward: %d' % cumulative_reward)
     cumulative_rewards += [ cumulative_reward ]
 
