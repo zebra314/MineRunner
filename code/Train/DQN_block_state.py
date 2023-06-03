@@ -111,7 +111,7 @@ class Agent():
             capacity: the size of the replay buffer/memory
         """
         
-        self.actions = ["move 1","move 0.5","move 0.5", "move -1", "turn 0.5", "turn -0.5", "jump 1"]
+        self.actions = ["move 1","move 0.5", "turn 0.5", "turn -0.5", "jump 1"]
         # self.actions = ["move 1", "turn 0.5", "turn -0.5", "jump 1"]
         self.n_actions = len(self.actions)  # the number of actions
         self.count = 0
@@ -341,6 +341,7 @@ class Agent():
             else:
                 # wait for non-zero reward
                 while world_state.is_mission_running and current_r == 0:
+                    print(f'Current is: {current_r}')
                     time.sleep(0.1)
                     world_state = agent_host.getWorldState()
                     for error in world_state.errors:
@@ -419,7 +420,7 @@ if agent_host.receivedArgument("help"):
     exit(0)
 
 # -- set up the mission -- #
-mission_file = './20230623_map_file_normal.xml'
+mission_file = './20230518.xml'
 with open(mission_file, 'r') as f:
     print("Loading mission from %s" % mission_file)
     mission_xml = f.read()
