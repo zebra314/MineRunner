@@ -116,7 +116,7 @@ class Agent():
         self.n_actions = len(self.actions)  # the number of actions
         self.count = 0
 
-        self.EPS_START = 0.9
+        self.EPS_START = 0.99
         self.EPS_END = 0.05
         self.EPS_DECAY = 1000
         self.learning_rate = 0.001
@@ -250,15 +250,14 @@ class Agent():
         
         current_state = list()
         face = yaw_discretize
-        current_state.append(self.map_info[int(current_XPos)][int(current_ZPos)])
+        current_state.append(self.map_info[int(current_XPos)-1][int(current_ZPos)-1])
         for i in range(8):
-            faced_offset = surround_coordinate_offset[(face+i)%8]
-            x_faced = int(current_XPos) + faced_offset[0]
-            z_faced = int(current_ZPos) + faced_offset[1]
-            current_state.append(self.map_info[x_faced][z_faced])
-        
+            x_faced = int(current_XPos) + surround_coordinate_offset[face%8][0]
+            z_faced = int(current_ZPos) + surround_coordinate_offset[face%8][1]
+            current_state.append(self.map_info[x_faced-1][z_faced-1])
+            face = face + 1     
         current_state = tuple(current_state)
-        print(f'Current state is: {current_state}')
+
         # stop prev action after observation of current state
         self.stopAction(agent_host, self.prev_a)
         if not(world_state.is_mission_running) or bool(obs[u'IsAlive']) == False or int(obs[u'Life']) == 0:
@@ -358,9 +357,10 @@ class Agent():
                     for reward in world_state.rewards:
                         current_r += reward.getValue()
                         # print(f'current reward is:{current_r}')
-                    if world_state.is_mission_running and len(world_state.observations)>0 and not world_state.observations[-1].text=="{}":
+                    if world_state.is_mission_running and len(world_state.observations)> 0 and not world_state.observations[-1].text=="{}":
                         # # stop prev action after observation of current state
                         # self.stopAction(agent_host, self.prev_a)
+                        print('break!!!')
                         self.act(world_state, agent_host, current_r, is_first_action)
                         total_reward += current_r
                         # print(f'Total reward is: {total_reward}')
