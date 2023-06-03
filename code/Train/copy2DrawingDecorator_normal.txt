@@ -1,54 +1,86 @@
         <DrawBlock x="1" y="45" z="5" type="glowstone" />
-        <DrawBlock x="1" y="45" z="14" type="glowstone" />
+        <DrawBlock x="2" y="45" z="4" type="glowstone" />
         <DrawBlock x="2" y="45" z="10" type="glowstone" />
-        <DrawBlock x="3" y="45" z="17" type="glowstone" />
+        <DrawBlock x="2" y="45" z="11" type="glowstone" />
         <DrawBlock x="4" y="45" z="5" type="glowstone" />
-        <DrawBlock x="5" y="45" z="10" type="glowstone" />
-        <DrawBlock x="6" y="45" z="6" type="glowstone" />
+        <DrawBlock x="5" y="45" z="13" type="glowstone" />
+        <DrawBlock x="5" y="45" z="17" type="glowstone" />
+        <DrawBlock x="6" y="45" z="1" type="glowstone" />
         <DrawBlock x="7" y="45" z="5" type="glowstone" />
-        <DrawBlock x="7" y="45" z="7" type="glowstone" />
-        <DrawBlock x="8" y="45" z="6" type="glowstone" />
-        <DrawBlock x="8" y="45" z="10" type="glowstone" />
+        <DrawBlock x="8" y="45" z="3" type="glowstone" />
+        <DrawBlock x="8" y="45" z="12" type="glowstone" />
+        <DrawBlock x="8" y="45" z="13" type="glowstone" />
+        <DrawBlock x="8" y="45" z="17" type="glowstone" />
+        <DrawBlock x="9" y="45" z="11" type="glowstone" />
         <DrawBlock x="10" y="45" z="5" type="glowstone" />
-        <DrawBlock x="11" y="45" z="10" type="glowstone" />
+        <DrawBlock x="11" y="45" z="2" type="glowstone" />
+        <DrawBlock x="12" y="45" z="6" type="glowstone" />
         <DrawBlock x="13" y="45" z="5" type="glowstone" />
+        <DrawBlock x="13" y="45" z="13" type="glowstone" />
         <DrawBlock x="13" y="45" z="15" type="glowstone" />
-        <DrawBlock x="14" y="45" z="3" type="glowstone" />
-        <DrawBlock x="15" y="45" z="6" type="glowstone" />
-        <DrawBlock x="15" y="45" z="11" type="glowstone" />
-        <DrawBlock x="15" y="45" z="14" type="glowstone" />
+        <DrawBlock x="13" y="45" z="16" type="glowstone" />
+        <DrawBlock x="14" y="45" z="1" type="glowstone" />
         <DrawBlock x="16" y="45" z="5" type="glowstone" />
-        <DrawBlock x="1" y="46" z="9" type="sandstone" />
-        <DrawBlock x="1" y="46" z="15" type="sandstone" />
+        <DrawBlock x="2" y="46" z="7" type="sandstone" />
         <DrawBlock x="2" y="46" z="8" type="sandstone" />
-        <DrawBlock x="3" y="46" z="2" type="sandstone" />
-        <DrawBlock x="3" y="46" z="6" type="sandstone" />
-        <DrawBlock x="3" y="46" z="9" type="sandstone" />
-        <DrawBlock x="3" y="46" z="13" type="sandstone" />
-        <DrawBlock x="5" y="46" z="1" type="sandstone" />
-        <DrawBlock x="5" y="46" z="9" type="sandstone" />
-        <DrawBlock x="6" y="46" z="3" type="sandstone" />
-        <DrawBlock x="6" y="46" z="5" type="sandstone" />
+        <DrawBlock x="2" y="46" z="12" type="sandstone" />
+        <DrawBlock x="3" y="46" z="15" type="sandstone" />
+        <DrawBlock x="4" y="46" z="9" type="sandstone" />
+        <DrawBlock x="4" y="46" z="13" type="sandstone" />
+        <DrawBlock x="4" y="46" z="17" type="sandstone" />
         <DrawBlock x="6" y="46" z="10" type="sandstone" />
         <DrawBlock x="7" y="46" z="2" type="sandstone" />
-        <DrawBlock x="7" y="46" z="9" type="sandstone" />
-        <DrawBlock x="8" y="46" z="7" type="sandstone" />
+        <DrawBlock x="7" y="46" z="4" type="sandstone" />
+        <DrawBlock x="7" y="46" z="6" type="sandstone" />
+        <DrawBlock x="7" y="46" z="8" type="sandstone" />
         <DrawBlock x="8" y="46" z="8" type="sandstone" />
-        <DrawBlock x="8" y="46" z="14" type="sandstone" />
-        <DrawBlock x="8" y="46" z="17" type="sandstone" />
-        <DrawBlock x="9" y="46" z="7" type="sandstone" />
+        <DrawBlock x="8" y="46" z="16" type="sandstone" />
         <DrawBlock x="9" y="46" z="10" type="sandstone" />
-        <DrawBlock x="9" y="46" z="16" type="sandstone" />
+        <DrawBlock x="9" y="46" z="13" type="sandstone" />
         <DrawBlock x="10" y="46" z="1" type="sandstone" />
-        <DrawBlock x="11" y="46" z="1" type="sandstone" />
+        <DrawBlock x="10" y="46" z="12" type="sandstone" />
+        <DrawBlock x="11" y="46" z="10" type="sandstone" />
+        <DrawBlock x="12" y="46" z="3" type="sandstone" />
         <DrawBlock x="12" y="46" z="11" type="sandstone" />
-        <DrawBlock x="12" y="46" z="17" type="sandstone" />
-        <DrawBlock x="13" y="46" z="1" type="sandstone" />
-        <DrawBlock x="13" y="46" z="12" type="sandstone" />
-        <DrawBlock x="13" y="46" z="16" type="sandstone" />
+        <DrawBlock x="13" y="46" z="8" type="sandstone" />
         <DrawBlock x="14" y="46" z="8" type="sandstone" />
-        <DrawBlock x="16" y="46" z="1" type="sandstone" />
+        <DrawBlock x="15" y="46" z="4" type="sandstone" />
+        <DrawBlock x="15" y="46" z="12" type="sandstone" />
+        <DrawBlock x="15" y="46" z="16" type="sandstone" />
+        <DrawBlock x="16" y="46" z="2" type="sandstone" />
+        <DrawBlock x="16" y="46" z="4" type="sandstone" />
         <DrawCuboid x1="1"  y1="45" z1="8"  x2="16" y2="47" z2="8" type="sandstone" />
         <DrawBlock x="2" y="47" z="8" type="air" />
-        <DrawBlock x="14" y="47" z="8" type="air" />
+        <DrawBlock x="7" y="47" z="8" type="air" />
         <DrawBlock x="8" y="47" z="8" type="air" />
+        <DrawBlock x="13" y="47" z="8" type="air" />
+        <DrawBlock x="14" y="47" z="8" type="air" />
+        <DrawBlock x="2" y="45" z="7" type="diamond_block" />
+        <DrawBlock x="2" y="45" z="8" type="diamond_block" />
+        <DrawBlock x="2" y="45" z="12" type="diamond_block" />
+        <DrawBlock x="3" y="45" z="15" type="diamond_block" />
+        <DrawBlock x="4" y="45" z="9" type="diamond_block" />
+        <DrawBlock x="4" y="45" z="13" type="diamond_block" />
+        <DrawBlock x="4" y="45" z="17" type="diamond_block" />
+        <DrawBlock x="6" y="45" z="10" type="diamond_block" />
+        <DrawBlock x="7" y="45" z="2" type="diamond_block" />
+        <DrawBlock x="7" y="45" z="4" type="diamond_block" />
+        <DrawBlock x="7" y="45" z="6" type="diamond_block" />
+        <DrawBlock x="7" y="45" z="8" type="diamond_block" />
+        <DrawBlock x="8" y="45" z="8" type="diamond_block" />
+        <DrawBlock x="8" y="45" z="16" type="diamond_block" />
+        <DrawBlock x="9" y="45" z="10" type="diamond_block" />
+        <DrawBlock x="9" y="45" z="13" type="diamond_block" />
+        <DrawBlock x="10" y="45" z="1" type="diamond_block" />
+        <DrawBlock x="10" y="45" z="12" type="diamond_block" />
+        <DrawBlock x="11" y="45" z="10" type="diamond_block" />
+        <DrawBlock x="12" y="45" z="3" type="diamond_block" />
+        <DrawBlock x="12" y="45" z="11" type="diamond_block" />
+        <DrawBlock x="13" y="45" z="8" type="diamond_block" />
+        <DrawBlock x="14" y="45" z="8" type="diamond_block" />
+        <DrawBlock x="15" y="45" z="4" type="diamond_block" />
+        <DrawBlock x="15" y="45" z="12" type="diamond_block" />
+        <DrawBlock x="15" y="45" z="16" type="diamond_block" />
+        <DrawBlock x="16" y="45" z="2" type="diamond_block" />
+        <DrawBlock x="16" y="45" z="4" type="diamond_block" />
+        <DrawBlock x="16" y="45" z="10" type="diamond_block" />
