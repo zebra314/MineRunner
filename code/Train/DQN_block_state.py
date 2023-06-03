@@ -100,12 +100,12 @@ class Net(nn.Module):
         return q_values
 
 class Agent():
-    def __init__(self):
+    def __init__(self, current_map_matrix):
         """
         The agent learning how to control the action of the cart pole.
         Hyperparameters:
             epsilon: Determines the explore/expliot rate of the agent
-            learning_rate: Determines the step size while moving toward a minimum of a loss function
+            learning_rate: Deermines the step size while moving toward a minimum of a loss function
             GAMMA: the discount factor (tradeoff between immediate rewards and future rewards)
             batch_size: the number of samples which will be propagated through the neural network
             capacity: the size of the replay buffer/memory
@@ -145,24 +145,7 @@ class Agent():
         # self.yaw_bins = self.init_bins(0, 360, 8)
 
         # self.map_info[X-1][Z-1] = (高度, 好的程度)
-        self.map_info = \
-        [[(0, 0), (0, 0), (0, 0), (0, 0), (0, -1), (0, 0), (0, 0), (2, 0), (1, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, -1), (1, 0), (0, 0), (0, 0)], 
-         [(0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (1, 0), (0, 0), (0, -1), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0)], 
-         [(0, 0), (1, 0), (0, 0), (0, 0), (0, 0), (1, 0), (0, 0), (2, 0), (1, 0), (0, 0), (0, 0), (0, 0), (1, 0), (0, 0), (0, 0), (0, 0), (0, -1)], 
-         [(0, 0), (0, 0), (0, 0), (0, 0), (0, -1), (0, 0), (0, 0), (2, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0)], 
-         [(1, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (2, 0), (1, 0), (0, -1), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0)], 
-         [(0, 0), (0, 0), (1, 0), (0, 0), (1, 0), (0, -1), (0, 0), (2, 0), (0, 0), (1, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0)], 
-         [(0, 0), (1, 0), (0, 0), (0, 0), (0, -1), (0, 0), (0, -1), (2, 0), (1, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0)], 
-         [(0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, -1), (1, 0), (1, 0), (0, 0), (0, -1), (0, 0), (0, 0), (0, 0), (1, 0), (0, 0), (0, 0), (1, 0)], 
-         [(0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (1, 0), (2, 0), (0, 0), (1, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (1, 0), (0, 0)], 
-         [(1, 0), (0, 0), (0, 0), (0, 0), (0, -1), (0, 0), (0, 0), (2, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0)], 
-         [(1, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (2, 0), (0, 0), (0, -1), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0)], 
-         [(0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (2, 0), (0, 0), (0, 0), (1, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (1, 0)], 
-         [(1, 0), (0, 0), (0, 0), (0, 0), (0, -1), (0, 0), (0, 0), (2, 0), (0, 0), (0, 0), (0, 0), (1, 0), (0, 0), (0, 0), (0, -1), (1, 0), (0, 0)], 
-         [(0, 0), (0, 0), (0, -1), (0, 0), (0, 0), (0, 0), (0, 0), (1, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0)], 
-         [(0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, -1), (0, 0), (2, 0), (0, 0), (0, 0), (0, -1), (0, 0), (0, 0), (0, -1), (0, 0), (0, 0), (0, 0)], 
-         [(1, 0), (0, 0), (0, 0), (0, 0), (0, -1), (0, 0), (0, 0), (2, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0)]]
-    
+        self.map_info = current_map_matrix
         self.yaw_bins = self.init_bins(0, 360, 8)
 
     def init_bins(self, lower_bound, upper_bound, num_bins):
@@ -240,6 +223,7 @@ class Agent():
         action = self.actions[action_index]
         action_substring = action.split(" ")
         stop_action = action_substring[0] + " 0"
+        print(f'Stop action is: {stop_action}')
         agent_host.sendCommand(stop_action)
         return
     def act(self, world_state, agent_host, prev_r, is_first_action):
@@ -247,6 +231,7 @@ class Agent():
         """
         Take one action in response to the current world state
         """
+        print(f'Acting')
         obs_text = world_state.observations[-1].text
         obs = json.loads(obs_text)  # Most recent observation
 
@@ -313,6 +298,7 @@ class Agent():
         # Take the chosen action
         try:
             agent_host.sendCommand(self.actions[action_index])
+            print(f'Current command is: {self.actions[action_index]}')
         except RuntimeError as e:
               self.logger.error("Failed to send command: %s" % e)
         self.prev_s = current_state
@@ -332,7 +318,7 @@ class Agent():
         # main loop:
         world_state = agent_host.getWorldState()
         while world_state.is_mission_running:
-
+            
             current_r = 0
             if is_first_action:
                 # wait until have received a valid observation
@@ -401,7 +387,7 @@ def readMap(matrix, current_map_file):
             tuple_row = [eval(item) for item in row]
             temp = []
             for data in tuple_row:
-                temp.append(data[0])
+                temp.append(data)
             matrix.append(temp)
     print(matrix) 
 
@@ -411,7 +397,16 @@ else:
     import functools
     print = functools.partial(print, flush=True)
 
-agent = Agent()
+# Code to read map data
+matrix = []
+current_map_file = './current_map_file_easy.txt'
+readMap(matrix, current_map_file)
+# # add 20% holes for interest
+# for x in range(1,4):
+#     for z in range(1,13):
+#         if random.random()<0.1:
+#             my_mission.drawBlock( x,45,z,"lava")
+agent = Agent(matrix)
 agent_host = MalmoPython.AgentHost()
 try:
     agent_host.parse( sys.argv )
@@ -430,15 +425,6 @@ with open(mission_file, 'r') as f:
     mission_xml = f.read()
     my_mission = MalmoPython.MissionSpec(mission_xml, True)
     
-# Code to read map data
-matrix = []
-current_map_file = './current_map_file_easy.txt'
-readMap(matrix, current_map_file)
-# # add 20% holes for interest
-# for x in range(1,4):
-#     for z in range(1,13):
-#         if random.random()<0.1:
-#             my_mission.drawBlock( x,45,z,"lava")
 
 max_retries = 3
 
@@ -449,7 +435,7 @@ else:
 
 cumulative_rewards = []
 for i in range(num_repeats):
-    print('Repeat %d of %d' % ( i+1, num_repeats ))
+    print('Repeat %d of %d' % ( i+1, num_repeats))
     
     my_mission_record = MalmoPython.MissionRecordSpec()
 

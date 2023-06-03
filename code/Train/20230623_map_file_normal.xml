@@ -99,12 +99,20 @@
       <RewardForTouchingBlockType>
         <Block reward="-50" type="lava" behaviour="onceOnly"/>
         <Block reward="-50" type="glowstone" behaviour="onceOnly"/>
-        <Block reward="-100" type="obsidian" behaviour="onceOnly"/>
+        <Block reward="-200" type="obsidian" behaviour="onceOnly"/>
         <Block reward="300" type="lapis_block" behaviour="onceOnly"/>
         <Block reward="50" type="diamond_block" behaviour="onceOnly"/>
         <Block reward="2" type="sandstone" behaviour="oncePerBlock"/>
       </RewardForTouchingBlockType>
-      <RewardForSendingCommand reward="-1" />
+      <RewardForSendingCommand reward="-2" />
+      <RewardForTimeTaken
+        dimension="Dimension [0..1]"
+        initialReward="1"
+        delta="1"
+        density="RewardDensityForTimeTaken [1]"
+        rewardDistribution="normal">
+        <!-- 添加奖励密度的具体信息 -->
+      </RewardForTimeTaken>
       <AgentQuitFromTouchingBlockType>
           <Block type="lava" />
           <Block type="glowstone" />
