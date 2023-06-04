@@ -127,6 +127,11 @@
       <RewardForTimeTaken initialReward="0" delta="-1" density="PER_TICK"/>
       <RewardForSendingCommand reward="-1" />
       <AgentQuitFromTouchingBlockType>
+<<<<<<< HEAD
+=======
+          <Block type="glowstone" />
+          <Block type="obsidian" />
+>>>>>>> 4138a05d8fa2b4fc5ca1c97756f58410c59a68bb
           <Block type="lapis_block" />
       </AgentQuitFromTouchingBlockType>
     </AgentHandlers>
