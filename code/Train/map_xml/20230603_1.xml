@@ -106,14 +106,15 @@
       <ObservationFromFullStats/>
       <RewardForTouchingBlockType>
         <Block reward="-50.0" type="lava" behaviour="onceOnly"/>
-        <Block reward="-50.0" type="glowstone" behaviour="onceOnly"/>
+        <!-- <Block reward="-50.0" type="glowstone" behaviour="onceOnly"/> -->
         <Block reward="300.0" type="lapis_block" behaviour="onceOnly"/>
         <Block reward="20.0" type="diamond_block" behaviour="onceOnly"/>
+        <Block reward='-1' type='obsidian' />
       </RewardForTouchingBlockType>
       <RewardForTimeTaken initialReward="0" delta="-0.1" density="PER_TICK"/>
       <RewardForSendingCommand reward="-0.3" />
       <AgentQuitFromTouchingBlockType>
-          <Block type="glowstone" />
+          <!-- <Block type="glowstone" /> -->
           <Block type="lapis_block" />
       </AgentQuitFromTouchingBlockType>
     </AgentHandlers>
