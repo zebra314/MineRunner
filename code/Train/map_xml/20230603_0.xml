@@ -104,7 +104,7 @@
         <DrawBlock x="10" y="50" z="18" type="air" />
         <DrawBlock x="12" y="50" z="18" type="air" />
       </DrawingDecorator>
-      <ServerQuitFromTimeUp timeLimitMs="20000"/>
+      <ServerQuitFromTimeUp timeLimitMs="30000"/>
       <ServerQuitWhenAnyAgentFinishes/>
     </ServerHandlers>
   </ServerSection>
@@ -119,14 +119,15 @@
       <ObservationFromFullStats/>
       <RewardForTouchingBlockType>
         <Block reward="-50.0" type="lava" behaviour="onceOnly"/>
-        <Block reward="-50.0" type="glowstone" behaviour="onceOnly"/>
-        <Block reward="300.0" type="lapis_block" behaviour="onceOnly"/>
-        <Block reward="-1" type="obsidian" behaviour="oncePerTimeSpan"/>
+        <!-- <Block reward="-50.0" type="glowstone" behaviour="onceOnly"/> -->
+        <Block reward="500.0" type="lapis_block" behaviour="onceOnly"/>
+        <Block reward="-500" type="obsidian"/>
         <Block reward="20.0" type="diamond_block" behaviour="onceOnly"/>
       </RewardForTouchingBlockType>
       <RewardForTimeTaken initialReward="0" delta="-1" density="PER_TICK"/>
       <RewardForSendingCommand reward="-1" />
       <AgentQuitFromTouchingBlockType>
+          <Block type="obsidian" />
           <Block type="lapis_block" />
       </AgentQuitFromTouchingBlockType>
     </AgentHandlers>

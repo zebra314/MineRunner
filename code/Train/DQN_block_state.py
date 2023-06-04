@@ -114,7 +114,7 @@ class Agent():
             capacity: the size of the replay buffer/memory
         """
         
-        self.actions = ["move 1","move 0.5", "turn 0.5", "turn -0.5", "jump 1"]
+        self.actions = ["move 1", 'move 1', "turn 0.5", "turn -0.5", "jump 1"]
         # self.actions = ["move 1", "turn 0.5", "turn -0.5", "jump 1"]
         self.n_actions = len(self.actions)  # the number of actions
         self.count = 0
@@ -199,14 +199,9 @@ class Agent():
         observations, actions, rewards, next_observations, done = self.buffer.sample(self.batch_size)
         
         # Forward the data to the evaluate net and the target net.
-        # observations = observations.astype(float)
-        
-        # observations_np = np.array(observations)
-        # observations_np = observations_np.astype(np.float32)
-        # print(f'Observation is: {observations_np}')
-        print(f'Before Observation is: {observations}')
+        # print(f'Before Observation is: {observations}')
         observations = torch.FloatTensor(observations)
-        print(f'After Observation is: {observations}')
+        # print(f'After Observation is: {observations}')
         actions = torch.LongTensor(actions)
         rewards = torch.FloatTensor(rewards)
         next_observations = torch.FloatTensor(np.array(next_observations))
@@ -215,7 +210,7 @@ class Agent():
         # Compute the loss
         evaluate = self.evaluate_net(observations).gather(1, actions.reshape(self.batch_size, 1))
         nextMax = self.target_net(next_observations).detach()
-        print('Send successful!!')
+        # print('Send successful!!')
         target = rewards.reshape(self.batch_size, 1) + self.gamma * nextMax.max(1)[0].view(self.batch_size, 1)\
                                                                   * (~done).reshape(self.batch_size, 1)
         # Zero-out the gradients
@@ -426,7 +421,7 @@ else:
 
 # Code to read map data
 matrix = []
-current_map_file = './map_file/20230603_map_file_1.txt'
+current_map_file = './map_file/20230603_map_file_0.txt'
 readMap(matrix, current_map_file)
 # # add 20% holes for interest
 # for x in range(1,4):
@@ -446,7 +441,7 @@ if agent_host.receivedArgument("help"):
     exit(0)
 
 # -- set up the mission -- #
-mission_file = './map_xml/20230603_1.xml'
+mission_file = './map_xml/20230603_0.xml'
 with open(mission_file, 'r') as f:
     print("Loading mission from %s" % mission_file)
     mission_xml = f.read()
