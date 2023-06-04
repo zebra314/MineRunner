@@ -79,7 +79,7 @@ class CNN(nn.Module):
         # Convolutional layer
         self.conv1 = nn.Conv1d(in_channels=2, out_channels=16, kernel_size=3)
         # input is: buffer size * 2 * 9
-        # output is: buffer size * 16 * 7
+        # output is: buffer size * 16 * 7(9-3+1)
         # Fully connected layers
         self.fc1 = nn.Linear(16 * 7, 32)
         self.fc2 = nn.Linear(32, num_actions)
@@ -96,7 +96,7 @@ class CNN(nn.Module):
 
         # Apply fully connected layers
         x = F.relu(self.fc1(x))
-        print(f'size of x is: {x.size()}')
+        # print(f'size of x is: {x.size()}')
         q_values = self.fc2(x)
 
         return q_values
@@ -260,19 +260,17 @@ class Agent():
         
         current_state = []
         face = yaw_discretize
-        block = self.map_info[int(current_XPos)][int(current_ZPos)]
+        block = self.map_info[int(current_XPos)+1][int(current_ZPos)+1]
         height = []
         block_type = []
         height.append(block[0])
         block_type.append(block[1])
         for i in range(8):
-            temp = list()
-            x_faced = int(current_XPos) + surround_coordinate_offset[face%8][0]
-            z_faced = int(current_ZPos) + surround_coordinate_offset[face%8][1]
-            block = self.map_info[x_faced][z_faced]
+            x_faced = int(current_XPos) + surround_coordinate_offset[(face+i)%8][0]
+            z_faced = int(current_ZPos) + surround_coordinate_offset[(face+i)%8][1]
+            block = self.map_info[x_faced+1][z_faced+1]
             height.append(block[0])
             block_type.append(block[1])
-            face = face + 1
         current_state.append(height)
         current_state.append(block_type)
         print(f'State is: {current_state}')
