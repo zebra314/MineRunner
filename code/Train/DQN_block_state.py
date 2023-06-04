@@ -71,34 +71,37 @@ class replay_buffer():
     def __len__(self):
         return len(self.memory)
 
-class Net(nn.Module):
-    '''
-    The structure of the Neural Network calculating Q values of each state.
-    '''
+class CNN(nn.Module):
+    def __init__(self, num_actions):
+        super(CNN, self).__init__()
+        # self.num_actions = num_actions
 
-    def __init__(self, num_actions, hidden_layer_size=80):
-        super(Net, self).__init__()
-        self.input_state = (9, 2)  # the dimension of state space
-        self.num_actions = num_actions  # the dimension of action space
-        self.fc1 = nn.Linear(self.input_state[0] * self.input_state[1], 32)  # input layer
-        self.fc2 = nn.Linear(32, hidden_layer_size)  # hidden layer
-        self.fc3 = nn.Linear(hidden_layer_size, num_actions)  # output layer
+        # Convolutional layer
+        self.conv1 = nn.Conv1d(in_channels=2, out_channels=16, kernel_size=3)
+        # input is: buffer size * 2 * 9
+        # output is: buffer size * 16 * 7
+        # Fully connected layers
+        self.fc1 = nn.Linear(16 * 7, 32)
+        self.fc2 = nn.Linear(32, num_actions)
 
-    def forward(self, states):
-        '''
-        Forward the state to the neural network.
-        
-        Parameter:
-            states: a batch size of states
-        
-        Return:
-            q_values: a batch size of q_values
-        '''
-        x = F.relu(self.fc1(states.view(-1, self.input_state[0] * self.input_state[1])))
-        x = F.relu(self.fc2(x))
-        q_values = self.fc3(x)
+    def forward(self, x):
+        # Apply convolutional layer
+        x = self.conv1(x)
+
+        # Apply max pooling
+        x = F.relu(x)
+
+        # Flatten the tensor
+        x = x.view(x.size(0), -1)
+
+        # Apply fully connected layers
+        x = F.relu(self.fc1(x))
+        print(f'size of x is: {x.size()}')
+        q_values = self.fc2(x)
+
         return q_values
 
+    
 class Agent():
     def __init__(self, current_map_matrix):
         """
@@ -121,12 +124,12 @@ class Agent():
         self.EPS_DECAY = 1000
         self.learning_rate = 0.001
         self.gamma = 0.99
-        self.batch_size = 5
+        self.batch_size = 15
         self.capacity = 50000
 
         self.buffer = replay_buffer(self.capacity)
-        self.evaluate_net = Net(self.n_actions)  # the evaluate network
-        self.target_net = Net(self.n_actions)  # the target network
+        self.evaluate_net = CNN(self.n_actions)  # the evaluate network
+        self.target_net = CNN(self.n_actions)  # the target network
 
         self.optimizer = torch.optim.Adam(
             self.evaluate_net.parameters(), lr=self.learning_rate)  # Adam is a method using to optimize the neural network
@@ -141,7 +144,7 @@ class Agent():
 
         self.canvas = None
         self.root = None
-        self.action_state = []
+        # self.action_state = []
         # self.yaw_bins = self.init_bins(0, 360, 8)
 
         # self.map_info[X-1][Z-1] = (高度, 好的程度)
@@ -197,7 +200,13 @@ class Agent():
         
         # Forward the data to the evaluate net and the target net.
         # observations = observations.astype(float)
-        observations = torch.FloatTensor(np.array(observations))
+        
+        # observations_np = np.array(observations)
+        # observations_np = observations_np.astype(np.float32)
+        # print(f'Observation is: {observations_np}')
+        print(f'Before Observation is: {observations}')
+        observations = torch.FloatTensor(observations)
+        print(f'After Observation is: {observations}')
         actions = torch.LongTensor(actions)
         rewards = torch.FloatTensor(rewards)
         next_observations = torch.FloatTensor(np.array(next_observations))
@@ -206,6 +215,7 @@ class Agent():
         # Compute the loss
         evaluate = self.evaluate_net(observations).gather(1, actions.reshape(self.batch_size, 1))
         nextMax = self.target_net(next_observations).detach()
+        print('Send successful!!')
         target = rewards.reshape(self.batch_size, 1) + self.gamma * nextMax.max(1)[0].view(self.batch_size, 1)\
                                                                   * (~done).reshape(self.batch_size, 1)
         # Zero-out the gradients
@@ -248,16 +258,24 @@ class Agent():
         yaw_discretize = self.discretize_value(current_yaw, self.yaw_bins)
         surround_coordinate_offset = [(0,1), (1,1), (1,0), (1,-1), (0,-1), (-1,-1),(-1,0), (-1,1)]
         
-        current_state = list()
+        current_state = []
         face = yaw_discretize
-        current_state.append(self.map_info[int(current_XPos)-1][int(current_ZPos)-1])
+        block = self.map_info[int(current_XPos)][int(current_ZPos)]
+        height = []
+        block_type = []
+        height.append(block[0])
+        block_type.append(block[1])
         for i in range(8):
+            temp = list()
             x_faced = int(current_XPos) + surround_coordinate_offset[face%8][0]
             z_faced = int(current_ZPos) + surround_coordinate_offset[face%8][1]
-            current_state.append(self.map_info[x_faced-1][z_faced-1])
-            face = face + 1     
-        current_state = tuple(current_state)
-
+            block = self.map_info[x_faced][z_faced]
+            height.append(block[0])
+            block_type.append(block[1])
+            face = face + 1
+        current_state.append(height)
+        current_state.append(block_type)
+        print(f'State is: {current_state}')
         # stop prev action after observation of current state
         self.stopAction(agent_host, self.prev_a)
         if not(world_state.is_mission_running) or bool(obs[u'IsAlive']) == False or int(obs[u'Life']) == 0:
@@ -274,23 +292,33 @@ class Agent():
         if agent.count >= 50:
             # print(f'current buffer is: {self.buffer.memory}')
             agent.learn()
+            print('Successful learning!!')
+            # print(f'Buffer size is: {len(self.buffer)}')
         # ----next action-----
         # Choose an action
         eps_threshold = self.EPS_END + (self.EPS_START - self.EPS_END) * \
             math.exp(-1. * self.count / self.EPS_DECAY)
             
-        if random.uniform(0,1) < eps_threshold:
-            self.logger.info("Explore")
-            action_index = random.randint(0, self.n_actions - 1)
-        else:
-            # Choose the best action based on the evaluate net
-            self.logger.info("Exploit")
-            with torch.no_grad():
-                action_index = torch.argmax(self.evaluate_net.forward(torch.FloatTensor(current_state))).item()
-            
-        chosen_action = self.actions[action_index]
-        action_state_list = [chosen_action, current_state]
-        self.action_state.append(tuple(action_state_list))
+        with torch.no_grad():
+            temp_state = current_state
+            temp_state = torch.FloatTensor(temp_state).unsqueeze(0)
+            print(f'state size is: {temp_state.size()}')
+            print(f'State is: {temp_state}')
+            q_values = self.evaluate_net(torch.FloatTensor(temp_state))
+            if random.uniform(0,1) < eps_threshold:
+                self.logger.info("Explore")
+                action_index = random.randint(0, self.n_actions - 1)
+            else:
+                # Choose the best action based on the evaluate net
+                self.logger.info("Exploit")
+                print(f'q_value size is: {q_values.size()}')
+                action_index = torch.argmax(q_values).item()
+                print(f'Action index is: {action_index}')
+                # action_index = action_index.item()
+        print(f'index is: {action_index}')
+        # chosen_action = self.actions[action_index]
+        # action_state_list = [chosen_action, current_state]
+        # self.action_state.append(tuple(action_state_list))
         # self.logger.info("Taking q action: %s" % chosen_action)
         # print(f'Current world state is:{current_state}, done is: {done}')
 
@@ -316,7 +344,7 @@ class Agent():
         
         # main loop:
         world_state = agent_host.getWorldState()
-        while world_state.is_mission_running:
+        while world_state.is_mission_running: 
             
             current_r = 0
             if is_first_action:
@@ -400,7 +428,7 @@ else:
 
 # Code to read map data
 matrix = []
-current_map_file = './current_map_file_easy.txt'
+current_map_file = './map_file/20230603_map_file_1.txt'
 readMap(matrix, current_map_file)
 # # add 20% holes for interest
 # for x in range(1,4):
@@ -420,7 +448,7 @@ if agent_host.receivedArgument("help"):
     exit(0)
 
 # -- set up the mission -- #
-mission_file = './20230518.xml'
+mission_file = './map_xml/20230603_1.xml'
 with open(mission_file, 'r') as f:
     print("Loading mission from %s" % mission_file)
     mission_xml = f.read()
@@ -468,7 +496,7 @@ for i in range(num_repeats):
 
     # -- clean up -- #
     time.sleep(0.5) # (let the Mod reset)
-print(f'Action to state corresponding list:{agent.action_state}')
+# print(f'Action to state corresponding list:{agent.action_state}')
 print("Done.")
 
 print()
