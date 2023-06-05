@@ -119,9 +119,9 @@ class Agent():
         self.count = 0
 
         # self.epsilon = 0.2 # chance of taking a random action instead of the best
-        # self.epsilon = 0.95  # 初始 epsilon 值
-        # self.epsilon_decay_rate = 0.8 # epsilon 的衰減率
-        # self.epsilon_min = 0.15  # epsilon 的最小值
+        # self.epsilon = 0.95  # ???憪? epsilon ???
+        # self.epsilon_decay_rate = 0.8 # epsilon ???銵唳?????
+        # self.epsilon_min = 0.15  # epsilon ??????撠????
         self.EPS_START = 0.9
         self.EPS_END = 0.05
         self.EPS_DECAY = 1000
@@ -132,7 +132,9 @@ class Agent():
 
         self.buffer = replay_buffer(self.capacity)
         self.evaluate_net = Net(self.n_actions)  # the evaluate network
+        self.evaluate_net.load_state_dict(torch.load("../../asset/nn/DQN_20230605.pt"))
         self.target_net = Net(self.n_actions)  # the target network
+        self.target_net.load_state_dict(torch.load("../../asset/nn/DQN_20230605.pt"))
 
         self.optimizer = torch.optim.Adam(
             self.evaluate_net.parameters(), lr=self.learning_rate)  # Adam is a method using to optimize the neural network
@@ -289,7 +291,7 @@ class Agent():
         #         break
         # self.stopAction(chosen_action, agent_host)
             
-        # 更新 epsilon
+        # ??湔?? epsilon
         # self.epsilon *= self.epsilon_decay_rate
         # self.epsilon = max(self.epsilon, self.epsilon_min)
 
