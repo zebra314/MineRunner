@@ -18,6 +18,7 @@ import random
 from collections import deque
 import os
 from tqdm import tqdm
+import datetime
 if sys.version_info[0] == 2:
     # Workaround for https://github.com/PythonCharmers/python-future/issues/262
     import Tkinter as tk
@@ -90,7 +91,7 @@ class Net(nn.Module):
         # Fully connected layers
         self.fc1 = nn.Linear(9 * 2 * 2, hidden_layer_size)
         self.fc2 = nn.Linear(hidden_layer_size, num_actions)
-
+        
     def forward(self, x):
         '''
         Forward the state to the convolutional neural network.
@@ -137,8 +138,9 @@ class Agent():
 
         self.buffer = replay_buffer(self.capacity)
         self.evaluate_net = Net(self.n_actions)  # the evaluate network
+        self.evaluate_net.load_state_dict(torch.load("../../asset/nn/DQN_20230605.pt"))
         self.target_net = Net(self.n_actions)  # the target network
-        
+        self.target_net.load_state_dict(torch.load("../../asset/nn/DQN_20230605.pt"))
         self.optimizer = torch.optim.Adam(
             self.evaluate_net.parameters(), lr=self.learning_rate)  # Adam is a method using to optimize the neural network
         
@@ -156,27 +158,57 @@ class Agent():
         # self.yaw_bins = self.init_bins(0, 360, 8)
 
         # self.map_info[X-1][Z-1] = (高度, 好的程度)
-        self.map_info = current_map_matrix
-        self.yaw_bins = self.init_bins(0, 360, 8)
+        self.map_info_ori = current_map_matrix
+        self.map_info_without_diamond = None
+        self.map_info_cur = self.map_info_ori
+        # self.yaw_bins = self.init_bins(0, 360, 4)
+        ################
+        # calculate init state
+        ################
+        # x, y, z
+        self.agent_start = (8, 46, 4)
+        
+    def init_state(self):
+        current_state = []
+        # face = yaw_discretize
+        # block = self.map_info[int(current_XPos)+1][int(current_ZPos)+1]
+        current_XPos = self.agent_start[0]
+        current_ZPos = self.agent_start[2]
+        height = []
+        block_type = []
+        for i in range(-1, 2):
+            temp_h = []
+            temp_b = []
+            for j in range(-1, 2):
+                block = self.map_info_ori[int(current_XPos)+i+1][int(current_ZPos)+j+1]
+                temp_h.append(block[0])
+                temp_b.append(block[1])
+            height.append(temp_h)
+            block_type.append(temp_b)
+        return current_state
+        
+    def reset_map(self):
+        self.map_info_cur = self.map_info_ori
+    def remove_diamond(self):
+        self.map_info_cur = self.map_info_without_diamond
+    # def init_bins(self, lower_bound, upper_bound, num_bins):
+    #     """
+    #     Explain code:
+    #     linspace can part [lower_bound, upper_bound] into {num} evenly spaced points
+    #     To slice interval into {num_bins} subinterval, we need {num_bins+1} points
+    #     return np array that excluding the first and last element
+    #     """
+    #     return np.linspace(lower_bound, upper_bound, num = num_bins+1)[1:-1]
 
-    def init_bins(self, lower_bound, upper_bound, num_bins):
-        """
-        Explain code:
-        linspace can part [lower_bound, upper_bound] into {num} evenly spaced points
-        To slice interval into {num_bins} subinterval, we need {num_bins+1} points
-        return np array that excluding the first and last element
-        """
-        return np.linspace(lower_bound, upper_bound, num = num_bins+1)[1:-1]
-
-    def discretize_value(self, value, bins):
-        """
-        Explain code:
-        np.digitize let 2 neighbor points in bins is considered as a interval
-        ex: bins has 4 points, so it has 3 interval
-        return value is interval index which given value is located at including lower_bound and upper_bound in init_bins
-        if in the first interval, return value is 0, and so on
-        """
-        return np.digitize(value, bins)
+    # def discretize_value(self, value, bins):
+    #     """
+    #     Explain code:
+    #     np.digitize let 2 neighbor points in bins is considered as a interval
+    #     ex: bins has 4 points, so it has 3 interval
+    #     return value is interval index which given value is located at including lower_bound and upper_bound in init_bins
+    #     if in the first interval, return value is 0, and so on
+    #     """
+    #     return np.digitize(value, bins)
 
     def learn(self):
         '''
@@ -233,11 +265,16 @@ class Agent():
     def stopAction(self, agent_host, action_index):
         if action_index == None:
             return
-        action = self.actions[action_index]
-        action_substring = action.split(" ")
-        stop_action = action_substring[0] + " 0"
-        print(f'Stop action is: {stop_action}')
-        agent_host.sendCommand(stop_action)
+        # jump action
+        elif action_index == self.n_actions - 1:
+            agent_host.sendCommand('move 0')
+            agent_host.sendCommand('jump 0')
+        else:
+            action = self.actions[action_index]
+            action_substring = action.split(" ")
+            stop_action = action_substring[0] + " 0"
+            print(f'Stop action is: {stop_action}')
+            agent_host.sendCommand(stop_action)
         return
     def act(self, world_state, agent_host, prev_r, is_first_action):
         
@@ -258,9 +295,9 @@ class Agent():
         current_YPos = int(obs[u'YPos'])
 
         # 0 <= yaw_discretize <=7
-        yaw_discretize = self.discretize_value(current_yaw, self.yaw_bins)
-        surround_coordinate_offset = [(0,1), (1,1), (1,0), (1,-1), (0,-1), (-1,-1),(-1,0), (-1,1)]
-        
+        # yaw_discretize = self.discretize_value(current_yaw, self.yaw_bins)
+        # surround_coordinate_offset = [(0,1), (1,1), (1,0), (1,-1), (0,-1), (-1,-1),(-1,0), (-1,1)]
+        # print(f'Current yaw is: {current_yaw}, after discretize: {yaw_discretize}')
         current_state = []
         # face = yaw_discretize
         # block = self.map_info[int(current_XPos)+1][int(current_ZPos)+1]
@@ -271,13 +308,42 @@ class Agent():
             temp_h = []
             temp_b = []
             for j in range(-1, 2):
-                block = self.map_info[int(current_XPos)+i+1][int(current_ZPos)+j+1]
+                block = self.map_info_cur[int(current_XPos)+i+1][int(current_ZPos)+j+1]
                 temp_h.append(block[0])
                 temp_b.append(block[1])
             height.append(temp_h)
             block_type.append(temp_b)
-        current_state.append(height)
-        current_state.append(block_type)        
+            
+        rot_height = []
+        rot_block_type = []
+        # face west, counterclockwise 90 degree * 1
+        if 45 <= current_yaw and current_yaw < 135:
+            rot_height = np.rot90(height)
+            rot_block_type = np.rot90(block_type)
+        # face north
+        elif 135 <= current_yaw and current_yaw < 225:
+            rot_height = np.rot90(height)
+            rot_height = np.rot90(rot_height)
+            rot_block_type = np.rot90(block_type)
+            rot_block_type = np.rot90(rot_block_type)
+        # face east
+        elif 225 <= current_yaw and current_yaw < 315:
+            rot_height = np.rot90(height)
+            rot_height = np.rot90(rot_height)
+            rot_height = np.rot90(rot_height)
+            rot_block_type = np.rot90(block_type)
+            rot_block_type = np.rot90(rot_block_type)
+            rot_block_type = np.rot90(rot_block_type)
+        # face south
+        else:
+            rot_height = height
+            rot_block_type = block_type
+        print(f'Height before: {height}')
+        print(f'Height after: {rot_height}')
+        print(f'Height before: {block_type}')
+        print(f'Height after: {rot_block_type}')
+        current_state.append(rot_height)
+        current_state.append(rot_block_type)        
         print(f'State is: {current_state}')
         # stop prev action after observation of current state
         self.stopAction(agent_host, self.prev_a)
@@ -327,7 +393,12 @@ class Agent():
 
         # Take the chosen action
         try:
-            agent_host.sendCommand(self.actions[action_index])
+            # action is jump
+            if action_index == self.n_actions - 1:
+                agent_host.sendCommand('move 1')
+                agent_host.sendCommand('jump 1')
+            else:
+                agent_host.sendCommand(self.actions[action_index])
             print(f'Current command is: {self.actions[action_index]}')
         except RuntimeError as e:
               self.logger.error("Failed to send command: %s" % e)
@@ -403,8 +474,37 @@ class Agent():
         # process final reward
         self.logger.debug("Final reward: %d" % current_r)
         total_reward += current_r
-    
         return total_reward
+    
+    def check_max_Q(self):
+        """
+        - Implement the function calculating the max Q value of initial state(self.env.reset()).
+        - Check the max Q value of initial state        
+        Parameter:
+            self: the agent itself.
+            (Don't pass additional parameters to the function.)
+            (All you need have been initialized in the constructor.)
+        Return:
+            max_q: the max Q value of initial state(self.env.reset())
+        """
+        # Begin your code
+        """
+        Explain code:
+        Use self.env.reset() get the initial state of env
+        Use torch.FloatTensor(state) to convert the state into a tensor
+        shape of state is (1, num_actions)
+        Forward states to evaluate_net to get q_values
+        Use torch.max(q_values) to choose the optimal q value of q_values
+        return optimal q value
+        """
+        state = self.init_state()
+        state = torch.FloatTensor(state)
+        q_values = self.evaluate_net(state)
+        # when parameter dim is not specified, torch.max() returns max value of whole tensor map 
+        max_q = torch.max(q_values)
+        # use item() transform tensor into python's scale
+        return max_q.item()
+        # End your code
 ##################################
 """
 Main code
@@ -463,7 +563,7 @@ max_retries = 3
 if agent_host.receivedArgument("test"):
     num_repeats = 1
 else:
-    num_repeats = 10000
+    num_repeats = 100
 
 cumulative_rewards = []
 for i in range(num_repeats):
@@ -493,20 +593,29 @@ for i in range(num_repeats):
     print()
 
     # -- run the agent in the world -- #
+    agent.reset_map()
     cumulative_reward = agent.run(agent_host)
     print('Cumulative reward: %d' % cumulative_reward)
     cumulative_rewards += [ cumulative_reward ]
 
     # -- clean up -- #
     time.sleep(0.5) # (let the Mod reset)
-# print(f'Action to state corresponding list:{agent.action_state}')
-print("Done.")
-
-print()
+    
+print("Running Done.")
 print("Cumulative rewards for all %d runs:" % num_repeats)
 print(cumulative_rewards)
+print(f"reward: {np.mean(cumulative_rewards)}")
+print(f"max Q:{agent_host.check_max_Q()}")
 
+########################################
+"""
+Store information
+"""
+########################################
 os.makedirs("../../asset/Rewards", exist_ok=True)
+
+current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+filePath = f"../../asset/Plots/DQN_{current_time}.png"
 np.save("../../asset/Rewards/DQN_rewards.npy", np.array(cumulative_rewards))
 
 os.makedirs("../../asset/Tables", exist_ok=True)

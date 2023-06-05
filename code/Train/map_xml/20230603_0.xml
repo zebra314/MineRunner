@@ -53,7 +53,7 @@
         <DrawBlock x="14" y="46" z="8" type="sandstone" />
         <DrawBlock x="14" y="46" z="9" type="sandstone" />
         <DrawBlock x="15" y="46" z="8" type="sandstone" />
-        <DrawCuboid x1="1"  y1="45" z1="8"  x2="16" y2="47" z2="8" type="sandstone" />
+        <DrawCuboid x1="1"  y1="45" z1="8"  x2="16" y2="46" z2="8" type="sandstone" />
         <DrawBlock x="2" y="47" z="8" type="air" />
         <DrawBlock x="3" y="47" z="8" type="air" />
         <DrawBlock x="5" y="47" z="8" type="air" />
@@ -104,7 +104,7 @@
         <DrawBlock x="10" y="50" z="18" type="air" />
         <DrawBlock x="12" y="50" z="18" type="air" />
       </DrawingDecorator>
-      <ServerQuitFromTimeUp timeLimitMs="30000"/>
+      <ServerQuitFromTimeUp timeLimitMs="20000"/>
       <ServerQuitWhenAnyAgentFinishes/>
     </ServerHandlers>
   </ServerSection>
@@ -120,13 +120,13 @@
       <RewardForTouchingBlockType>
         <Block reward="-20.0" type="lava" behaviour="onceOnly"/>
         <!-- <Block reward="-50.0" type="glowstone" behaviour="onceOnly"/> -->
-        <Block reward="150.0" type="lapis_block" behaviour="onceOnly"/>
+        <Block reward="200.0" type="lapis_block" behaviour="onceOnly"/>
         <Block reward="-50" type="obsidian"/>
-        <Block reward="23.0" type="diamond_block" behaviour="onceOnly"/>
+        <Block reward="20.0" type="diamond_block" behaviour="onceOnly"/>
         <Block reward='2' type='sandstone' behaviour='oncePerBlock'/>
       </RewardForTouchingBlockType>
-      <RewardForTimeTaken initialReward="0" delta="-0.1" density="PER_TICK"/>
-      <RewardForSendingCommand reward="-0.3" />
+      <RewardForTimeTaken initialReward="0" delta="-0.5" density="PER_TICK"/>
+      <RewardForSendingCommand reward="-1" />
       <AgentQuitFromTouchingBlockType>
           <Block type="obsidian" />
           <Block type="lapis_block" />
