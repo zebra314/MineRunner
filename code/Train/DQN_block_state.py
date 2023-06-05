@@ -71,34 +71,42 @@ class replay_buffer():
     def __len__(self):
         return len(self.memory)
 
-class CNN(nn.Module):
-    def __init__(self, num_actions):
-        super(CNN, self).__init__()
-        # self.num_actions = num_actions
+class Net(nn.Module):
+    '''
+    The structure of the Convolutional Neural Network calculating Q values of each state.
+    '''
 
-        # Convolutional layer
-        self.conv1 = nn.Conv1d(in_channels=2, out_channels=16, kernel_size=3)
-        # input is: buffer size * 2 * 9
-        # output is: buffer size * 16 * 7(9-3+1)
+    def __init__(self, num_actions, hidden_layer_size=64):
+        super(Net, self).__init__()
+        # input_shape is 2 * 3 * 3
+        self.input_state = (2, 3, 3)  # the dimension of state space
+        self.num_actions = num_actions  # the dimension of action space
+
+        # Convolutional layers
+        self.conv1 = nn.Conv2d(in_channels=2, out_channels=9, kernel_size=2)
+        # output shape is 9 * 2 * 2
+        # self.conv2 = nn.Conv2d(in_channels=3, out_channels=9, kernel_size=1)
+        
         # Fully connected layers
-        self.fc1 = nn.Linear(16 * 7, 32)
-        self.fc2 = nn.Linear(32, num_actions)
+        self.fc1 = nn.Linear(9 * 2 * 2, hidden_layer_size)
+        self.fc2 = nn.Linear(hidden_layer_size, num_actions)
 
     def forward(self, x):
-        # Apply convolutional layer
-        x = self.conv1(x)
+        '''
+        Forward the state to the convolutional neural network.
 
-        # Apply max pooling
-        x = F.relu(x)
+        Parameter:
+            states: a batch size of states
 
-        # Flatten the tensor
-        x = x.view(x.size(0), -1)
-
-        # Apply fully connected layers
+        Return:
+            q_values: a batch size of q_values
+        '''
+        # x = states.view(-1, 1, self.input_state[0], self.input_state[1])
+        x = F.relu(self.conv1(x))
+        # x = F.relu(self.conv2(x))
+        x = torch.flatten(x, 1)
         x = F.relu(self.fc1(x))
-        # print(f'size of x is: {x.size()}')
         q_values = self.fc2(x)
-
         return q_values
 
     
@@ -114,7 +122,7 @@ class Agent():
             capacity: the size of the replay buffer/memory
         """
         
-        self.actions = ["move 1", 'move 1', "turn 0.5", "turn -0.5", "jump 1"]
+        self.actions = ["move 1", "turn 0.5", "turn -0.5", "jump 1"]
         # self.actions = ["move 1", "turn 0.5", "turn -0.5", "jump 1"]
         self.n_actions = len(self.actions)  # the number of actions
         self.count = 0
@@ -128,9 +136,9 @@ class Agent():
         self.capacity = 50000
 
         self.buffer = replay_buffer(self.capacity)
-        self.evaluate_net = CNN(self.n_actions)  # the evaluate network
-        self.target_net = CNN(self.n_actions)  # the target network
-
+        self.evaluate_net = Net(self.n_actions)  # the evaluate network
+        self.target_net = Net(self.n_actions)  # the target network
+        
         self.optimizer = torch.optim.Adam(
             self.evaluate_net.parameters(), lr=self.learning_rate)  # Adam is a method using to optimize the neural network
         
@@ -254,20 +262,22 @@ class Agent():
         surround_coordinate_offset = [(0,1), (1,1), (1,0), (1,-1), (0,-1), (-1,-1),(-1,0), (-1,1)]
         
         current_state = []
-        face = yaw_discretize
-        block = self.map_info[int(current_XPos)+1][int(current_ZPos)+1]
+        # face = yaw_discretize
+        # block = self.map_info[int(current_XPos)+1][int(current_ZPos)+1]
+        
         height = []
         block_type = []
-        height.append(block[0])
-        block_type.append(block[1])
-        for i in range(8):
-            x_faced = int(current_XPos) + surround_coordinate_offset[(face+i)%8][0]
-            z_faced = int(current_ZPos) + surround_coordinate_offset[(face+i)%8][1]
-            block = self.map_info[x_faced+1][z_faced+1]
-            height.append(block[0])
-            block_type.append(block[1])
+        for i in range(-1, 2):
+            temp_h = []
+            temp_b = []
+            for j in range(-1, 2):
+                block = self.map_info[int(current_XPos)+i+1][int(current_ZPos)+j+1]
+                temp_h.append(block[0])
+                temp_b.append(block[1])
+            height.append(temp_h)
+            block_type.append(temp_b)
         current_state.append(height)
-        current_state.append(block_type)
+        current_state.append(block_type)        
         print(f'State is: {current_state}')
         # stop prev action after observation of current state
         self.stopAction(agent_host, self.prev_a)
@@ -453,7 +463,7 @@ max_retries = 3
 if agent_host.receivedArgument("test"):
     num_repeats = 1
 else:
-    num_repeats = 1000
+    num_repeats = 10000
 
 cumulative_rewards = []
 for i in range(num_repeats):
