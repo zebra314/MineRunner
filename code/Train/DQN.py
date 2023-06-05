@@ -18,6 +18,7 @@ import random
 from collections import deque
 import os
 from tqdm import tqdm
+import datetime
 if sys.version_info[0] == 2:
     # Workaround for https://github.com/PythonCharmers/python-future/issues/262
     import Tkinter as tk
@@ -132,10 +133,9 @@ class Agent():
 
         self.buffer = replay_buffer(self.capacity)
         self.evaluate_net = Net(self.n_actions)  # the evaluate network
-        self.evaluate_net.load_state_dict(torch.load("../../asset/nn/DQN_20230605.pt"))
+        self.evaluate_net.load_state_dict(torch.load("../../asset/Tables/CNN_2023-06-06_00-44-30.pt"))
         self.target_net = Net(self.n_actions)  # the target network
-        self.target_net.load_state_dict(torch.load("../../asset/nn/DQN_20230605.pt"))
-
+        self.target_net.load_state_dict(torch.load("../../asset/Tables/CNN_2023-06-06_00-44-30.pt"))
         self.optimizer = torch.optim.Adam(
             self.evaluate_net.parameters(), lr=self.learning_rate)  # Adam is a method using to optimize the neural network
         
@@ -200,7 +200,10 @@ class Agent():
         loss.backward()
         self.optimizer.step()
         # End your code
-        torch.save(self.target_net.state_dict(), "../../asset/nn/DQN.pt")
+        current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M")
+        DQN_file_path = f'../../asset/Tables/DQN_{current_time}.pt'
+        torch.save(agent.target_net.state_dict(), DQN_file_path)
+
     def stopAction(self, agent_host, action_index):
         if action_index == None:
             return
@@ -214,6 +217,7 @@ class Agent():
         stop_action = action_substring[0] + " 0"
         agent_host.sendCommand(stop_action)
         return
+    
     def act(self, world_state, agent_host, prev_r, is_first_action):
         
         """
@@ -369,7 +373,14 @@ class Agent():
         total_reward += current_r
     
         return total_reward
-    
+
+##################################
+"""
+Create folder
+"""
+##################################
+os.makedirs("../../asset/Tables", exist_ok=True)
+os.makedirs("../../asset/Rewards", exist_ok=True)
 if sys.version_info[0] == 2:
     sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)  # flush print output immediately
 else:
@@ -449,9 +460,6 @@ print()
 print("Cumulative rewards for all %d runs:" % num_repeats)
 print(cumulative_rewards)
 
-os.makedirs("../../asset/Rewards", exist_ok=True)
-np.save("../../asset/Rewards/DQN_rewards.npy", np.array(cumulative_rewards))
-
-os.makedirs("../../asset/Tables", exist_ok=True)
-torch.save(agent.target_net.state_dict(), "../../asset/Tables/DQN.pt")
-    
+current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M")
+np_file_path = f"../../asset/Rewards/DQN_rewards_{current_time}.npy"
+np.save(np_file_path, np.array(cumulative_rewards))
