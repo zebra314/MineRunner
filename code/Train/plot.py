@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 import argparse
+import datetime
 
 
 def initialize_plot():
@@ -23,7 +24,10 @@ def DQN():
     # plt.fill_between([i for i in range(1000)],
                     #  DQN_avg+DQN_std, DQN_avg-DQN_std, facecolor='lightblue')
     # plt.legend(loc="best")
-    plt.savefig("../../asset/Plots/DQN.png")
+    current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    filePath = f"../../asset/Plots/DQN_{current_time}.png"
+    # 保存图形文件
+    plt.savefig(filePath)
     plt.show()
     plt.close()
 
