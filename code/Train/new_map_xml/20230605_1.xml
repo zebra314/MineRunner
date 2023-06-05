@@ -53,16 +53,6 @@
         <DrawBlock x="14" y="46" z="8" type="sandstone" />
         <DrawBlock x="14" y="46" z="9" type="sandstone" />
         <DrawBlock x="15" y="46" z="8" type="sandstone" />
-        <DrawBlock x="2" y="47" z="8" type="air" />
-        <DrawBlock x="3" y="47" z="8" type="air" />
-        <DrawBlock x="5" y="47" z="8" type="air" />
-        <DrawBlock x="6" y="47" z="8" type="air" />
-        <DrawBlock x="8" y="47" z="8" type="air" />
-        <DrawBlock x="9" y="47" z="8" type="air" />
-        <DrawBlock x="10" y="47" z="8" type="air" />
-        <DrawBlock x="13" y="47" z="8" type="air" />
-        <DrawBlock x="14" y="47" z="8" type="air" />
-        <DrawBlock x="15" y="47" z="8" type="air" />
         <DrawBlock x="1" y="45" z="9" type="diamond_block" />
         <DrawBlock x="1" y="45" z="10" type="diamond_block" />
         <DrawBlock x="2" y="45" z="9" type="diamond_block" />
@@ -118,7 +108,6 @@
       <ObservationFromFullStats/>
       <RewardForTouchingBlockType>
         <Block reward="-50.0" type="lava" behaviour="onceOnly"/>
-        <Block reward="-50.0" type="glowstone" behaviour="onceOnly"/>
         <Block reward="300.0" type="lapis_block" behaviour="onceOnly"/>
         <Block reward="-1" type="obsidian" behaviour="oncePerTimeSpan"/>
         <Block reward="20.0" type="diamond_block" behaviour="onceOnly"/>
