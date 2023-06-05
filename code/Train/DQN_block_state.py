@@ -138,9 +138,9 @@ class Agent():
 
         self.buffer = replay_buffer(self.capacity)
         self.evaluate_net = Net(self.n_actions)  # the evaluate network
-        self.evaluate_net.load_state_dict(torch.load("../../asset/nn/DQN_20230605.pt"))
+        # self.evaluate_net.load_state_dict(torch.load("../../asset/Tables/CNN_2023-06-06_00-44-30.pt"))
         self.target_net = Net(self.n_actions)  # the target network
-        self.target_net.load_state_dict(torch.load("../../asset/nn/DQN_20230605.pt"))
+        # self.target_net.load_state_dict(torch.load("../../asset/Tables/CNN_2023-06-06_00-44-30.pt"))
         self.optimizer = torch.optim.Adam(
             self.evaluate_net.parameters(), lr=self.learning_rate)  # Adam is a method using to optimize the neural network
         
@@ -260,8 +260,10 @@ class Agent():
         loss.backward()
         self.optimizer.step()
         # End your code
-        torch.save(self.target_net.state_dict(), "../../asset/nn/DQN.pt")
-
+        current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M")
+        CNN_file_path = f'../../asset/Tables/CNN_{current_time}.pt'
+        torch.save(agent.target_net.state_dict(), CNN_file_path)
+        
     def stopAction(self, agent_host, action_index):
         if action_index == None:
             return
@@ -273,7 +275,7 @@ class Agent():
             action = self.actions[action_index]
             action_substring = action.split(" ")
             stop_action = action_substring[0] + " 0"
-            print(f'Stop action is: {stop_action}')
+            # print(f'Stop action is: {stop_action}')
             agent_host.sendCommand(stop_action)
         return
     def act(self, world_state, agent_host, prev_r, is_first_action):
@@ -297,7 +299,7 @@ class Agent():
         # 0 <= yaw_discretize <=7
         # yaw_discretize = self.discretize_value(current_yaw, self.yaw_bins)
         # surround_coordinate_offset = [(0,1), (1,1), (1,0), (1,-1), (0,-1), (-1,-1),(-1,0), (-1,1)]
-        # print(f'Current yaw is: {current_yaw}, after discretize: {yaw_discretize}')
+        print(f'Current yaw is: {current_yaw}')
         current_state = []
         # face = yaw_discretize
         # block = self.map_info[int(current_XPos)+1][int(current_ZPos)+1]
@@ -318,30 +320,41 @@ class Agent():
         rot_block_type = []
         # face west, counterclockwise 90 degree * 1
         if 45 <= current_yaw and current_yaw < 135:
-            rot_height = np.rot90(height)
-            rot_block_type = np.rot90(block_type)
+            # 水平镜像
+            rot_height = height
+            rot_height = np.flip(rot_height, axis=1)
+            # 水平镜像
+            rot_block_type = block_type
+            rot_block_type = np.flip(rot_block_type, axis=1)
         # face north
         elif 135 <= current_yaw and current_yaw < 225:
             rot_height = np.rot90(height)
             rot_height = np.rot90(rot_height)
+            rot_height = np.rot90(rot_height)
+            rot_height = np.flip(rot_height, axis=1)
             rot_block_type = np.rot90(block_type)
             rot_block_type = np.rot90(rot_block_type)
+            rot_block_type = np.rot90(rot_block_type)
+            rot_block_type = np.flip(rot_block_type, axis=1)
         # face east
         elif 225 <= current_yaw and current_yaw < 315:
             rot_height = np.rot90(height)
             rot_height = np.rot90(rot_height)
-            rot_height = np.rot90(rot_height)
+            rot_height = np.flip(rot_height, axis=1)
             rot_block_type = np.rot90(block_type)
             rot_block_type = np.rot90(rot_block_type)
-            rot_block_type = np.rot90(rot_block_type)
-        # face south
+            rot_block_type = np.flip(rot_block_type, axis=1)
+        # face south, 45 ~ 315
         else:
-            rot_height = height
-            rot_block_type = block_type
+            rot_height = np.rot90(height)
+            rot_height = np.flip(rot_height, axis=1)
+            rot_block_type = np.rot90(block_type)
+            rot_block_type = np.flip(rot_block_type, axis=1)
+    
         print(f'Height before: {height}')
         print(f'Height after: {rot_height}')
-        print(f'Height before: {block_type}')
-        print(f'Height after: {rot_block_type}')
+        print(f'Type before: {block_type}')
+        print(f'Type after: {rot_block_type}')
         current_state.append(rot_height)
         current_state.append(rot_block_type)        
         print(f'State is: {current_state}')
@@ -522,7 +535,13 @@ def readMap(matrix, current_map_file):
                 temp.append(data)
             matrix.append(temp)
     print(matrix) 
-
+##################################
+"""
+Create folder
+"""
+##################################
+os.makedirs("../../asset/Tables", exist_ok=True)
+os.makedirs("../../asset/Rewards", exist_ok=True)
 if sys.version_info[0] == 2:
     sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)  # flush print output immediately
 else:
@@ -531,13 +550,8 @@ else:
 
 # Code to read map data
 matrix = []
-current_map_file = './map_file/20230603_map_file_0.txt'
+current_map_file = './new_map_file/20230605_map_file_2.txt'
 readMap(matrix, current_map_file)
-# # add 20% holes for interest
-# for x in range(1,4):
-#     for z in range(1,13):
-#         if random.random()<0.1:
-#             my_mission.drawBlock( x,45,z,"lava")
 agent = Agent(matrix)
 agent_host = MalmoPython.AgentHost()
 try:
@@ -551,7 +565,7 @@ if agent_host.receivedArgument("help"):
     exit(0)
 
 # -- set up the mission -- #
-mission_file = './map_xml/20230603_0.xml'
+mission_file = './new_map_xml/20230605_2.xml'
 with open(mission_file, 'r') as f:
     print("Loading mission from %s" % mission_file)
     mission_xml = f.read()
@@ -563,7 +577,7 @@ max_retries = 3
 if agent_host.receivedArgument("test"):
     num_repeats = 1
 else:
-    num_repeats = 100
+    num_repeats = 200
 
 cumulative_rewards = []
 for i in range(num_repeats):
@@ -602,22 +616,22 @@ for i in range(num_repeats):
     time.sleep(0.5) # (let the Mod reset)
     
 print("Running Done.")
-print("Cumulative rewards for all %d runs:" % num_repeats)
-print(cumulative_rewards)
-print(f"reward: {np.mean(cumulative_rewards)}")
-print(f"max Q:{agent_host.check_max_Q()}")
-
 ########################################
 """
 Store information
 """
 ########################################
-os.makedirs("../../asset/Rewards", exist_ok=True)
 
-current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-filePath = f"../../asset/Plots/DQN_{current_time}.png"
-np.save("../../asset/Rewards/DQN_rewards.npy", np.array(cumulative_rewards))
 
-os.makedirs("../../asset/Tables", exist_ok=True)
-torch.save(agent.target_net.state_dict(), "../../asset/Tables/DQN.pt")
+current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M")
+np_file_path = f"../../asset/Rewards/CNN_rewards_{current_time}.npy"
+
+np.save(np_file_path, np.array(cumulative_rewards))
+
+print("Cumulative rewards for all %d runs:" % num_repeats)
+print(cumulative_rewards)
+print(f"reward: {np.mean(cumulative_rewards)}")
+# print(f"max Q:{agent.check_max_Q()}")
+
+
     
