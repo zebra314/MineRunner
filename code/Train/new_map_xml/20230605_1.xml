@@ -18,7 +18,7 @@
         <DrawCuboid x1="-2" y1="45" z1="-2" x2="18" y2="45" z2="22" type="obsidian" />           <!-- lava floor -->
         <DrawCuboid x1="1"  y1="45" z1="1"  x2="16" y2="45" z2="17" type="sandstone" />      <!-- floor of the arena -->
         <DrawBlock x="8"  y="45" z="4" type="cobblestone" />    <!-- the starting marker -->
-        <DrawCuboid x1="6"  y1="45" z1="14"  x2="9" y2="45" z2="14" type="lapis_block" />     <!-- the destination marker -->
+        <DrawCuboid x1="7"  y1="45" z1="14"  x2="8" y2="45" z2="14" type="lapis_block" />     <!-- the destination marker -->
         <!-- copy start -->
         <DrawBlock x="1" y="45" z="5" type="lava" />
         <DrawBlock x="2" y="45" z="11" type="lava" />
@@ -53,6 +53,7 @@
         <DrawBlock x="14" y="46" z="8" type="sandstone" />
         <DrawBlock x="14" y="46" z="9" type="sandstone" />
         <DrawBlock x="15" y="46" z="8" type="sandstone" />
+        <DrawBlock x="7" y="45" z="7" type="diamond_block" />
         <!-- <DrawBlock x="1" y="45" z="9" type="diamond_block" />
         <DrawBlock x="1" y="45" z="10" type="diamond_block" />
         <DrawBlock x="2" y="45" z="9" type="diamond_block" />
@@ -107,16 +108,9 @@
       <ContinuousMovementCommands/>
       <ObservationFromFullStats/>
       <RewardForTouchingBlockType>
-<<<<<<< HEAD
         <!-- <Block reward="-50.0" type="lava" behaviour="onceOnly"/>
         <Block reward="300.0" type="lapis_block" behaviour="onceOnly"/>
         <Block reward="-1" type="obsidian" behaviour="oncePerTimeSpan"/>
-=======
-        <Block reward="-20.0" type="lava" behaviour="onceOnly"/>
-        <!-- <Block reward="-50.0" type="glowstone" behaviour="onceOnly"/> -->
-        <Block reward="200.0" type="lapis_block" behaviour="onceOnly"/>
-        <Block reward="-50" type="obsidian"/>
->>>>>>> 66849e1ebab53f95c0df5ef5efcf2483bbed17b4
         <Block reward="20.0" type="diamond_block" behaviour="onceOnly"/>
         <Block reward='2' type='sandstone' behaviour='oncePerBlock'/> -->
         <!-- <Block reward="-100000.0" type="lava" behaviour="onceOnly"/> -->

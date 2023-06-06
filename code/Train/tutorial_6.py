@@ -37,7 +37,6 @@ import os
 import random
 import sys
 import time
-
 if sys.version_info[0] == 2:
     # Workaround for https://github.com/PythonCharmers/python-future/issues/262
     import Tkinter as tk
@@ -57,66 +56,12 @@ class TabQAgent(object):
             self.logger.setLevel(logging.INFO)
         self.logger.handlers = []
         self.logger.addHandler(logging.StreamHandler(sys.stdout))
-        """
-        jumpbackward is not allow
-        actions:
-            0: forward 1
-            1: backward 1
-            2: jumpforward 1(jump 1 + move 1)
-            3: set Yaw 45
-            4: set Yaw -45
-        """
-        self.n_actions = 4
-        # self.actions = ["movenorth 1", "movesouth 1", "movewest 1", "moveeast 1", "jump 1", "turn 0.5", "turn -0.5"]
-        self.actions = ["moveForward 1", "moveBackward 1", "jumpforward 1", "set Yaw 45"]
+
+        self.actions = ["movenorth 1", "movesouth 1", "movewest 1", "moveeast 1", "jumpnorth 1"]
         self.q_table = {}
         self.canvas = None
         self.root = None
-    # forward is look at Z position
-    def turnDegree(self, agent_host, factor, world_state):
-        # obs_text = world_state.observations[-1].text
-        # obs = json.loads(obs_text)
-        # print(f'Argument World State is:{obs}')
-        flag = False
-        turn_speed = factor * 0.5
-        agent_host.sendCommand('turn {}'.format(turn_speed))
-        isAlive = True
-        last_timeAlive = None
-        while isAlive and flag is False:
-            latest_ws = agent_host.peekWorldState()
-            print(f'TurnDegree, Latest world state is: {latest_ws}')
-            # If there are some new observations
-            if latest_ws.number_of_observations_since_last_state > 0:
-                obs_text = latest_ws.observations[-1].text
-                obs = json.loads(obs_text)
-                print(f'Peek World State is:{obs}')
-                current_yaw = int(obs[u'Yaw'])
-                # factor = 1: turn west, factor = -1: turn east
-                init_target_yaw = factor * 45 + current_yaw
-                if factor == 1:
-                    target_yaw = (init_target_yaw) % 360
-                else:
-                    target_yaw = init_target_yaw + 360 if init_target_yaw < -360 else init_target_yaw
-                print(f'Init Current yaw is {current_yaw}, target yaw is {target_yaw}')
-                while isAlive and abs(current_yaw - target_yaw) > 10:
-                    time.sleep(0.1)
-                    agent_host.sendCommand('turn {}'.format(turn_speed))
-                    latest_ws = agent_host.peekWorldState()
-                    # If there are some new observations
-                    if latest_ws.number_of_observations_since_last_state > 0:
-                        obs_text = latest_ws.observations[-1].text
-                        obs = json.loads(obs_text)
-                        current_yaw = int(obs[u'Yaw'])
-                        timeAlive = obs[u'TimeAlive']
-                        if timeAlive == last_timeAlive:
-                            isAlive = False
-                        last_timeAlive = timeAlive
-                        agent_host.sendCommand('turn {}'.format(turn_speed))
-                        print(obs)
-                        print(f'Current yaw is {current_yaw}, target yaw is {target_yaw}, isAlive is: {isAlive}')
-                flag = True
-                agent_host.sendCommand('turn 0')
-    
+
     def updateQTable( self, reward, current_state ):
         """Change q_table to reflect what we have learnt."""
         
@@ -128,7 +73,7 @@ class TabQAgent(object):
         discount_factor = 0.99  # discount factor (gamma)
         max_future_q = max(self.q_table[current_state])  # maximum Q-value for the current state
         new_q = old_q + learning_rate * (reward + discount_factor * max_future_q - old_q) 
-        print(self.q_table)
+        
         # assign the new action value to the Q-table
         self.q_table[self.prev_s][self.prev_a] = new_q
         
@@ -147,11 +92,9 @@ class TabQAgent(object):
         
     def act(self, world_state, agent_host, current_r ):
         """take 1 action in response to the current world state"""
-        print(f'Mission is running: {agent_host.getWorldState().is_mission_running}')
+        
         obs_text = world_state.observations[-1].text
         obs = json.loads(obs_text) # most recent observation
-        print(f'Current state is: {obs}')
-        # Transform
         self.logger.debug(obs)
         if not u'XPos' in obs or not u'ZPos' in obs:
             self.logger.error("Incomplete observation received: %s" % obs_text)
@@ -185,36 +128,7 @@ class TabQAgent(object):
 
         # try to send the selected action, only update prev_s if this succeeds
         try:
-            # move forward
-            if a == 0:
-                # agent_host.sendCommand("strafe 1")
-                # self.moveStraight(agent_host, 1, world_state)
-                agent_host.sendCommand('movenorth 1')
-                time.sleep(1)
-                # world_state = agent_host.getWorldState()
-                # obs_text = world_state.observations[-1].text
-                # obs = json.loads(obs_text)
-                # print(f'After move forward, World State is:{obs}')
-            # move backward
-            elif a == 1:
-                # agent_host.sendCommand("strafe -1")
-                # self.moveStraight(agent_host, -1, world_state)
-                agent_host.sendCommand('movesouth 1')
-                time.sleep(1)
-            elif a == 2:
-                agent_host.sendCommand("move 1")
-                agent_host.sendCommand("jump 1")
-                time.sleep(1)
-                # agent_host.sendCommand('jumpmove 1')
-            elif a == 3:
-                self.turnDegree(agent_host, 1, world_state)
-                time.sleep(1)
-                # agent_host.sendCommand("turn 45")
-            # elif a == 4:
-            #     # self.turnDegree(agent_host, -1, world_state)
-            #     agent_host.sendCommand("turn -45")
-            
-            # agent_host.sendCommand(self.actions[a])
+            agent_host.sendCommand(self.actions[a])
             self.prev_s = current_s
             self.prev_a = a
 
@@ -275,7 +189,6 @@ class TabQAgent(object):
                         total_reward += self.act(world_state, agent_host, current_r)
                         break
                     if not world_state.is_mission_running:
-                        print(f'world_state is not running mission')
                         break
 
         # process final reward
@@ -361,13 +274,6 @@ for x in range(1,4):
     for z in range(1,13):
         if random.random()<0.1:
             my_mission.drawBlock( x,45,z,"lava")
-        # Randomly add sandstone at y = 46
-        #Add when the x�Bz != destnitation
-        # <DrawBlock x="4"  y="45" z="7" type="lapis_block" />
-        if random.random()<0.1: 
-            if(x != 4 and z != 7):
-                my_mission.drawBlock( x,45,z,"sandstone")
-            
 
 max_retries = 3
 

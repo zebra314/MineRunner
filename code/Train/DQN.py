@@ -19,6 +19,7 @@ from collections import deque
 import os
 from tqdm import tqdm
 import datetime
+import matplotlib.pyplot as plt
 if sys.version_info[0] == 2:
     # Workaround for https://github.com/PythonCharmers/python-future/issues/262
     import Tkinter as tk
@@ -133,9 +134,9 @@ class Agent():
 
         self.buffer = replay_buffer(self.capacity)
         self.evaluate_net = Net(self.n_actions)  # the evaluate network
-        self.evaluate_net.load_state_dict(torch.load("../../asset/Tables/DQN_2023-06-06_07-45.pt"))
+        # self.evaluate_net.load_state_dict(torch.load("../../asset/Tables/DQN_2023-06-06_07-45.pt"))
         self.target_net = Net(self.n_actions)  # the target network
-        self.target_net.load_state_dict(torch.load("../../asset/Tables/DQN_2023-06-06_07-45.pt"))
+        # self.target_net.load_state_dict(torch.load("../../asset/Tables/DQN_2023-06-06_07-45.pt"))
         self.optimizer = torch.optim.Adam(
             self.evaluate_net.parameters(), lr=self.learning_rate)  # Adam is a method using to optimize the neural network
         
@@ -379,6 +380,14 @@ else:
     import functools
     print = functools.partial(print, flush=True)
 
+
+def initialize_plot():
+    plt.figure(figsize=(10, 5))
+    plt.title('Steve')
+    plt.xlabel('epoch')
+    plt.ylabel('rewards')
+
+
 agent = Agent()
 agent_host = MalmoPython.AgentHost()
 try:
@@ -392,7 +401,7 @@ if agent_host.receivedArgument("help"):
     exit(0)
 
 # -- set up the mission -- #
-mission_file = './new_map_xml/20230605_7.xml'
+mission_file = './new_map_xml/20230605_1.xml'
 with open(mission_file, 'r') as f:
     print("Loading mission from %s" % mission_file)
     mission_xml = f.read()
@@ -409,7 +418,7 @@ max_retries = 3
 if agent_host.receivedArgument("test"):
     num_repeats = 1
 else:
-    num_repeats = 1000
+    num_repeats = 100
 
 cumulative_rewards = []
 for i in range(num_repeats):
@@ -458,3 +467,9 @@ np_file_path = f"../../asset/Rewards/DQN_rewards_{current_time}.npy"
 np.save(np_file_path, np.array(cumulative_rewards))
 DQN_file_path = f'../../asset/Tables/DQN_{current_time}.pt'
 torch.save(agent.target_net.state_dict(), DQN_file_path)
+
+initialize_plot()
+plt.plot(cumulative_rewards)
+plt.show()
+plt.close()
+exit(0)

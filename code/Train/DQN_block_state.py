@@ -583,7 +583,7 @@ else:
 
 # Code to read map data
 matrix = []
-current_map_file = './new_map_file/20230605_map_file_4.txt'
+current_map_file = './new_map_file/20230605_map_file_2.txt'
 readMap(matrix, current_map_file)
 agent = Agent(matrix)
 agent_host = MalmoPython.AgentHost()
@@ -598,7 +598,7 @@ if agent_host.receivedArgument("help"):
     exit(0)
 
 # -- set up the mission -- #
-mission_file = './new_map_xml/20230605_4.xml'
+mission_file = './new_map_xml/20230605_2.xml'
 with open(mission_file, 'r') as f:
     print("Loading mission from %s" % mission_file)
     mission_xml = f.read()
