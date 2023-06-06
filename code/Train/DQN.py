@@ -133,9 +133,9 @@ class Agent():
 
         self.buffer = replay_buffer(self.capacity)
         self.evaluate_net = Net(self.n_actions)  # the evaluate network
-        self.evaluate_net.load_state_dict(torch.load("../../asset/Tables/CNN_2023-06-06_00-44-30.pt"))
+        self.evaluate_net.load_state_dict(torch.load("../../asset/Tables/DQN_2023-06-06_07-45.pt"))
         self.target_net = Net(self.n_actions)  # the target network
-        self.target_net.load_state_dict(torch.load("../../asset/Tables/CNN_2023-06-06_00-44-30.pt"))
+        self.target_net.load_state_dict(torch.load("../../asset/Tables/DQN_2023-06-06_07-45.pt"))
         self.optimizer = torch.optim.Adam(
             self.evaluate_net.parameters(), lr=self.learning_rate)  # Adam is a method using to optimize the neural network
         
@@ -400,7 +400,7 @@ if agent_host.receivedArgument("help"):
     exit(0)
 
 # -- set up the mission -- #
-mission_file = './tutorial_6.xml'
+mission_file = './new_map_xml/20230605_7.xml'
 with open(mission_file, 'r') as f:
     print("Loading mission from %s" % mission_file)
     mission_xml = f.read()
