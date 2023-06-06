@@ -200,9 +200,7 @@ class Agent():
         loss.backward()
         self.optimizer.step()
         # End your code
-        current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M")
-        DQN_file_path = f'../../asset/Tables/DQN_{current_time}.pt'
-        torch.save(agent.target_net.state_dict(), DQN_file_path)
+        
 
     def stopAction(self, agent_host, action_index):
         if action_index == None:
@@ -374,13 +372,7 @@ class Agent():
     
         return total_reward
 
-##################################
-"""
-Create folder
-"""
-##################################
-os.makedirs("../../asset/Tables", exist_ok=True)
-os.makedirs("../../asset/Rewards", exist_ok=True)
+
 if sys.version_info[0] == 2:
     sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)  # flush print output immediately
 else:
@@ -456,10 +448,13 @@ for i in range(num_repeats):
 print(f'Action to state corresponding list:{agent.action_state}')
 print("Done.")
 
-print()
 print("Cumulative rewards for all %d runs:" % num_repeats)
 print(cumulative_rewards)
 
+os.makedirs("../../asset/Tables", exist_ok=True)
+os.makedirs("../../asset/Rewards", exist_ok=True)
 current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M")
 np_file_path = f"../../asset/Rewards/DQN_rewards_{current_time}.npy"
 np.save(np_file_path, np.array(cumulative_rewards))
+DQN_file_path = f'../../asset/Tables/DQN_{current_time}.pt'
+torch.save(agent.target_net.state_dict(), DQN_file_path)
