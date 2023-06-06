@@ -85,14 +85,14 @@
         <!-- copy end -->
         <DrawCuboid x1="10"  y1="47" z1="15"  x2="12" y2="50" z2="15" type="glowstone" /> <!-- add "AI" -->
         <DrawCuboid x1="4"  y1="47" z1="15"  x2="6" y2="50" z2="15" type="glowstone" />
-        <DrawBlock x="4" y="48" z="15" type="air" />
-        <DrawBlock x="4" y="49" z="15" type="air" />
-        <DrawBlock x="6" y="48" z="15" type="air" />
-        <DrawBlock x="6" y="49" z="15" type="air" />
-        <DrawBlock x="11" y="47" z="15" type="air" />
-        <DrawBlock x="11" y="49" z="15" type="air" />
-        <DrawBlock x="10" y="50" z="15" type="air" />
-        <DrawBlock x="12" y="50" z="15" type="air" />
+        <DrawBlock x="4" y="48" z="15" type="obsidian" />
+        <DrawBlock x="4" y="49" z="15" type="obsidian" />
+        <DrawBlock x="6" y="48" z="15" type="obsidian" />
+        <DrawBlock x="6" y="49" z="15" type="obsidian" />
+        <DrawBlock x="11" y="47" z="15" type="obsidian" />
+        <DrawBlock x="11" y="49" z="15" type="obsidian" />
+        <DrawBlock x="10" y="50" z="15" type="obsidian" />
+        <DrawBlock x="12" y="50" z="15" type="obsidian" />
       </DrawingDecorator>
       <ServerQuitFromTimeUp timeLimitMs="20000"/>
       <ServerQuitWhenAnyAgentFinishes/>
@@ -114,15 +114,16 @@
         <Block reward="20.0" type="diamond_block" behaviour="onceOnly"/>
         <Block reward='2' type='sandstone' behaviour='oncePerBlock'/> -->
         <!-- <Block reward="-100000.0" type="lava" behaviour="onceOnly"/> -->
-        <Block reward="-1000.0" type="glowstone" behaviour="onceOnly"/>
-        <Block reward="-60000.0" type="obsidian" behaviour="onceOnly"/>
-        <Block reward="50000.0" type="lapis_block" behaviour="onceOnly"/>
+        <!-- <Block reward="-10" type="obsidian" behaviour="oncePerTimeSpan"/> -->
+        <!-- <Block reward="-1000.0" type="glowstone" behaviour="onceOnly"/> -->
+        <Block reward="-500.0" type="obsidian" behaviour="onceOnly"/>
+        <Block reward="400.0" type="lapis_block" behaviour="onceOnly"/>
         <Block reward="50.0" type="diamond_block" behaviour="onceOnly"/>
-        <Block reward="500" type="sandstone" behaviour="oncePerBlock"/>
+        <Block reward="5" type="sandstone" behaviour="oncePerBlock"/>
       </RewardForTouchingBlockType>
       <RewardForTimeTaken initialReward="0" delta="-1" density="PER_TICK"/>
       <RewardForSendingCommand reward="-1" />
-      <RewardForMissionEnd rewardForDeath="-50000.0">
+      <RewardForMissionEnd rewardForDeath="-400.0">
         <Reward description="out_of_time" reward="0.0"/>
       </RewardForMissionEnd>
       <AgentQuitFromTouchingBlockType>
