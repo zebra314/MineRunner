@@ -76,6 +76,8 @@
         <!-- <DrawBlock x="9" y="45" z="11" type="diamond_block" /> -->
         <DrawCuboid x1="9"  y1="45" z1="9"  x2="10" y2="45" z2="9" type="diamond_block" /> 
         <DrawBlock x="12" y="45" z="14" type="diamond_block" />
+        <DrawBlock x="8" y="45" z="4" type="diamond_block" />
+        <DrawBlock x="8" y="45" z="9" type="diamond_block" /> 
         <!-- <DrawBlock x="1" y="45" z="9" type="diamond_block" />
         <DrawBlock x="1" y="45" z="10" type="diamond_block" />
         <DrawBlock x="2" y="45" z="9" type="diamond_block" />

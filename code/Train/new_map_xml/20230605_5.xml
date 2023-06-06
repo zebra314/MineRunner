@@ -27,7 +27,6 @@
         <DrawBlock x="6" y="45" z="2" type="lava" />
         <DrawBlock x="6" y="45" z="14" type="lava" />
         <DrawBlock x="7" y="45" z="5" type="lava" />
-        <DrawBlock x="8" y="45" z="7" type="lava" />
         <DrawBlock x="8" y="45" z="16" type="lava" />
         <DrawBlock x="9" y="45" z="2" type="lava" />
         <DrawBlock x="9" y="45" z="14" type="lava" />
@@ -68,10 +67,11 @@
         <DrawBlock x="13" y="47" z="8" type="air" />
         <DrawBlock x="14" y="47" z="8" type="air" />
         <DrawBlock x="8" y="45" z="6" type="diamond_block" />
-        <DrawBlock x="8" y="45" z="10" type="diamond_block" />
         <DrawBlock x="9" y="45" z="15" type="diamond_block" />
         <DrawBlock x="7" y="45" z="9" type="diamond_block" />
         <DrawBlock x="8" y="45" z="9" type="diamond_block" />
+        <DrawBlock x="8" y="45" z="3" type="diamond_block" />
+        <DrawBlock x="8" y="45" z="13" type="diamond_block" />
         <!-- <DrawBlock x="1" y="45" z="9" type="diamond_block" />
         <DrawBlock x="1" y="45" z="10" type="diamond_block" />
         <DrawBlock x="2" y="45" z="9" type="diamond_block" />
