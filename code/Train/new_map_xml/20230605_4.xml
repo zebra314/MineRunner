@@ -73,8 +73,10 @@
         <DrawBlock x="14" y="47" z="8" type="air" />
         <DrawBlock x="15" y="47" z="8" type="air" />
         <DrawBlock x="9" y="45" z="6" type="diamond_block" />
-        <DrawBlock x="9" y="45" z="11" type="diamond_block" />
-        <DrawBlock x="9" y="45" z="15" type="diamond_block" />
+        <!-- <DrawBlock x="9" y="45" z="11" type="diamond_block" /> -->
+        <DrawCuboid x1="9"  y1="45" z1="9"  x2="10" y2="45" z2="10" type="diamond_block" />
+        <DrawBlock x="8" y="45" z="10" type="diamond_block" />
+        <DrawBlock x="7" y="45" z="14" type="diamond_block" />
         <!-- <DrawBlock x="1" y="45" z="9" type="diamond_block" />
         <DrawBlock x="1" y="45" z="10" type="diamond_block" />
         <DrawBlock x="2" y="45" z="9" type="diamond_block" />
@@ -128,15 +130,19 @@
       <ContinuousMovementCommands/>
       <ObservationFromFullStats/>
       <RewardForTouchingBlockType>
-        <Block reward="-50.0" type="lava" behaviour="onceOnly"/>
-        <Block reward="300.0" type="lapis_block" behaviour="onceOnly"/>
-        <Block reward="-1" type="obsidian" behaviour="oncePerTimeSpan"/>
-        <Block reward="20.0" type="diamond_block" behaviour="onceOnly"/>
+        <Block reward="1000.0" type="lapis_block" behaviour="onceOnly"/>
+        <Block reward="-500" type="obsidian" behaviour="onceOnly"/>
+        <Block reward="50.0" type="diamond_block" behaviour="oncePerBlock"/>
+        <Block reward='5' type='sandstone' behaviour='oncePerBlock'/>
       </RewardForTouchingBlockType>
-      <RewardForTimeTaken initialReward="0" delta="-1" density="PER_TICK"/>
-      <RewardForSendingCommand reward="-1" />
+      <RewardForTimeTaken initialReward="0" delta="-0.5" density="PER_TICK"/>
+      <RewardForSendingCommand reward="-2" />
+      <RewardForMissionEnd rewardForDeath = '-500'>
+        <Reward description='out_of_time' reward='-500.0'/>
+      </RewardForMissionEnd>
       <AgentQuitFromTouchingBlockType>
           <Block type="lapis_block" />
+          <Block type="obsidian" />
       </AgentQuitFromTouchingBlockType>
     </AgentHandlers>
   </AgentSection>

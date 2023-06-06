@@ -128,7 +128,7 @@ class Agent():
         self.n_actions = len(self.actions)  # the number of actions
         self.count = 0
 
-        self.EPS_START = 0.99
+        self.EPS_START = 0.5
         self.EPS_END = 0.05
         self.EPS_DECAY = 1000
         self.learning_rate = 0.001
@@ -138,9 +138,9 @@ class Agent():
 
         self.buffer = replay_buffer(self.capacity)
         self.evaluate_net = Net(self.n_actions)  # the evaluate network
-        # self.evaluate_net.load_state_dict(torch.load("../../asset/Tables/CNN_2023-06-06_00-44-30.pt"))
+        self.evaluate_net.load_state_dict(torch.load("../../asset/Tables/CNN_map3_2023-06-06_16-45.pt"))
         self.target_net = Net(self.n_actions)  # the target network
-        # self.target_net.load_state_dict(torch.load("../../asset/Tables/CNN_2023-06-06_00-44-30.pt"))
+        self.target_net.load_state_dict(torch.load("../../asset/Tables/CNN_map3_2023-06-06_16-45.pt"))
         self.optimizer = torch.optim.Adam(
             self.evaluate_net.parameters(), lr=self.learning_rate)  # Adam is a method using to optimize the neural network
         
@@ -260,9 +260,7 @@ class Agent():
         loss.backward()
         self.optimizer.step()
         # End your code
-        current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M")
-        CNN_file_path = f'../../asset/Tables/CNN_{current_time}.pt'
-        torch.save(agent.target_net.state_dict(), CNN_file_path)
+        
         
     def stopAction(self, agent_host, action_index):
         if action_index == None:
@@ -535,13 +533,7 @@ def readMap(matrix, current_map_file):
                 temp.append(data)
             matrix.append(temp)
     print(matrix) 
-##################################
-"""
-Create folder
-"""
-##################################
-os.makedirs("../../asset/Tables", exist_ok=True)
-os.makedirs("../../asset/Rewards", exist_ok=True)
+
 if sys.version_info[0] == 2:
     sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)  # flush print output immediately
 else:
@@ -550,7 +542,7 @@ else:
 
 # Code to read map data
 matrix = []
-current_map_file = './new_map_file/20230605_map_file_2.txt'
+current_map_file = './new_map_file/20230605_map_file_4.txt'
 readMap(matrix, current_map_file)
 agent = Agent(matrix)
 agent_host = MalmoPython.AgentHost()
@@ -565,7 +557,7 @@ if agent_host.receivedArgument("help"):
     exit(0)
 
 # -- set up the mission -- #
-mission_file = './new_map_xml/20230605_2.xml'
+mission_file = './new_map_xml/20230605_4.xml'
 with open(mission_file, 'r') as f:
     print("Loading mission from %s" % mission_file)
     mission_xml = f.read()
@@ -577,7 +569,7 @@ max_retries = 3
 if agent_host.receivedArgument("test"):
     num_repeats = 1
 else:
-    num_repeats = 200
+    num_repeats = 300
 
 cumulative_rewards = []
 for i in range(num_repeats):
@@ -621,13 +613,14 @@ print("Running Done.")
 Store information
 """
 ########################################
-
-
 current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M")
+os.makedirs("../../asset/Rewards", exist_ok=True)
 np_file_path = f"../../asset/Rewards/CNN_rewards_{current_time}.npy"
-
 np.save(np_file_path, np.array(cumulative_rewards))
-
+os.makedirs("../../asset/Tables", exist_ok=True)
+CNN_file_path = f'../../asset/Tables/CNN_{current_time}.pt'
+torch.save(agent.target_net.state_dict(), CNN_file_path)
+        
 print("Cumulative rewards for all %d runs:" % num_repeats)
 print(cumulative_rewards)
 print(f"reward: {np.mean(cumulative_rewards)}")
