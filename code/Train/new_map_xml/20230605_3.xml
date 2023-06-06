@@ -69,7 +69,6 @@
         <DrawBlock x="9" y="45" z="9" type="diamond_block" />
         <DrawBlock x="10" y="45" z="9" type="diamond_block" />
         <DrawBlock x="8" y="45" z="14" type="diamond_block" />
-        <DrawBlock x="5" y="45" z="6" type="diamond_block" />
         <DrawBlock x="5" y="45" z="9" type="diamond_block" />
         <DrawBlock x="6" y="45" z="9" type="diamond_block" />
         <!-- <DrawBlock x="1" y="45" z="9" type="diamond_block" />
