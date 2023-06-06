@@ -108,16 +108,9 @@
       <ContinuousMovementCommands/>
       <ObservationFromFullStats/>
       <RewardForTouchingBlockType>
-<<<<<<< HEAD
         <!-- <Block reward="-50.0" type="lava" behaviour="onceOnly"/>
         <Block reward="300.0" type="lapis_block" behaviour="onceOnly"/>
         <Block reward="-1" type="obsidian" behaviour="oncePerTimeSpan"/>
-=======
-        <Block reward="-20.0" type="lava" behaviour="onceOnly"/>
-        <!-- <Block reward="-50.0" type="glowstone" behaviour="onceOnly"/> -->
-        <Block reward="200.0" type="lapis_block" behaviour="onceOnly"/>
-        <Block reward="-50" type="obsidian"/>
->>>>>>> 69e8942dcdc28e64f20f41cd17dc142966e407bb
         <Block reward="20.0" type="diamond_block" behaviour="onceOnly"/>
         <Block reward='2' type='sandstone' behaviour='oncePerBlock'/> -->
         <!-- <Block reward="-100000.0" type="lava" behaviour="onceOnly"/> -->
