@@ -32,7 +32,6 @@
     </AgentStart>
     <AgentHandlers>
       <ContinuousMovementCommands/>
-      <DiscreteMovementCommands/>
       <ObservationFromFullStats/>
       <RewardForTouchingBlockType>
         <Block reward="-200.0" type="lava" behaviour="onceOnly"/>
