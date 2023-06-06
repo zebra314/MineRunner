@@ -62,15 +62,10 @@
         <DrawBlock x="13" y="47" z="8" type="air" />
         <DrawBlock x="14" y="47" z="8" type="air" />
         <DrawBlock x="15" y="47" z="8" type="air" />
-        <DrawBlock x="9" y="45" z="9" type="diamond_block" />
-        <DrawBlock x="6" y="45" z="6" type="diamond_block" />
-        <DrawBlock x="10" y="45" z="6" type="diamond_block" />
-        <DrawBlock x="8" y="45" z="12" type="diamond_block" />
-        <DrawBlock x="8" y="45" z="10" type="diamond_block" />
-        <DrawBlock x="9" y="45" z="10" type="diamond_block" />
-        <DrawBlock x="10" y="45" z="10" type="diamond_block" />
         <DrawBlock x="5" y="45" z="10" type="diamond_block" />
         <DrawBlock x="6" y="45" z="10" type="diamond_block" />
+        <DrawBlock x="7" y="45" z="10" type="diamond_block" />
+        <DrawBlock x="8" y="45" z="10" type="diamond_block" />
         <!-- <DrawBlock x="1" y="45" z="9" type="diamond_block" />
         <DrawBlock x="1" y="45" z="10" type="diamond_block" />
         <DrawBlock x="2" y="45" z="9" type="diamond_block" />
