@@ -82,7 +82,7 @@ class Net(nn.Module):
         # input_shape is 2 * 3 * 3
         self.input_state = (2, 3, 3)  # the dimension of state space
         self.num_actions = num_actions  # the dimension of action space
-
+        
         # Convolutional layers
         self.conv1 = nn.Conv2d(in_channels=2, out_channels=9, kernel_size=2)
         # output shape is 9 * 2 * 2
@@ -583,7 +583,7 @@ else:
 
 # Code to read map data
 matrix = []
-current_map_file = './new_map_file/20230605_map_file_2.txt'
+current_map_file = './new_map_file/20230605_map_file_2x`.txt'
 readMap(matrix, current_map_file)
 agent = Agent(matrix)
 agent_host = MalmoPython.AgentHost()
