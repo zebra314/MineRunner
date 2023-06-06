@@ -123,7 +123,7 @@ class Agent():
             capacity: the size of the replay buffer/memory
         """
         
-        self.actions = ["move 1", "turn 0.5", "turn -0.5", "jump 1"]
+        self.actions = ["move 1", 'move 0.5', "turn 0.5", "turn -0.5", "jump 1"]
         # self.actions = ["move 1", "turn 0.5", "turn -0.5", "jump 1"]
         self.n_actions = len(self.actions)  # the number of actions
         self.count = 0
