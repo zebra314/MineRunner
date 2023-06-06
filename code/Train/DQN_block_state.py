@@ -82,12 +82,10 @@ class Net(nn.Module):
         # input_shape is 2 * 3 * 3
         self.input_state = (2, 3, 3)  # the dimension of state space
         self.num_actions = num_actions  # the dimension of action space
-        
+
         # Convolutional layers
         self.conv1 = nn.Conv2d(in_channels=2, out_channels=9, kernel_size=2)
         # output shape is 9 * 2 * 2
-        # self.conv2 = nn.Conv2d(in_channels=3, out_channels=9, kernel_size=1)
-        
         # Fully connected layers
         self.fc1 = nn.Linear(9 * 2 * 2, hidden_layer_size)
         self.fc2 = nn.Linear(hidden_layer_size, num_actions)
@@ -277,26 +275,26 @@ class Agent():
             agent_block_type = current_state[1][1][1]
             reward_h = 0
             reward_type = 0
-            weight = [0.1, 0.5, 0.1]
+            weight = [0.3, 0.6, 0.3]
             
             for i in range(len(height)):
                 h_diff = height[i] - agent_height
                 # means that agent can go through
                 if h_diff <= 1:
-                    reward_h +=  0.7 * weight[i]
+                    reward_h +=  -0.5 * weight[i]
                 else:
-                    reward_h += -0.7 * weight[i]
+                    reward_h += -1 * weight[i]
             for i in range(len(block_type)):
                 if block_type[i] == 0:
-                    reward_type += weight[i] * 0
+                    reward_type += weight[i] * -0.4
                 elif block_type[i] == 10:
-                    reward_type += weight[i] * 1
+                    reward_type += weight[i] * 0
                 elif block_type[i] == 1:
-                    reward_type += weight[i] * 0.7
-                elif block_type[i] == -1:
                     reward_type += weight[i] * -0.7
-                elif block_type[i] == -9999:
+                elif block_type[i] == -1:
                     reward_type += weight[i] * -1
+                elif block_type[i] == -9999:
+                    reward_type += weight[i] * -1.5
             print(f'Height Reward is: {reward_h}')
             print(f'Type Reward is: {reward_type}')
             reward_turn = reward_h + reward_type
@@ -583,7 +581,7 @@ else:
 
 # Code to read map data
 matrix = []
-current_map_file = './new_map_file/20230605_map_file_2x`.txt'
+current_map_file = './new_map_file/20230605_map_file_2.txt'
 readMap(matrix, current_map_file)
 agent = Agent(matrix)
 agent_host = MalmoPython.AgentHost()
@@ -610,7 +608,7 @@ max_retries = 3
 if agent_host.receivedArgument("test"):
     num_repeats = 1
 else:
-    num_repeats = 300
+    num_repeats = 100
 
 cumulative_rewards = []
 for i in range(num_repeats):
