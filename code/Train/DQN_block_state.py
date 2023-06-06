@@ -123,7 +123,7 @@ class Agent():
             capacity: the size of the replay buffer/memory
         """
         
-        self.actions = ["move 1", 'move 0.5', "turn 0.5", "turn -0.5", "jump 1"]
+        self.actions = ['move 1', "turn 0.5", "turn -0.5", "jump 1"]
         # self.actions = ["move 1", "turn 0.5", "turn -0.5", "jump 1"]
         self.n_actions = len(self.actions)  # the number of actions
         self.count = 0
@@ -138,9 +138,9 @@ class Agent():
 
         self.buffer = replay_buffer(self.capacity)
         self.evaluate_net = Net(self.n_actions)  # the evaluate network
-        self.evaluate_net.load_state_dict(torch.load("../../asset/Tables/CNN_map3_2023-06-06_16-45.pt"))
+        # self.evaluate_net.load_state_dict(torch.load("../../asset/Tables/CNN_map3_2023-06-06_16-45.pt"))
         self.target_net = Net(self.n_actions)  # the target network
-        self.target_net.load_state_dict(torch.load("../../asset/Tables/CNN_map3_2023-06-06_16-45.pt"))
+        # self.target_net.load_state_dict(torch.load("../../asset/Tables/CNN_map3_2023-06-06_16-45.pt"))
         self.optimizer = torch.optim.Adam(
             self.evaluate_net.parameters(), lr=self.learning_rate)  # Adam is a method using to optimize the neural network
         
@@ -261,7 +261,47 @@ class Agent():
         self.optimizer.step()
         # End your code
         
-        
+    def if_turn_reward(self, action_index, current_state):   
+        if action_index == None:
+            return
+        action = self.actions[action_index]
+        action_substring = action.split(" ")
+        print(f'action_substring[0]: {action_substring[0]}')
+        reward_turn = 0
+        if action_substring[0] == 'turn':
+            # Take first row of height and block_type
+            # Use it to evaluate 
+            height = current_state[0][0]
+            block_type = current_state[1][0]
+            agent_height = current_state[0][1][1]
+            agent_block_type = current_state[1][1][1]
+            reward_h = 0
+            reward_type = 0
+            weight = [0.1, 0.5, 0.1]
+            
+            for i in range(len(height)):
+                h_diff = height[i] - agent_height
+                # means that agent can go through
+                if h_diff <= 1:
+                    reward_h +=  0.7 * weight[i]
+                else:
+                    reward_h += -0.7 * weight[i]
+            for i in range(len(block_type)):
+                if block_type[i] == 0:
+                    reward_type += weight[i] * 0
+                elif block_type[i] == 10:
+                    reward_type += weight[i] * 1
+                elif block_type[i] == 1:
+                    reward_type += weight[i] * 0.7
+                elif block_type[i] == -1:
+                    reward_type += weight[i] * -0.7
+                elif block_type[i] == -9999:
+                    reward_type += weight[i] * -1
+            print(f'Height Reward is: {reward_h}')
+            print(f'Type Reward is: {reward_type}')
+            reward_turn = reward_h + reward_type
+            print(f'Reward of turning is: {reward_turn}')
+        return reward_turn
     def stopAction(self, agent_host, action_index):
         if action_index == None:
             return
@@ -277,7 +317,8 @@ class Agent():
             agent_host.sendCommand(stop_action)
         return
     def act(self, world_state, agent_host, prev_r, is_first_action):
-        
+        # stop prev action after observation of current state
+        self.stopAction(agent_host, self.prev_a)
         """
         Take one action in response to the current world state
         """
@@ -356,8 +397,8 @@ class Agent():
         current_state.append(rot_height)
         current_state.append(rot_block_type)        
         print(f'State is: {current_state}')
-        # stop prev action after observation of current state
-        self.stopAction(agent_host, self.prev_a)
+        # if prev_a is turn, then calculate the rewards
+        reward_turn = self.if_turn_reward(self.prev_a, current_state)
         if not(world_state.is_mission_running) or bool(obs[u'IsAlive']) == False or int(obs[u'Life']) == 0:
             done = True
         else:
@@ -415,7 +456,7 @@ class Agent():
               self.logger.error("Failed to send command: %s" % e)
         self.prev_s = current_state
         self.prev_a = action_index
-        return
+        return reward_turn
         
     def run(self, agent_host):
         """run the agent on the world"""
@@ -475,8 +516,8 @@ class Agent():
                         # # stop prev action after observation of current state
                         # self.stopAction(agent_host, self.prev_a)
                         print('break!!!')
-                        self.act(world_state, agent_host, current_r, is_first_action)
-                        total_reward += current_r
+                        act_reward = self.act(world_state, agent_host, current_r, is_first_action)
+                        total_reward += (current_r + act_reward)
                         # print(f'Total reward is: {total_reward}')
                         break
                     if not world_state.is_mission_running:
