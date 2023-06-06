@@ -401,7 +401,8 @@ if agent_host.receivedArgument("help"):
     exit(0)
 
 # -- set up the mission -- #
-mission_file = './new_map_xml/20230605_2.xml'
+mission_file = './new_map_xml/tutorial_6.xml'
+# mission_file = './new_map_xml/20230605_2.xml'
 with open(mission_file, 'r') as f:
     print("Loading mission from %s" % mission_file)
     mission_xml = f.read()
@@ -418,7 +419,7 @@ max_retries = 3
 if agent_host.receivedArgument("test"):
     num_repeats = 1
 else:
-    num_repeats = 100
+    num_repeats = 1000
 
 cumulative_rewards = []
 for i in range(num_repeats):
