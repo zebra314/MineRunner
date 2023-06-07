@@ -52,7 +52,7 @@
         <DrawBlock x="14" y="46" z="9" type="sandstone" />
         <DrawBlock x="15" y="46" z="8" type="sandstone" />
         <DrawCuboid x1="1"  y1="45" z1="8"  x2="16" y2="46" z2="8" type="sandstone" />
-        <DrawBlock x="2" y="47" z="8" type="air" />
+        <!-- <DrawBlock x="2" y="47" z="8" type="air" />
         <DrawBlock x="3" y="47" z="8" type="air" />
         <DrawBlock x="5" y="47" z="8" type="air" />
         <DrawBlock x="6" y="47" z="8" type="air" />
@@ -61,7 +61,7 @@
         <DrawBlock x="10" y="47" z="8" type="air" />
         <DrawBlock x="13" y="47" z="8" type="air" />
         <DrawBlock x="14" y="47" z="8" type="air" />
-        <DrawBlock x="15" y="47" z="8" type="air" />
+        <DrawBlock x="15" y="47" z="8" type="air" /> -->
         <DrawBlock x="5" y="45" z="10" type="diamond_block" />
         <DrawBlock x="6" y="45" z="7" type="diamond_block" />
         <DrawBlock x="6" y="45" z="10" type="diamond_block" />

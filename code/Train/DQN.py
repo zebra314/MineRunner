@@ -229,6 +229,19 @@ class Agent():
             self.logger.error("Incomplete observation received: %s" % obs_text)
             return 0
         current_yaw = (float(obs[u'Yaw']) + 360) % 360
+        # if current_yaw >= 315 or (current_yaw >= 0 and current_yaw < 45):
+        #     yaw_discrete = 0
+        # elif current_yaw >= 45 and current_yaw < 135:
+        #     yaw_discrete = 1
+        # elif current_yaw >= 135 and current_yaw < 225:
+        #     yaw_discrete = 2
+        # elif current_yaw >= 225 and current_yaw < 315:
+        #     yaw_discrete = 3
+
+        # yaw_discrete = int(((current_yaw + 45) % 360) // 90)   整除成4等分
+        # yaw_discrete = int(((current_yaw + 22.5) % 360) // 45)  整除成8等分
+        # yaw_discrete = int(((current_yaw + 22.5) % 360) // 22.5)   整除成16等分
+
         current_XPos = float(obs[u'XPos'])
         current_ZPos = float(obs[u'ZPos'])
         current_YPos = int(obs[u'YPos'])
@@ -401,8 +414,8 @@ if agent_host.receivedArgument("help"):
     exit(0)
 
 # -- set up the mission -- #
-mission_file = './new_map_xml/tutorial_6.xml'
-# mission_file = './new_map_xml/20230605_2.xml'
+# mission_file = './new_map_xml/tutorial_6.xml'
+mission_file = './new_map_xml/20230605_2.xml'
 with open(mission_file, 'r') as f:
     print("Loading mission from %s" % mission_file)
     mission_xml = f.read()

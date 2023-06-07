@@ -53,7 +53,7 @@
         <!-- <Block reward="-1000.0" type="glowstone" behaviour="onceOnly"/> -->
         <Block reward="-500.0" type="obsidian" behaviour="onceOnly"/>
         <Block reward="400.0" type="lapis_block" behaviour="onceOnly"/>
-        <Block reward="50.0" type="diamond_block" behaviour="onceOnly"/>
+        <Block reward="50.0" type="diamond_block" behaviour="oncePerBlock"/>
         <Block reward="5" type="sandstone" behaviour="oncePerBlock"/>
       </RewardForTouchingBlockType>
       <RewardForTimeTaken initialReward="0" delta="-1" density="PER_TICK"/>
