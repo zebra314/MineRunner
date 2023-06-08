@@ -74,10 +74,6 @@ class replay_buffer():
         return len(self.memory)
 
 class Net(nn.Module):
-    '''
-    The structure of the Neural Network calculating Q values of each state.
-    '''
-
     def __init__(self,  num_actions, hidden_layer_size=80):
         super(Net, self).__init__()
         self.input_state = 4  # the dimension of state space
@@ -87,15 +83,6 @@ class Net(nn.Module):
         self.fc3 = nn.Linear(hidden_layer_size, num_actions)  # output layer
 
     def forward(self, states):
-        '''
-        Forward the state to the neural network.
-        
-        Parameter:
-            states: a batch size of states
-        
-        Return:
-            q_values: a batch size of q_values
-        '''
         x = F.relu(self.fc1(states))
         x = F.relu(self.fc2(x))
         q_values = self.fc3(x)

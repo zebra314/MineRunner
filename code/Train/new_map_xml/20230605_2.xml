@@ -18,14 +18,12 @@
         <DrawCuboid x1="-2" y1="45" z1="-2" x2="18" y2="45" z2="22" type="obsidian" />           <!-- lava floor -->
         <DrawCuboid x1="1"  y1="45" z1="1"  x2="16" y2="45" z2="17" type="sandstone" />      <!-- floor of the arena -->
         <DrawBlock x="8"  y="45" z="4" type="cobblestone" />    <!-- the starting marker -->
-        <DrawCuboid x1="4"  y1="45" z1="14"  x2="7" y2="45" z2="14" type="lapis_block" />     <!-- the destination marker -->
+        <DrawCuboid x1="11"  y1="45" z1="10"  x2="11" y2="45" z2="11" type="lapis_block" />     <!-- the destination marker -->
         <!-- copy start -->
         <DrawBlock x="1" y="45" z="5" type="lava" />
         <DrawBlock x="2" y="45" z="11" type="lava" />
         <DrawBlock x="4" y="45" z="5" type="lava" />
-        <DrawBlock x="7" y="45" z="5" type="lava" />
         <DrawBlock x="10" y="45" z="5" type="lava" />
-        <DrawBlock x="10" y="45" z="12" type="lava" />
         <DrawBlock x="10" y="45" z="13" type="lava" />
         <DrawBlock x="10" y="45" z="15" type="lava" />
         <DrawBlock x="12" y="45" z="3" type="lava" />
@@ -62,12 +60,8 @@
         <DrawBlock x="13" y="47" z="8" type="air" />
         <DrawBlock x="14" y="47" z="8" type="air" />
         <DrawBlock x="15" y="47" z="8" type="air" /> -->
-        <DrawBlock x="5" y="45" z="10" type="diamond_block" />
-        <DrawBlock x="6" y="45" z="7" type="diamond_block" />
-        <DrawBlock x="6" y="45" z="10" type="diamond_block" />
-        <DrawBlock x="7" y="45" z="7" type="diamond_block" />
-        <DrawBlock x="7" y="45" z="10" type="diamond_block" />
         <DrawBlock x="8" y="45" z="10" type="diamond_block" />
+        <DrawCuboid x1="7"  y1="45" z1="7"  x2="8" y2="45" z2="7" type="diamond_block" />
         <!-- <DrawBlock x="1" y="45" z="9" type="diamond_block" />
         <DrawBlock x="1" y="45" z="10" type="diamond_block" />
         <DrawBlock x="2" y="45" z="9" type="diamond_block" />
@@ -124,17 +118,18 @@
       <RewardForTouchingBlockType>
         <!-- <Block reward="-20.0" type="lava" behaviour="onceOnly"/> -->
         <!-- <Block reward="-50.0" type="glowstone" behaviour="onceOnly"/> -->
-        <Block reward="200.0" type="lapis_block" behaviour="onceOnly"/>
-        <Block reward="-50" type="obsidian" behaviour="onceOnly"/>
-        <Block reward="20.0" type="diamond_block" behaviour="onceOnly"/>
+        <Block reward="10000.0" type="lapis_block" behaviour="onceOnly"/>
+        <Block reward="-500" type="obsidian" behaviour="onceOnly"/>
+        <Block reward="100.0" type="diamond_block" behaviour="oncePerBlock"/>
         <Block reward='2' type='sandstone' behaviour='oncePerBlock'/>
       </RewardForTouchingBlockType>
       <RewardForTimeTaken initialReward="0" delta="-0.5" density="PER_TICK"/>
-      <RewardForSendingCommand reward="-2" />
-      <RewardForMissionEnd rewardForDeath="-20.0">
-        <Reward description="out_of_time" reward="0.0"/>
+      <RewardForSendingCommand reward="-1" />
+      <RewardForMissionEnd rewardForDeath="-500.0">
+        <Reward description="out_of_time" reward="-100"/>
       </RewardForMissionEnd>
       <AgentQuitFromTouchingBlockType>
+          <!-- <Block type="lava" /> -->
           <Block type="obsidian" />
           <Block type="lapis_block" />
       </AgentQuitFromTouchingBlockType>
