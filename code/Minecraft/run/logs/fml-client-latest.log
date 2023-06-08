@@ -1579,3 +1579,60 @@ Caused by: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING
 [20:25:37] [Server thread/DEBUG] [FML/]: Gathering id map for writing to world save TEMP_10000_82d64113-5cbb-4b4f-b4f6-d4d47703f039
 [20:26:22] [Server thread/DEBUG] [FML/]: Gathering id map for writing to world save TEMP_10000_82d64113-5cbb-4b4f-b4f6-d4d47703f039
 [20:27:07] [Server thread/DEBUG] [FML/]: Gathering id map for writing to world save TEMP_10000_82d64113-5cbb-4b4f-b4f6-d4d47703f039
+[20:27:52] [Server thread/DEBUG] [FML/]: Gathering id map for writing to world save TEMP_10000_82d64113-5cbb-4b4f-b4f6-d4d47703f039
+[20:28:35] [Server thread/TRACE] [minecraft/minecraft]: Sending event FMLServerStoppingEvent to mod minecraft
+[20:28:35] [Server thread/TRACE] [minecraft/minecraft]: Sent event FMLServerStoppingEvent to mod minecraft
+[20:28:35] [Server thread/DEBUG] [FML/]: Bar Step: ServerStopping - Minecraft took 0.000s
+[20:28:35] [Server thread/TRACE] [mcp/mcp]: Sending event FMLServerStoppingEvent to mod mcp
+[20:28:35] [Server thread/TRACE] [mcp/mcp]: Sent event FMLServerStoppingEvent to mod mcp
+[20:28:35] [Server thread/DEBUG] [FML/]: Bar Step: ServerStopping - Minecraft Coder Pack took 0.000s
+[20:28:35] [Server thread/TRACE] [FML/FML]: Sending event FMLServerStoppingEvent to mod FML
+[20:28:35] [Server thread/TRACE] [FML/FML]: Sent event FMLServerStoppingEvent to mod FML
+[20:28:35] [Server thread/DEBUG] [FML/]: Bar Step: ServerStopping - Forge Mod Loader took 0.000s
+[20:28:35] [Server thread/TRACE] [forge/forge]: Sending event FMLServerStoppingEvent to mod forge
+[20:28:35] [Server thread/TRACE] [forge/forge]: Sent event FMLServerStoppingEvent to mod forge
+[20:28:35] [Server thread/DEBUG] [FML/]: Bar Step: ServerStopping - Minecraft Forge took 0.000s
+[20:28:35] [Server thread/TRACE] [malmomod/malmomod]: Sending event FMLServerStoppingEvent to mod malmomod
+[20:28:35] [Server thread/TRACE] [malmomod/malmomod]: Sent event FMLServerStoppingEvent to mod malmomod
+[20:28:35] [Server thread/DEBUG] [FML/]: Bar Step: ServerStopping - Microsoft Malmo Mod took 0.000s
+[20:28:35] [Server thread/DEBUG] [FML/]: Bar Finished: ServerStopping took 0.002s
+[20:28:35] [Server thread/DEBUG] [FML/]: Gathering id map for writing to world save TEMP_10000_82d64113-5cbb-4b4f-b4f6-d4d47703f039
+[20:28:35] [Server thread/INFO] [FML/]: Unloading dimension 0
+[20:28:35] [Server thread/INFO] [FML/]: Unloading dimension -1
+[20:28:35] [Server thread/INFO] [FML/]: Unloading dimension 1
+[20:28:35] [Server thread/DEBUG] [FML/]: Reverting to frozen data state.
+[20:28:35] [Server thread/TRACE] [minecraft/minecraft]: Sending event FMLModIdMappingEvent to mod minecraft
+[20:28:35] [Server thread/TRACE] [minecraft/minecraft]: Sent event FMLModIdMappingEvent to mod minecraft
+[20:28:35] [Server thread/DEBUG] [FML/]: Bar Step: ModIdMapping - Minecraft took 0.000s
+[20:28:35] [Server thread/TRACE] [mcp/mcp]: Sending event FMLModIdMappingEvent to mod mcp
+[20:28:35] [Server thread/TRACE] [mcp/mcp]: Sent event FMLModIdMappingEvent to mod mcp
+[20:28:35] [Server thread/DEBUG] [FML/]: Bar Step: ModIdMapping - Minecraft Coder Pack took 0.000s
+[20:28:35] [Server thread/TRACE] [FML/FML]: Sending event FMLModIdMappingEvent to mod FML
+[20:28:35] [Server thread/TRACE] [FML/FML]: Sent event FMLModIdMappingEvent to mod FML
+[20:28:35] [Server thread/DEBUG] [FML/]: Bar Step: ModIdMapping - Forge Mod Loader took 0.000s
+[20:28:35] [Server thread/TRACE] [forge/forge]: Sending event FMLModIdMappingEvent to mod forge
+[20:28:36] [Server thread/TRACE] [forge/forge]: Sent event FMLModIdMappingEvent to mod forge
+[20:28:36] [Server thread/DEBUG] [FML/]: Bar Step: ModIdMapping - Minecraft Forge took 0.009s
+[20:28:36] [Server thread/TRACE] [malmomod/malmomod]: Sending event FMLModIdMappingEvent to mod malmomod
+[20:28:36] [Server thread/TRACE] [malmomod/malmomod]: Sent event FMLModIdMappingEvent to mod malmomod
+[20:28:36] [Server thread/DEBUG] [FML/]: Bar Step: ModIdMapping - Microsoft Malmo Mod took 0.000s
+[20:28:36] [Server thread/DEBUG] [FML/]: Bar Finished: ModIdMapping took 0.009s
+[20:28:36] [Server thread/INFO] [FML/]: Applying holder lookups
+[20:28:36] [Server thread/INFO] [FML/]: Holder lookups applied
+[20:28:36] [Server thread/DEBUG] [FML/]: Frozen state restored.
+[20:28:36] [Server thread/TRACE] [minecraft/minecraft]: Sending event FMLServerStoppedEvent to mod minecraft
+[20:28:36] [Server thread/TRACE] [minecraft/minecraft]: Sent event FMLServerStoppedEvent to mod minecraft
+[20:28:36] [Server thread/DEBUG] [FML/]: Bar Step: ServerStopped - Minecraft took 0.000s
+[20:28:36] [Server thread/TRACE] [mcp/mcp]: Sending event FMLServerStoppedEvent to mod mcp
+[20:28:36] [Server thread/TRACE] [mcp/mcp]: Sent event FMLServerStoppedEvent to mod mcp
+[20:28:36] [Server thread/DEBUG] [FML/]: Bar Step: ServerStopped - Minecraft Coder Pack took 0.000s
+[20:28:36] [Server thread/TRACE] [FML/FML]: Sending event FMLServerStoppedEvent to mod FML
+[20:28:36] [Server thread/TRACE] [FML/FML]: Sent event FMLServerStoppedEvent to mod FML
+[20:28:36] [Server thread/DEBUG] [FML/]: Bar Step: ServerStopped - Forge Mod Loader took 0.000s
+[20:28:36] [Server thread/TRACE] [forge/forge]: Sending event FMLServerStoppedEvent to mod forge
+[20:28:36] [Server thread/TRACE] [forge/forge]: Sent event FMLServerStoppedEvent to mod forge
+[20:28:36] [Server thread/DEBUG] [FML/]: Bar Step: ServerStopped - Minecraft Forge took 0.000s
+[20:28:36] [Server thread/TRACE] [malmomod/malmomod]: Sending event FMLServerStoppedEvent to mod malmomod
+[20:28:36] [Server thread/TRACE] [malmomod/malmomod]: Sent event FMLServerStoppedEvent to mod malmomod
+[20:28:36] [Server thread/DEBUG] [FML/]: Bar Step: ServerStopped - Microsoft Malmo Mod took 0.000s
+[20:28:36] [Server thread/DEBUG] [FML/]: Bar Finished: ServerStopped took 0.000s
