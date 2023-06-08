@@ -915,3 +915,4 @@ Caused by: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING
 [01:52:29] [Server thread/DEBUG] [FML/]: Gathering id map for writing to world save TEMP_10000_77d553e6-e8a1-4a3d-82f7-66fce61e3be6
 [01:53:14] [Server thread/DEBUG] [FML/]: Gathering id map for writing to world save TEMP_10000_77d553e6-e8a1-4a3d-82f7-66fce61e3be6
 [01:53:59] [Server thread/DEBUG] [FML/]: Gathering id map for writing to world save TEMP_10000_77d553e6-e8a1-4a3d-82f7-66fce61e3be6
+[01:54:44] [Server thread/DEBUG] [FML/]: Gathering id map for writing to world save TEMP_10000_77d553e6-e8a1-4a3d-82f7-66fce61e3be6

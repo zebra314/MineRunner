@@ -143,9 +143,15 @@ class Agent():
 
         self.buffer = replay_buffer(self.capacity)
         self.evaluate_net = Net(self.n_actions)  # the evaluate network
+<<<<<<< HEAD
         self.evaluate_net.load_state_dict(torch.load("../../asset/Tables/reCNN_map2_2023-06-09_00-10.pt"))
         self.target_net = Net(self.n_actions)  # the target network
         self.target_net.load_state_dict(torch.load("../../asset/Tables/reCNN_map2_2023-06-09_00-10.pt"))
+=======
+        self.evaluate_net.load_state_dict(torch.load("../../asset/Tables/reCNN_map1_2023-06-08_22-02.pt"))
+        self.target_net = Net(self.n_actions)  # the target network
+        self.target_net.load_state_dict(torch.load("../../asset/Tables/reCNN_map1_2023-06-08_22-02.pt"))
+>>>>>>> a7459bae9395d9a78396d28c60f6314ebc1680a8
         self.optimizer = torch.optim.Adam(
             self.evaluate_net.parameters(), lr=self.learning_rate)  # Adam is a method using to optimize the neural network
         
@@ -281,28 +287,39 @@ class Agent():
             agent_block_type = current_state[1][1][1]
             reward_h = 0
             reward_type = 0
-            weight = [1, 1.5, 1]
+            weight = [0.3, 0.7, 0.3]
             
             for i in range(len(height)):
+                # if see lava
+                if height[i] == -1:
+                    reward_h += -1.5 * weight[i]
+                    continue
                 h_diff = height[i] - agent_height
                 # means that agent can go through
                 if h_diff <= 1:
                     reward_h +=  -0.5 * weight[i]
                 else:
-                    reward_h += -2 * weight[i]
+                    reward_h += -1 * weight[i]
             for i in range(len(block_type)):
                 if block_type[i] == 0:
-                    reward_type += weight[i] * -0.7
+                    reward_type += weight[i] * -0.5
                 elif block_type[i] == 10:
+<<<<<<< HEAD
                     reward_type += weight[i] * 0
                 elif block_type[i] == 1:每一代所需的時間較多（30秒），包含角色行動與環境重製，使得我們能訓練的代數不多(五千帶需要半天)，在有限的訓練次數下 我們有發現以下:
 
 
                     reward_type += weight[i] * -0.3
+=======
+                    reward_type += weight[i] * 1.5
+                # diamond block
+                elif block_type[i] == 1:
+                    reward_type += weight[i] * 0.5
+>>>>>>> a7459bae9395d9a78396d28c60f6314ebc1680a8
                 elif block_type[i] == -1:
                     reward_type += weight[i] * -1.5
                 elif block_type[i] == -9999:
-                    reward_type += weight[i] * -2
+                    reward_type += weight[i] * -1.5
             print(f'Height Reward is: {reward_h}')
             print(f'Type Reward is: {reward_type}')
             reward_turn = reward_h + reward_type
