@@ -62,7 +62,7 @@
         <DrawBlock x="14" y="46" z="8" type="sandstone" />
         <DrawBlock x="16" y="46" z="13" type="sandstone" />
         <DrawCuboid x1="1"  y1="45" z1="8"  x2="16" y2="47" z2="8" type="sandstone" />
-        <DrawBlock x="1" y="45" z="9" type="diamond_block" />
+        <!-- <DrawBlock x="1" y="45" z="9" type="diamond_block" />
         <DrawBlock x="1" y="45" z="10" type="diamond_block" />
         <DrawBlock x="2" y="45" z="9" type="diamond_block" />
         <DrawBlock x="2" y="45" z="10" type="diamond_block" />
@@ -91,7 +91,7 @@
         <DrawBlock x="15" y="45" z="9" type="diamond_block" />
         <DrawBlock x="15" y="45" z="10" type="diamond_block" />
         <DrawBlock x="16" y="45" z="9" type="diamond_block" />
-        <DrawBlock x="16" y="45" z="10" type="diamond_block" />
+        <DrawBlock x="16" y="45" z="10" type="diamond_block" /> -->
         <!-- copy end -->
         <DrawCuboid x1="10"  y1="47" z1="18"  x2="12" y2="50" z2="18" type="glowstone" /> <!-- add "AI" -->
         <DrawCuboid x1="4"  y1="47" z1="18"  x2="6" y2="50" z2="18" type="glowstone" />

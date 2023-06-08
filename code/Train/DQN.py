@@ -19,6 +19,7 @@ from collections import deque
 import os
 from tqdm import tqdm
 import datetime
+import matplotlib.pyplot as plt
 if sys.version_info[0] == 2:
     # Workaround for https://github.com/PythonCharmers/python-future/issues/262
     import Tkinter as tk
@@ -133,9 +134,9 @@ class Agent():
 
         self.buffer = replay_buffer(self.capacity)
         self.evaluate_net = Net(self.n_actions)  # the evaluate network
-        self.evaluate_net.load_state_dict(torch.load("../../asset/Tables/DQN_2023-06-06_07-45.pt"))
+        # self.evaluate_net.load_state_dict(torch.load("../../asset/Tables/DQN_2023-06-06_07-45.pt"))
         self.target_net = Net(self.n_actions)  # the target network
-        self.target_net.load_state_dict(torch.load("../../asset/Tables/DQN_2023-06-06_07-45.pt"))
+        # self.target_net.load_state_dict(torch.load("../../asset/Tables/DQN_2023-06-06_07-45.pt"))
         self.optimizer = torch.optim.Adam(
             self.evaluate_net.parameters(), lr=self.learning_rate)  # Adam is a method using to optimize the neural network
         
@@ -228,6 +229,19 @@ class Agent():
             self.logger.error("Incomplete observation received: %s" % obs_text)
             return 0
         current_yaw = (float(obs[u'Yaw']) + 360) % 360
+        # if current_yaw >= 315 or (current_yaw >= 0 and current_yaw < 45):
+        #     yaw_discrete = 0
+        # elif current_yaw >= 45 and current_yaw < 135:
+        #     yaw_discrete = 1
+        # elif current_yaw >= 135 and current_yaw < 225:
+        #     yaw_discrete = 2
+        # elif current_yaw >= 225 and current_yaw < 315:
+        #     yaw_discrete = 3
+
+        # yaw_discrete = int(((current_yaw + 45) % 360) // 90)   整除成4等分
+        # yaw_discrete = int(((current_yaw + 22.5) % 360) // 45)  整除成8等分
+        # yaw_discrete = int(((current_yaw + 22.5) % 360) // 22.5)   整除成16等分
+
         current_XPos = float(obs[u'XPos'])
         current_ZPos = float(obs[u'ZPos'])
         current_YPos = int(obs[u'YPos'])
@@ -379,6 +393,14 @@ else:
     import functools
     print = functools.partial(print, flush=True)
 
+
+def initialize_plot():
+    plt.figure(figsize=(10, 5))
+    plt.title('Steve')
+    plt.xlabel('epoch')
+    plt.ylabel('rewards')
+
+
 agent = Agent()
 agent_host = MalmoPython.AgentHost()
 try:
@@ -392,7 +414,8 @@ if agent_host.receivedArgument("help"):
     exit(0)
 
 # -- set up the mission -- #
-mission_file = './new_map_xml/20230605_7.xml'
+# mission_file = './new_map_xml/tutorial_6.xml'
+mission_file = './new_map_xml/20230605_2.xml'
 with open(mission_file, 'r') as f:
     print("Loading mission from %s" % mission_file)
     mission_xml = f.read()
@@ -458,3 +481,9 @@ np_file_path = f"../../asset/Rewards/DQN_rewards_{current_time}.npy"
 np.save(np_file_path, np.array(cumulative_rewards))
 DQN_file_path = f'../../asset/Tables/DQN_{current_time}.pt'
 torch.save(agent.target_net.state_dict(), DQN_file_path)
+
+initialize_plot()
+plt.plot(cumulative_rewards)
+plt.show()
+plt.close()
+exit(0)

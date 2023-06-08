@@ -17,7 +17,7 @@
         <DrawCuboid x1="1" y1="46" z1="1" x2="16" y2="50" z2="17" type="air" />            <!-- limits of our arena -->
         <DrawCuboid x1="-2" y1="45" z1="-2" x2="18" y2="45" z2="22" type="obsidian" />           <!-- lava floor -->
         <DrawCuboid x1="1"  y1="45" z1="1"  x2="16" y2="45" z2="17" type="sandstone" />      <!-- floor of the arena -->
-        <DrawBlock x="8"  y="45" z="4" type="cobblestone" />    <!-- the starting marker -->
+        <DrawBlock x="8"  y="45" z="1" type="cobblestone" />    <!-- the starting marker -->
         <DrawCuboid x1="6"  y1="45" z1="17"  x2="9" y2="45" z2="17" type="lapis_block" />     <!-- the destination marker -->
         <!-- copy start -->
         <DrawBlock x="1" y="45" z="5" type="lava" />
@@ -64,12 +64,13 @@
         <DrawBlock x="13" y="47" z="8" type="air" />
         <DrawBlock x="14" y="47" z="8" type="air" />
         <DrawBlock x="15" y="47" z="8" type="air" />
-        <!-- <DrawBlock x="8" y="45" z="6" type="diamond_block" />
-        <DrawBlock x="7" y="45" z="9" type="diamond_block" />
-        <DrawBlock x="8" y="45" z="9" type="diamond_block" /> -->
-        <DrawCuboid x1="7"  y1="45" z1="9"  x2="9" y2="45" z2="10" type="diamond_block" />
+        <DrawBlock x="8" y="45" z="6" type="diamond_block" />
+        <DrawBlock x="8" y="45" z="9" type="diamond_block" />
         <DrawBlock x="9" y="45" z="9" type="diamond_block" />
+        <DrawBlock x="10" y="45" z="9" type="diamond_block" />
         <DrawBlock x="8" y="45" z="14" type="diamond_block" />
+        <DrawBlock x="5" y="45" z="9" type="diamond_block" />
+        <DrawBlock x="6" y="45" z="9" type="diamond_block" />
         <!-- <DrawBlock x="1" y="45" z="9" type="diamond_block" />
         <DrawBlock x="1" y="45" z="10" type="diamond_block" />
         <DrawBlock x="2" y="45" z="9" type="diamond_block" />
@@ -118,7 +119,7 @@
   <AgentSection mode="Survival">
     <Name>Cristina</Name>
     <AgentStart>
-      <Placement x="8.5" y="46.0" z="4.5" pitch="30" yaw="0"/>
+      <Placement x="8.5" y="46.0" z="1.5" pitch="30" yaw="0"/>
     </AgentStart>
     <AgentHandlers>
       <ContinuousMovementCommands/>
@@ -133,8 +134,8 @@
       </RewardForTouchingBlockType>
       <RewardForTimeTaken initialReward="0" delta="-0.5" density="PER_TICK"/>
       <RewardForSendingCommand reward="-2" />
-      <RewardForMissionEnd rewardForDeath = '-500'>
-        <Reward description='out_of_time' reward='-500.0'/>
+      <RewardForMissionEnd rewardForDeath = '-20'>
+        <Reward description='out_of_time' reward='0.0'/>
       </RewardForMissionEnd>
       <AgentQuitFromTouchingBlockType>
           <Block type="lapis_block" />
