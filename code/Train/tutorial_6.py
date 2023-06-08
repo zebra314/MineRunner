@@ -265,7 +265,7 @@ if agent_host.receivedArgument("help"):
 
 # -- set up the mission -- #
 
-mission_file = 'new_map_xml/20230605_2.xml'
+mission_file = 'new_map_xml/20230605_5.xml'
 with open(mission_file, 'r') as f:
     print("Loading mission from %s" % mission_file)
     mission_xml = f.read()
