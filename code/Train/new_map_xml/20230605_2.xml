@@ -93,14 +93,14 @@
         <!-- copy end -->
         <DrawCuboid x1="10"  y1="47" z1="15"  x2="12" y2="50" z2="15" type="glowstone" /> <!-- add "AI" -->
         <DrawCuboid x1="4"  y1="47" z1="15"  x2="6" y2="50" z2="15" type="glowstone" />
-        <DrawBlock x="4" y="48" z="15" type="air" />
-        <DrawBlock x="4" y="49" z="15" type="air" />
-        <DrawBlock x="6" y="48" z="15" type="air" />
-        <DrawBlock x="6" y="49" z="15" type="air" />
-        <DrawBlock x="11" y="47" z="15" type="air" />
-        <DrawBlock x="11" y="49" z="15" type="air" />
-        <DrawBlock x="10" y="50" z="15" type="air" />
-        <DrawBlock x="12" y="50" z="15" type="air" />
+        <DrawBlock x="4" y="48" z="15" type="obsidian" />
+        <DrawBlock x="4" y="49" z="15" type="obsidian" />
+        <DrawBlock x="6" y="48" z="15" type="obsidian" />
+        <DrawBlock x="6" y="49" z="15" type="obsidian" />
+        <DrawBlock x="11" y="47" z="15" type="obsidian" />
+        <DrawBlock x="11" y="49" z="15" type="obsidian" />
+        <DrawBlock x="10" y="50" z="15" type="obsidian" />
+        <DrawBlock x="12" y="50" z="15" type="obsidian" />
       </DrawingDecorator>
       <ServerQuitFromTimeUp timeLimitMs="20000"/>
       <ServerQuitWhenAnyAgentFinishes/>
@@ -114,9 +114,10 @@
     </AgentStart>
     <AgentHandlers>
       <ContinuousMovementCommands/>
+      <!-- <DiscreteMovementCommands/> -->
       <ObservationFromFullStats/>
       <RewardForTouchingBlockType>
-        <!-- <Block reward="-20.0" type="lava" behaviour="onceOnly"/> -->
+        <!-- <Block reward="-100.0" type="lava" behaviour="onceOnly"/> -->
         <!-- <Block reward="-50.0" type="glowstone" behaviour="onceOnly"/> -->
         <Block reward="10000.0" type="lapis_block" behaviour="onceOnly"/>
         <Block reward="-500" type="obsidian" behaviour="onceOnly"/>

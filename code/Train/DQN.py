@@ -82,6 +82,7 @@ class Net(nn.Module):
         self.fc2 = nn.Linear(32, hidden_layer_size)  # hidden layer
         self.fc3 = nn.Linear(hidden_layer_size, num_actions)  # output layer
 
+
     def forward(self, states):
         x = F.relu(self.fc1(states))
         x = F.relu(self.fc2(x))
@@ -103,6 +104,7 @@ class Agent():
         # self.actions = ["movenorth 1", "movesouth 1", "movewest 1", "moveeast 1"]
         # self.actions = ["move 1","move 0.5","move 0.5", "move -1", "turn 0.5", "turn -0.5", "jump 1"]
         self.actions = ["move 1", "turn 0.5", "turn -0.5", "jump 1"]
+        # self.actions = ["move  1", "jumpmove  1", "turn 1", "turn  -1"]
         # self.actions = ["moveForward 1", "set Yaw 45"]
         self.n_actions = len(self.actions)  # the number of actions
         self.count = 0
@@ -225,9 +227,9 @@ class Agent():
         # elif current_yaw >= 225 and current_yaw < 315:
         #     yaw_discrete = 3
 
-        # yaw_discrete = int(((current_yaw + 45) % 360) // 90)   整除成4等分
-        # yaw_discrete = int(((current_yaw + 22.5) % 360) // 45)  整除成8等分
-        # yaw_discrete = int(((current_yaw + 22.5) % 360) // 22.5)   整除成16等分
+        # yaw_discrete = int(((current_yaw + 45) % 360) // 90)   #整除成4等分
+        # yaw_discrete = int(((current_yaw + 22.5) % 360) // 45)  #整除成8等分
+        # yaw_discrete = int(((current_yaw + 22.5) % 360) // 22.5)   #整除成16等分
 
         current_XPos = float(obs[u'XPos'])
         current_ZPos = float(obs[u'ZPos'])
@@ -401,8 +403,8 @@ if agent_host.receivedArgument("help"):
     exit(0)
 
 # -- set up the mission -- #
-# mission_file = './new_map_xml/tutorial_6.xml'
-mission_file = './new_map_xml/20230605_2.xml'
+mission_file = './new_map_xml/tutorial_6.xml'
+# mission_file = './new_map_xml/20230605_2.xml'
 with open(mission_file, 'r') as f:
     print("Loading mission from %s" % mission_file)
     mission_xml = f.read()

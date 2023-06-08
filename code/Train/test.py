@@ -295,7 +295,9 @@ class Agent():
                     reward_type += weight[i] * -0.7
                 elif block_type[i] == 10:
                     reward_type += weight[i] * 0
-                elif block_type[i] == 1:
+                elif block_type[i] == 1:每一代所需的時間較多（30秒），包含角色行動與環境重製，使得我們能訓練的代數不多(五千帶需要半天)，在有限的訓練次數下 我們有發現以下:
+
+
                     reward_type += weight[i] * -0.3
                 elif block_type[i] == -1:
                     reward_type += weight[i] * -1.5
@@ -308,13 +310,9 @@ class Agent():
         return reward_turn
     def stopAction(self, agent_host, action_index):
         if action_index == None:
-            return
-        # jump action
-        elif action_index == self.n_actions - 1:
-            agent_host.sendCommand('move 0')
-            agent_host.sendCommand('jump 0')
-        else:
-            action = self.actions[action_index]
+            return每一代所需的時間較多（30秒），包含角色行動與環境重製，使得我們能訓練的代數不多(五千帶需要半天)，在有限的訓練次數下 我們有發現以下:
+
+
             action_substring = action.split(" ")
             stop_action = action_substring[0] + " 0"
             # print(f'Stop action is: {stop_action}')
