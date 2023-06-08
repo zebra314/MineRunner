@@ -143,9 +143,9 @@ class Agent():
 
         self.buffer = replay_buffer(self.capacity)
         self.evaluate_net = Net(self.n_actions)  # the evaluate network
-        # self.evaluate_net.load_state_dict(torch.load("../../asset/Tables/CNN_map2_2023-06-08_02-38.pt"))
+        self.evaluate_net.load_state_dict(torch.load("../../asset/Tables/reCNN_map1_2023-06-08_22-02.pt"))
         self.target_net = Net(self.n_actions)  # the target network
-        # self.target_net.load_state_dict(torch.load("../../asset/Tables/CNN_map2_2023-06-08_02-38.pt"))
+        self.target_net.load_state_dict(torch.load("../../asset/Tables/reCNN_map1_2023-06-08_22-02.pt"))
         self.optimizer = torch.optim.Adam(
             self.evaluate_net.parameters(), lr=self.learning_rate)  # Adam is a method using to optimize the neural network
         
@@ -281,26 +281,31 @@ class Agent():
             agent_block_type = current_state[1][1][1]
             reward_h = 0
             reward_type = 0
-            weight = [1, 1.5, 1]
+            weight = [0.3, 0.7, 0.3]
             
             for i in range(len(height)):
+                # if see lava
+                if height[i] == -1:
+                    reward_h += -1.5 * weight[i]
+                    continue
                 h_diff = height[i] - agent_height
                 # means that agent can go through
                 if h_diff <= 1:
                     reward_h +=  -0.5 * weight[i]
                 else:
-                    reward_h += -2 * weight[i]
+                    reward_h += -1 * weight[i]
             for i in range(len(block_type)):
                 if block_type[i] == 0:
-                    reward_type += weight[i] * -0.7
+                    reward_type += weight[i] * -0.5
                 elif block_type[i] == 10:
-                    reward_type += weight[i] * 0
+                    reward_type += weight[i] * 1.5
+                # diamond block
                 elif block_type[i] == 1:
-                    reward_type += weight[i] * -0.3
+                    reward_type += weight[i] * 0.5
                 elif block_type[i] == -1:
                     reward_type += weight[i] * -1.5
                 elif block_type[i] == -9999:
-                    reward_type += weight[i] * -2
+                    reward_type += weight[i] * -1.5
             print(f'Height Reward is: {reward_h}')
             print(f'Type Reward is: {reward_type}')
             reward_turn = reward_h + reward_type
@@ -587,7 +592,7 @@ else:
 
 # Code to read map data
 matrix = []
-current_map_file = './new_map_file/20230605_map_file_1.txt'
+current_map_file = './new_map_file/20230605_map_file_2.txt'
 readMap(matrix, current_map_file)
 agent = Agent(matrix)
 agent_host = MalmoPython.AgentHost()
@@ -602,7 +607,7 @@ if agent_host.receivedArgument("help"):
     exit(0)
 
 # -- set up the mission -- #
-mission_file = './new_map_xml/20230605_1.xml'
+mission_file = './new_map_xml/20230605_2.xml'
 with open(mission_file, 'r') as f:
     print("Loading mission from %s" % mission_file)
     mission_xml = f.read()
