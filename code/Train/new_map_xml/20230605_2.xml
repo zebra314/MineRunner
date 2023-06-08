@@ -62,14 +62,7 @@
         <DrawBlock x="13" y="47" z="8" type="air" />
         <DrawBlock x="14" y="47" z="8" type="air" />
         <DrawBlock x="15" y="47" z="8" type="air" /> -->
-
-
-        <DrawBlock x="5" y="45" z="10" type="gold_block" />
         <DrawBlock x="6" y="45" z="7" type="diamond_block" />
-        <DrawBlock x="6" y="45" z="10" type="gold_block" />
-        <DrawBlock x="7" y="45" z="7" type="diamond_block" />
-        <DrawBlock x="7" y="45" z="10" type="gold_block" />
-        <DrawBlock x="8" y="45" z="10" type="gold_block" />
 
         <!-- <DrawBlock x="7" y="46" z="8" type="diamond_block" /> -->
 
@@ -131,15 +124,14 @@
       <RewardForTouchingBlockType>
         <!-- <Block reward="-100.0" type="lava" behaviour="onceOnly"/> -->
         <!-- <Block reward="-50.0" type="glowstone" behaviour="onceOnly"/> -->
-        <Block reward="400.0" type="lapis_block" behaviour="onceOnly"/>
+        <Block reward="1000.0" type="lapis_block" behaviour="onceOnly"/>
         <Block reward="-500" type="obsidian" behaviour="onceOnly"/>
-        <Block reward="40.0" type="diamond_block" behaviour="onceOnly"/>
-        <Block reward="100.0" type="gold_block" behaviour="onceOnly"/>
-        <Block reward='10' type='sandstone' behaviour='oncePerBlock'/>
+        <Block reward="50.0" type="diamond_block" behaviour="onceOnly"/>
+        <Block reward='2' type='sandstone' behaviour='oncePerBlock'/>
       </RewardForTouchingBlockType>
       <RewardForTimeTaken initialReward="0" delta="-0.5" density="PER_TICK"/>
       <RewardForSendingCommand reward="-1.0" />
-      <RewardForMissionEnd rewardForDeath="-400.0">
+      <RewardForMissionEnd rewardForDeath="-500.0">
         <Reward description="out_of_time" reward="0.0"/>
       </RewardForMissionEnd>
       <AgentQuitFromTouchingBlockType>

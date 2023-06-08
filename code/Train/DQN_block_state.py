@@ -261,7 +261,7 @@ class Agent():
             agent_block_type = current_state[1][1][1]
             reward_h = 0
             reward_type = 0
-            weight = [0.3, 0.7, 0.3]
+            weight = [1, 5, 1]
             
             for i in range(len(height)):
                 # if see lava
