@@ -73,10 +73,6 @@ class replay_buffer():
         return len(self.memory)
 
 class Net(nn.Module):
-    '''
-    The structure of the Convolutional Neural Network calculating Q values of each state.
-    '''
-
     def __init__(self, num_actions, hidden_layer_size=64):
         super(Net, self).__init__()
         # input_shape is 2 * 3 * 3
@@ -87,25 +83,15 @@ class Net(nn.Module):
         self.conv1 = nn.Conv2d(in_channels=2, out_channels=9, kernel_size=2)
         # output shape is 9 * 2 * 2
         # Fully connected layers
+        # Output shape is 9 * 2 * 2   
         self.fc1 = nn.Linear(9 * 2 * 2, hidden_layer_size)
         self.fc2 = nn.Linear(hidden_layer_size, num_actions)
         
     def forward(self, x):
-        '''
-        Forward the state to the convolutional neural network.
-
-        Parameter:
-            states: a batch size of states
-
-        Return:
-            q_values: a batch size of q_values
-        '''
-        # x = states.view(-1, 1, self.input_state[0], self.input_state[1])
-        x = F.relu(self.conv1(x))
-        # x = F.relu(self.conv2(x))
-        x = torch.flatten(x, 1)
-        x = F.relu(self.fc1(x))
-        q_values = self.fc2(x)
+        x = F.relu(self.conv1(x)) # 9 * 2 * 2
+        x = torch.flatten(x, 1) # 36
+        x = F.relu(self.fc1(x)) # 64
+        q_values = self.fc2(x) # 4
         return q_values
 
     
@@ -136,9 +122,9 @@ class Agent():
 
         self.buffer = replay_buffer(self.capacity)
         self.evaluate_net = Net(self.n_actions)  # the evaluate network
-        # self.evaluate_net.load_state_dict(torch.load("../../asset/Tables/CNN_map3_2023-06-06_16-45.pt"))
+        self.evaluate_net.load_state_dict(torch.load("../../asset/Tables/CNN_map2_2023-06-08_05-48.pt"))
         self.target_net = Net(self.n_actions)  # the target network
-        # self.target_net.load_state_dict(torch.load("../../asset/Tables/CNN_map3_2023-06-06_16-45.pt"))
+        self.target_net.load_state_dict(torch.load("../../asset/Tables/CNN_map2_2023-06-08_05-48.pt"))
         self.optimizer = torch.optim.Adam(
             self.evaluate_net.parameters(), lr=self.learning_rate)  # Adam is a method using to optimize the neural network
         
@@ -264,7 +250,7 @@ class Agent():
             return
         action = self.actions[action_index]
         action_substring = action.split(" ")
-        print(f'action_substring[0]: {action_substring[0]}')
+        # print(f'action_substring[0]: {action_substring[0]}')
         reward_turn = 0
         if action_substring[0] == 'turn':
             # Take first row of height and block_type
@@ -275,26 +261,31 @@ class Agent():
             agent_block_type = current_state[1][1][1]
             reward_h = 0
             reward_type = 0
-            weight = [0.3, 0.6, 0.3]
+            weight = [0.7, 1, 0.7]
             
             for i in range(len(height)):
+                # if see lava
+                if height[i] == -1:
+                    reward_h += -5 * weight[i]
+                    continue
                 h_diff = height[i] - agent_height
                 # means that agent can go through
                 if h_diff <= 1:
-                    reward_h +=  -0.5 * weight[i]
+                    reward_h +=  -1 * weight[i]
                 else:
-                    reward_h += -1 * weight[i]
+                    reward_h += -2 * weight[i]
             for i in range(len(block_type)):
                 if block_type[i] == 0:
-                    reward_type += weight[i] * -0.4
+                    reward_type += weight[i] * -1
                 elif block_type[i] == 10:
                     reward_type += weight[i] * 0
+                # diamond block
                 elif block_type[i] == 1:
-                    reward_type += weight[i] * -0.7
+                    reward_type += weight[i] * -0.5
                 elif block_type[i] == -1:
-                    reward_type += weight[i] * -1
+                    reward_type += weight[i] * -5
                 elif block_type[i] == -9999:
-                    reward_type += weight[i] * -1.5
+                    reward_type += weight[i] * -5
             print(f'Height Reward is: {reward_h}')
             print(f'Type Reward is: {reward_type}')
             reward_turn = reward_h + reward_type
@@ -421,8 +412,8 @@ class Agent():
         with torch.no_grad():
             temp_state = current_state
             temp_state = torch.FloatTensor(temp_state).unsqueeze(0)
-            print(f'state size is: {temp_state.size()}')
-            print(f'State is: {temp_state}')
+            # print(f'state size is: {temp_state.size()}')
+            # print(f'State is: {temp_state}')
             q_values = self.evaluate_net(torch.FloatTensor(temp_state))
             if random.uniform(0,1) < eps_threshold:
                 self.logger.info("Explore")
@@ -430,11 +421,10 @@ class Agent():
             else:
                 # Choose the best action based on the evaluate net
                 self.logger.info("Exploit")
-                print(f'q_value size is: {q_values.size()}')
+                # print(f'q_value size is: {q_values.size()}')
                 action_index = torch.argmax(q_values).item()
                 print(f'Action index is: {action_index}')
                 # action_index = action_index.item()
-        print(f'index is: {action_index}')
         # chosen_action = self.actions[action_index]
         # action_state_list = [chosen_action, current_state]
         # self.action_state.append(tuple(action_state_list))
@@ -513,7 +503,7 @@ class Agent():
                     if world_state.is_mission_running and len(world_state.observations)> 0 and not world_state.observations[-1].text=="{}":
                         # # stop prev action after observation of current state
                         # self.stopAction(agent_host, self.prev_a)
-                        print('break!!!')
+                        # print('break!!!')
                         act_reward = self.act(world_state, agent_host, current_r, is_first_action)
                         total_reward += (current_r + act_reward)
                         # print(f'Total reward is: {total_reward}')
@@ -581,7 +571,7 @@ else:
 
 # Code to read map data
 matrix = []
-current_map_file = './new_map_file/20230605_map_file_2.txt'
+current_map_file = './new_map_file/20230605_map_file_3.txt'
 readMap(matrix, current_map_file)
 agent = Agent(matrix)
 agent_host = MalmoPython.AgentHost()
@@ -596,7 +586,7 @@ if agent_host.receivedArgument("help"):
     exit(0)
 
 # -- set up the mission -- #
-mission_file = './new_map_xml/20230605_2.xml'
+mission_file = './new_map_xml/20230605_3.xml'
 with open(mission_file, 'r') as f:
     print("Loading mission from %s" % mission_file)
     mission_xml = f.read()
@@ -608,7 +598,7 @@ max_retries = 3
 if agent_host.receivedArgument("test"):
     num_repeats = 1
 else:
-    num_repeats = 100
+    num_repeats = 200
 
 cumulative_rewards = []
 for i in range(num_repeats):

@@ -57,7 +57,7 @@ class TabQAgent(object):
         self.logger.handlers = []
         self.logger.addHandler(logging.StreamHandler(sys.stdout))
 
-        self.actions = ["movenorth 1", "movesouth 1", "movewest 1", "moveeast 1", "jumpnorth 1"]
+        self.actions = ["movenorth 1", "movesouth 1", "movewest 1", "moveeast 1", "jumpsouth 1"]
         self.q_table = {}
         self.canvas = None
         self.root = None
@@ -205,8 +205,8 @@ class TabQAgent(object):
         
     def drawQ( self, curr_x=None, curr_y=None ):
         scale = 40
-        world_x = 6
-        world_y = 14
+        world_x = 20
+        world_y = 20
         if self.canvas is None or self.root is None:
             self.root = tk.Tk()
             self.root.wm_title("Q-table")
@@ -264,7 +264,8 @@ if agent_host.receivedArgument("help"):
     exit(0)
 
 # -- set up the mission -- #
-mission_file = './tutorial_6.xml'
+
+mission_file = 'new_map_xml/20230605_5.xml'
 with open(mission_file, 'r') as f:
     print("Loading mission from %s" % mission_file)
     mission_xml = f.read()
@@ -280,7 +281,7 @@ max_retries = 3
 if agent_host.receivedArgument("test"):
     num_repeats = 1
 else:
-    num_repeats = 150
+    num_repeats = 1000
 
 cumulative_rewards = []
 for i in range(num_repeats):
@@ -324,3 +325,28 @@ print("Done.")
 print()
 print("Cumulative rewards for all %d runs:" % num_repeats)
 print(cumulative_rewards)
+
+# Saving the data
+import matplotlib.pyplot as plt
+import numpy as np
+import os
+import datetime
+def initialize_plot():
+    plt.figure(figsize=(10, 5))
+    plt.title('Steve')
+    plt.xlabel('epoch')
+    plt.ylabel('rewards')
+initialize_plot()
+plt.plot(cumulative_rewards)
+current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+filePath = f"../../asset/Plots/Qlearning_{current_time}.png"
+# 保存图形文件
+plt.savefig(filePath)
+plt.show()
+plt.close()
+
+os.makedirs("../../asset/Tables", exist_ok=True)
+os.makedirs("../../asset/Rewards", exist_ok=True)
+current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M")
+np_file_path = f"../../asset/Rewards/Qlearning_rewards_{current_time}.npy"
+np.save(np_file_path, np.array(cumulative_rewards))
