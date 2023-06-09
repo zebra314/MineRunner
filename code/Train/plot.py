@@ -32,7 +32,7 @@ def DQN():
     plt.close()
 
 def CNN():
-    CNN_Rewards = np.load("../../asset/Rewards/CNN_rewards_2023-06-08_18-09.npy").transpose()
+    CNN_Rewards = np.load("../../asset/Rewards/CNN_rewards_2023-06-09_16-09.npy").transpose()
     # DQN_avg = np.mean(DQN_Rewards, axis=1)
     # DQN_std = np.std(DQN_Rewards, axis=1)
 

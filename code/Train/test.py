@@ -265,7 +265,7 @@ class Agent():
         self.optimizer.step()
         # End your code
         
-    def if_turn_reward(self, action_index, current_state):   
+    def if_turn_reward(self, action_index, current_state):
         if action_index == None:
             return
         action = self.actions[action_index]
@@ -281,26 +281,31 @@ class Agent():
             agent_block_type = current_state[1][1][1]
             reward_h = 0
             reward_type = 0
-            weight = [1, 1.5, 1]
-            
+            weight = [1, 5, 1]
+
             for i in range(len(height)):
+                # if see lava
+                if height[i] == -1:
+                    reward_h += -1.5 * weight[i]
+                    continue
                 h_diff = height[i] - agent_height
                 # means that agent can go through
                 if h_diff <= 1:
                     reward_h +=  -0.5 * weight[i]
                 else:
-                    reward_h += -2 * weight[i]
+                    reward_h += -1 * weight[i]
             for i in range(len(block_type)):
                 if block_type[i] == 0:
-                    reward_type += weight[i] * -0.7
+                    reward_type += weight[i] * -0.5
                 elif block_type[i] == 10:
-                    reward_type += weight[i] * 0
+                    reward_type += weight[i] * 1.5
+                # diamond block
                 elif block_type[i] == 1:
-                    reward_type += weight[i] * -0.3
+                    reward_type += weight[i] * 0.5
                 elif block_type[i] == -1:
                     reward_type += weight[i] * -1.5
                 elif block_type[i] == -9999:
-                    reward_type += weight[i] * -2
+                    reward_type += weight[i] * -1.5
             print(f'Height Reward is: {reward_h}')
             print(f'Type Reward is: {reward_type}')
             reward_turn = reward_h + reward_type
@@ -587,7 +592,7 @@ else:
 
 # Code to read map data
 matrix = []
-current_map_file = './new_map_file/20230605_map_file_1.txt'
+current_map_file = './new_map_file/20230605_map_file_3.txt'
 readMap(matrix, current_map_file)
 agent = Agent(matrix)
 agent_host = MalmoPython.AgentHost()
@@ -602,7 +607,7 @@ if agent_host.receivedArgument("help"):
     exit(0)
 
 # -- set up the mission -- #
-mission_file = './new_map_xml/20230605_1.xml'
+mission_file = './new_map_xml/20230605_3.xml'
 with open(mission_file, 'r') as f:
     print("Loading mission from %s" % mission_file)
     mission_xml = f.read()
@@ -614,7 +619,7 @@ max_retries = 3
 if agent_host.receivedArgument("test"):
     num_repeats = 1
 else:
-    num_repeats = 500
+    num_repeats = 1500
 
 cumulative_rewards = []
 for i in range(num_repeats):
