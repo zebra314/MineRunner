@@ -85,13 +85,12 @@ class Net(nn.Module):
 
         # Convolutional layers
         # 讓圖片可以資訊完整被輸入進去
-        self.conv1 = nn.Conv2d(in_channels=2, out_channels=2, kernel_size=1)
-        # output shape is 2 * 3 * 3
+        self.conv1 = nn.Conv2d(in_channels=2, out_channels=6, kernel_size=1)
         # output shape is 6 * 3 * 3
-        # self.conv2 = nn.Conv2d(in_channels=6, out_channels=12, kernel_size=2)
+        self.conv2 = nn.Conv2d(in_channels=6, out_channels=12, kernel_size=2)
         # output shape is 12 * 2 * 2
         # Fully connected layers
-        self.fc1 = nn.Linear(2 * 3 * 3, hidden_layer_size)
+        self.fc1 = nn.Linear(12 * 2 * 2, hidden_layer_size)
         self.fc2 = nn.Linear(hidden_layer_size, num_actions)
         
     def forward(self, x):
@@ -107,8 +106,8 @@ class Net(nn.Module):
         # x = states.view(-1, 1, self.input_state[0], self.input_state[1])
         x = F.relu(self.conv1(x))
         print(f'size after conv 1: {x.size()}')
-        # x = F.relu(self.conv2(x))
-        # print(f'size after conv 2: {x.size()}')
+        x = F.relu(self.conv2(x))
+        print(f'size after conv 2: {x.size()}')
         # x = F.relu(self.conv2(x))
         x = torch.flatten(x, 1)
         print(f'size after flatten: {x.size()}')
@@ -144,9 +143,9 @@ class Agent():
 
         self.buffer = replay_buffer(self.capacity)
         self.evaluate_net = Net(self.n_actions)  # the evaluate network
-        self.evaluate_net.load_state_dict(torch.load("../../asset/Tables/CNN_2023-06-09_14-26.pt"))
+        self.evaluate_net.load_state_dict(torch.load("../../asset/Tables/CNN_2023-06-09_16-09.pt"))
         self.target_net = Net(self.n_actions)  # the target network
-        self.target_net.load_state_dict(torch.load("../../asset/Tables/CNN_2023-06-09_14-26.pt"))
+        self.target_net.load_state_dict(torch.load("../../asset/Tables/CNN_2023-06-09_16-09.pt"))
         self.optimizer = torch.optim.Adam(
             self.evaluate_net.parameters(), lr=self.learning_rate)  # Adam is a method using to optimize the neural network
         
@@ -282,7 +281,7 @@ class Agent():
             agent_block_type = current_state[1][1][1]
             reward_h = 0
             reward_type = 0
-            weight = [0.3, 0.6, 0.3]
+            weight = [1, 5, 1]
             
             for i in range(len(height)):
                 # if see lava
@@ -299,10 +298,10 @@ class Agent():
                 if block_type[i] == 0:
                     reward_type += weight[i] * -0.5
                 elif block_type[i] == 10:
-                    reward_type += weight[i] * 1
+                    reward_type += weight[i] * 1.5
                 # diamond block
                 elif block_type[i] == 1:
-                    reward_type += weight[i] * 0
+                    reward_type += weight[i] * 0.5
                 elif block_type[i] == -1:
                     reward_type += weight[i] * -1.5
                 elif block_type[i] == -9999:
@@ -620,7 +619,7 @@ max_retries = 3
 if agent_host.receivedArgument("test"):
     num_repeats = 1
 else:
-    num_repeats = 1000
+    num_repeats = 2000
 
 cumulative_rewards = []
 for i in range(num_repeats):
