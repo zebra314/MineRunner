@@ -117,20 +117,19 @@
       <!-- <DiscreteMovementCommands/> -->
       <ObservationFromFullStats/>
       <RewardForTouchingBlockType>
-        <!-- <Block reward="-100.0" type="lava" behaviour="onceOnly"/> -->
+        <!-- <Block reward="-20.0" type="lava" behaviour="onceOnly"/> -->
         <!-- <Block reward="-50.0" type="glowstone" behaviour="onceOnly"/> -->
-        <Block reward="10000.0" type="lapis_block" behaviour="onceOnly"/>
-        <Block reward="-500" type="obsidian" behaviour="onceOnly"/>
-        <Block reward="100.0" type="diamond_block" behaviour="oncePerBlock"/>
+        <Block reward="200.0" type="lapis_block" behaviour="onceOnly"/>
+        <Block reward="-50" type="obsidian" behaviour="onceOnly"/>
+        <Block reward="20.0" type="diamond_block" behaviour="onceOnly"/>
         <Block reward='2' type='sandstone' behaviour='oncePerBlock'/>
       </RewardForTouchingBlockType>
-      <RewardForTimeTaken initialReward="0" delta="-0.5" density="PER_TICK"/>
-      <RewardForSendingCommand reward="-1" />
-      <RewardForMissionEnd rewardForDeath="-500.0">
-        <Reward description="out_of_time" reward="-100"/>
+      <RewardForTimeTaken initialReward="0" delta="-0.1" density="PER_TICK"/>
+      <RewardForSendingCommand reward="-2" />
+      <RewardForMissionEnd rewardForDeath="-20.0">
+        <Reward description="out_of_time" reward="0.0"/>
       </RewardForMissionEnd>
       <AgentQuitFromTouchingBlockType>
-          <!-- <Block type="lava" /> -->
           <Block type="obsidian" />
           <Block type="lapis_block" />
       </AgentQuitFromTouchingBlockType>
