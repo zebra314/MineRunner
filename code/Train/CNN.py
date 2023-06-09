@@ -73,10 +73,6 @@ class replay_buffer():
         return len(self.memory)
 
 class Net(nn.Module):
-    '''
-    The structure of the Convolutional Neural Network calculating Q values of each state.
-    '''
-
     def __init__(self, num_actions, hidden_layer_size=128):
         super(Net, self).__init__()
         # input_shape is 2 * 3 * 3
@@ -94,21 +90,10 @@ class Net(nn.Module):
         self.fc2 = nn.Linear(hidden_layer_size, num_actions)
         
     def forward(self, x):
-        '''
-        Forward the state to the convolutional neural network.
-
-        Parameter:
-            states: a batch size of states
-
-        Return:
-            q_values: a batch size of q_values
-        '''
-        # x = states.view(-1, 1, self.input_state[0], self.input_state[1])
         x = F.relu(self.conv1(x))
         print(f'size after conv 1: {x.size()}')
         x = F.relu(self.conv2(x))
         print(f'size after conv 2: {x.size()}')
-        # x = F.relu(self.conv2(x))
         x = torch.flatten(x, 1)
         print(f'size after flatten: {x.size()}')
         x = F.relu(self.fc1(x))
