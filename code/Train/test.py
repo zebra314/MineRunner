@@ -143,9 +143,9 @@ class Agent():
 
         self.buffer = replay_buffer(self.capacity)
         self.evaluate_net = Net(self.n_actions)  # the evaluate network
-        # self.evaluate_net.load_state_dict(torch.load("../../asset/Tables/CNN_map2_2023-06-08_02-38.pt"))
+        self.evaluate_net.load_state_dict(torch.load("../../asset/Tables/reCNN_map1_2023-06-08_23-52.pt"))
         self.target_net = Net(self.n_actions)  # the target network
-        # self.target_net.load_state_dict(torch.load("../../asset/Tables/CNN_map2_2023-06-08_02-38.pt"))
+        self.target_net.load_state_dict(torch.load("../../asset/Tables/reCNN_map1_2023-06-08_23-52.pt"))
         self.optimizer = torch.optim.Adam(
             self.evaluate_net.parameters(), lr=self.learning_rate)  # Adam is a method using to optimize the neural network
         
@@ -282,7 +282,7 @@ class Agent():
             reward_h = 0
             reward_type = 0
             weight = [1, 5, 1]
-
+            
             for i in range(len(height)):
                 # if see lava
                 if height[i] == -1:
@@ -592,7 +592,7 @@ else:
 
 # Code to read map data
 matrix = []
-current_map_file = './new_map_file/20230605_map_file_3.txt'
+current_map_file = './new_map_file/20230605_map_file_2.txt'
 readMap(matrix, current_map_file)
 agent = Agent(matrix)
 agent_host = MalmoPython.AgentHost()
@@ -607,7 +607,7 @@ if agent_host.receivedArgument("help"):
     exit(0)
 
 # -- set up the mission -- #
-mission_file = './new_map_xml/20230605_3.xml'
+mission_file = './new_map_xml/20230605_2.xml'
 with open(mission_file, 'r') as f:
     print("Loading mission from %s" % mission_file)
     mission_xml = f.read()
@@ -619,7 +619,7 @@ max_retries = 3
 if agent_host.receivedArgument("test"):
     num_repeats = 1
 else:
-    num_repeats = 1500
+    num_repeats = 2000
 
 cumulative_rewards = []
 for i in range(num_repeats):

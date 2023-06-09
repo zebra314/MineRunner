@@ -261,31 +261,31 @@ class Agent():
             agent_block_type = current_state[1][1][1]
             reward_h = 0
             reward_type = 0
-            weight = [0.7, 1, 0.7]
+            weight = [1, 5, 1]
             
             for i in range(len(height)):
                 # if see lava
                 if height[i] == -1:
-                    reward_h += -5 * weight[i]
+                    reward_h += -1.5 * weight[i]
                     continue
                 h_diff = height[i] - agent_height
                 # means that agent can go through
                 if h_diff <= 1:
-                    reward_h +=  -1 * weight[i]
+                    reward_h +=  -0.5 * weight[i]
                 else:
-                    reward_h += -2 * weight[i]
+                    reward_h += -1 * weight[i]
             for i in range(len(block_type)):
                 if block_type[i] == 0:
-                    reward_type += weight[i] * -1
+                    reward_type += weight[i] * -0.5
                 elif block_type[i] == 10:
-                    reward_type += weight[i] * 0
+                    reward_type += weight[i] * 1.5
                 # diamond block
                 elif block_type[i] == 1:
-                    reward_type += weight[i] * -0.5
+                    reward_type += weight[i] * 0.5
                 elif block_type[i] == -1:
-                    reward_type += weight[i] * -5
+                    reward_type += weight[i] * -1.5
                 elif block_type[i] == -9999:
-                    reward_type += weight[i] * -5
+                    reward_type += weight[i] * -1.5
             print(f'Height Reward is: {reward_h}')
             print(f'Type Reward is: {reward_type}')
             reward_turn = reward_h + reward_type
