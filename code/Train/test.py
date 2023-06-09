@@ -266,7 +266,7 @@ class Agent():
         self.optimizer.step()
         # End your code
         
-    def if_turn_reward(self, action_index, current_state):   
+    def if_turn_reward(self, action_index, current_state):
         if action_index == None:
             return
         action = self.actions[action_index]
